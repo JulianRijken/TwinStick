@@ -44,5 +44,4 @@ public class Player : Damageable
 
         return cameraRay.GetPoint(rayLength);
     }
-
 }
