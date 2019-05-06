@@ -78,7 +78,7 @@ public class Damageable : MonoBehaviour
         while (timer < 1)
         {
             timer += Time.deltaTime / overTime;
-            RemoveHealth(damage * timer);
+            RemoveHealth(damage * timer * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
