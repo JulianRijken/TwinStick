@@ -16,13 +16,14 @@ public class Damageable : MonoBehaviour
         if (health == 0)
             Debug.LogError("Health is not set");
 
+
+
+        Debug.Log(Stats.LoadStats().healthGaind);
     }
 
     /// <summary>
     /// Is Called When health Is 0 or lower
     /// </summary>
-    /// 
-
     protected virtual void OnDeath(){}
 
     /// <summary>
@@ -30,7 +31,7 @@ public class Damageable : MonoBehaviour
     /// </summary>
     protected virtual void OnHit()
     {
-
+ 
     }
 
 

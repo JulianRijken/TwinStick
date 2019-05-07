@@ -8,6 +8,7 @@ public class Player : Damageable
     private Rigidbody rig = null;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     [SerializeField] private float moveSpeed;
 
     [SerializeField] private float rotationSpeed;
@@ -15,6 +16,13 @@ public class Player : Damageable
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float rotationSpeed = 30f;
 >>>>>>> master
+=======
+    [SerializeField] private float moveSpeed;
+
+
+
+    [SerializeField] private float rotationSpeed;
+>>>>>>> parent of 5b81819... Stats + GameManager
 
     private void Start()
     {
@@ -23,12 +31,19 @@ public class Player : Damageable
 
     private void FixedUpdate()
     {
+
         rig.MovePosition(transform.position + GetInput().normalized * Time.deltaTime * moveSpeed);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         float yRot = Quaternion.LookRotation(GetMousePos() - transform.position, Vector3.up).eulerAngles.y;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
 =======
+=======
+
+
+
+>>>>>>> parent of 5b81819... Stats + GameManager
         float yRot = Quaternion.LookRotation(GetMousePos() - transform.position,Vector3.up).eulerAngles.y;
         transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.Euler(0, yRot,0),Time.deltaTime * rotationSpeed);
 >>>>>>> master
@@ -56,8 +71,11 @@ public class Player : Damageable
         return cameraRay.GetPoint(rayLength);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 
+=======
+>>>>>>> parent of 5b81819... Stats + GameManager
 }
 >>>>>>> master
