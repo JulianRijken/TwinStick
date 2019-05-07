@@ -5,30 +5,23 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Damageable
 {
-
     private Rigidbody rig = null;
 
     [SerializeField] private float moveSpeed;
 
-
-
     [SerializeField] private float rotationSpeed;
 
-    void Start()
+    private void Start()
     {
         rig = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-
         rig.MovePosition(transform.position + GetInput().normalized * Time.deltaTime * moveSpeed);
 
-
-
-
-        float yRot = Quaternion.LookRotation(GetMousePos() - transform.position,Vector3.up).eulerAngles.y;
-        transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.Euler(0, yRot,0),Time.deltaTime * rotationSpeed);
+        float yRot = Quaternion.LookRotation(GetMousePos() - transform.position, Vector3.up).eulerAngles.y;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
     }
 
     /// <summary>
@@ -36,9 +29,9 @@ public class Player : Damageable
     /// </summary>
     private Vector3 GetInput()
     {
-        return new Vector3(Input.GetAxisRaw("Horizontal"), 0,Input.GetAxisRaw("Vertical")); 
+        return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
-            
+
     /// <summary>
     /// Returns The Mouse Pos
     /// </summary>
