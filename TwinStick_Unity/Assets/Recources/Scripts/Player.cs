@@ -7,9 +7,14 @@ public class Player : Damageable
 {
     private Rigidbody rig = null;
 
+<<<<<<< HEAD
     [SerializeField] private float moveSpeed;
 
     [SerializeField] private float rotationSpeed;
+=======
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float rotationSpeed = 30f;
+>>>>>>> master
 
     private void Start()
     {
@@ -20,8 +25,13 @@ public class Player : Damageable
     {
         rig.MovePosition(transform.position + GetInput().normalized * Time.deltaTime * moveSpeed);
 
+<<<<<<< HEAD
         float yRot = Quaternion.LookRotation(GetMousePos() - transform.position, Vector3.up).eulerAngles.y;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
+=======
+        float yRot = Quaternion.LookRotation(GetMousePos() - transform.position,Vector3.up).eulerAngles.y;
+        transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.Euler(0, yRot,0),Time.deltaTime * rotationSpeed);
+>>>>>>> master
     }
 
     /// <summary>
@@ -45,4 +55,9 @@ public class Player : Damageable
 
         return cameraRay.GetPoint(rayLength);
     }
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> master
