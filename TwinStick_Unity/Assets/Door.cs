@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
 public class Door : MonoBehaviour
@@ -14,7 +15,9 @@ public class Door : MonoBehaviour
     [SerializeField] private Color edgeColor = Color.green;
     [SerializeField] private Color insideColor = Color.red;
 
-
+    /// <summary>
+    /// Checks Collision
+    /// </summary>
     private bool GetCollision()
     {
         Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position + offset, collisionBox / 2, Quaternion.identity);
@@ -25,6 +28,7 @@ public class Door : MonoBehaviour
 
         return false;
     }
+
 
     void OnDrawGizmos()
     {

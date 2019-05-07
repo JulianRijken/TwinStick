@@ -8,11 +8,8 @@ public class Player : Damageable
 
     private Rigidbody rig = null;
 
-    [SerializeField] private float moveSpeed;
-
-
-
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float rotationSpeed = 30f;
 
     void Start()
     {
@@ -21,11 +18,7 @@ public class Player : Damageable
 
     void FixedUpdate()
     {
-
         rig.MovePosition(transform.position + GetInput().normalized * Time.deltaTime * moveSpeed);
-
-
-
 
         float yRot = Quaternion.LookRotation(GetMousePos() - transform.position,Vector3.up).eulerAngles.y;
         transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.Euler(0, yRot,0),Time.deltaTime * rotationSpeed);
@@ -52,4 +45,5 @@ public class Player : Damageable
 
         return cameraRay.GetPoint(rayLength);
     }
+
 }
