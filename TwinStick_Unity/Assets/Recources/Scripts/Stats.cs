@@ -6,30 +6,39 @@ using UnityEngine;
 
 public class Stats
 {
-    private CharacterData m_Data;
+    private CharacterData statsData;
 
+    /// <summary>
+    /// Stats Constructor
+    /// </summary>
     public Stats()
     {
-        m_Data = new CharacterData()
+        statsData = new CharacterData()
         {
-            healthGaind = 0,
-            healthLost = 0
+            healthLost = 0,
         };
     }
 
-    public void Damage(int _damage)
+    /// <summary>
+    /// Adds the health to the lost health float
+    /// </summary>
+    public void AddHealthLost(float _healthLost)
     {
-        m_Data.healthLost = _damage;
+        statsData.healthLost += _healthLost;
     }
 
-    public void Heal(int _health)
+    
+    /// <summary>
+    ///  Returns The stats
+    /// </summary>
+    public CharacterData GetData()
     {
-        m_Data.healthGaind = _health;
+        return statsData;
     }
+
 }
 
 public class CharacterData
 {
     public float healthLost;
-    public int healthGaind;
 }

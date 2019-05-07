@@ -61,6 +61,8 @@ public class Damageable : MonoBehaviour
     /// </summary>
     public void RemoveHealth(float damage)
     {
+        // Update The Stats
+        GameManager.instance.statsController.AddHealthLost(damage);
         // Calls the hit function
         OnHit();
         // Removes The health

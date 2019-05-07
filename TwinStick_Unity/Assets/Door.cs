@@ -1,42 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class Door : MonoBehaviour
 {
 
-    [SerializeField] private Vector3 collisionBox = Vector3.zero;
+    [SerializeField] private float speed = 4;
+
+    [SerializeField] private float radius = 1;
     [SerializeField] private Vector3 offset = Vector3.zero;
-    [SerializeField] private string boolName = "IsOpen";
+    [SerializeField] private string parameterName = "progress";
+    [SerializeField] private Animator animator = null;
 
     [Header("Gizoms")]
-    [SerializeField] private Color edgeColor = Color.green;
-    [SerializeField] private Color insideColor = Color.red;
+    [SerializeField] private Color color = Color.red;
+
+    private void FixedUpdate()
+    {
+        float progres = animator.GetFloat(parameterName);
+
+        if (GetCollision())
+            progres += Time.deltaTime * speed;
+        else
+            progres -= Time.deltaTime * speed;
+
+        progres = Mathf.Clamp(progres, 0, 1);
+
+        animator.SetFloat(parameterName, progres);
+    }
 
     /// <summary>
     /// Checks Collision
     /// </summary>
     private bool GetCollision()
     {
-        Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position + offset, collisionBox / 2, Quaternion.identity);
-        if(hitColliders.Length >= 1)
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position + offset, radius);
+        for (int i = 0; i < hitColliders.Length; i++)
         {
-            return true;
+            if(hitColliders[i].GetComponent<Player>() != null)
+                return true;
         }
+        
 
         return false;
     }
 
 
+#if UNITY_EDITOR
     void OnDrawGizmos()
     {
-        Gizmos.color = edgeColor;
-        Gizmos.DrawWireCube(transform.position + offset, collisionBox);
-
-        Gizmos.color = insideColor;
-        Gizmos.DrawCube(transform.position + offset, collisionBox);
+        Gizmos.color = color;
+        Gizmos.DrawSphere(transform.position + offset, radius);
     }
+#endif
 
 }

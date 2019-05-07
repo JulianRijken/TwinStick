@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
-    public Stats StatsController;
+    public Stats statsController;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        StatsController = new Stats();
+        statsController = new Stats();
     }
 
 }
