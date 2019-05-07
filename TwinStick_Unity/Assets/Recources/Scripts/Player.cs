@@ -7,7 +7,11 @@ public class Player : Damageable
 {
 
     private Rigidbody rig = null;
+
     [SerializeField] private float moveSpeed;
+
+
+
     [SerializeField] private float rotationSpeed;
 
     void Start()
@@ -17,7 +21,11 @@ public class Player : Damageable
 
     void FixedUpdate()
     {
+
         rig.MovePosition(transform.position + GetInput().normalized * Time.deltaTime * moveSpeed);
+
+
+
 
         float yRot = Quaternion.LookRotation(GetMousePos() - transform.position,Vector3.up).eulerAngles.y;
         transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.Euler(0, yRot,0),Time.deltaTime * rotationSpeed);
@@ -28,9 +36,9 @@ public class Player : Damageable
     /// </summary>
     private Vector3 GetInput()
     {
-        return new Vector3(Input.GetAxisRaw("Horizontal"), 0,Input.GetAxisRaw("Vertical"));
+        return new Vector3(Input.GetAxisRaw("Horizontal"), 0,Input.GetAxisRaw("Vertical")); 
     }
-
+            
     /// <summary>
     /// Returns The Mouse Pos
     /// </summary>

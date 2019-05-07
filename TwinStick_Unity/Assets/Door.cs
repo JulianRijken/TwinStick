@@ -15,11 +15,6 @@ public class Door : MonoBehaviour
     [SerializeField] private Color insideColor = Color.red;
 
 
-    void FixedUpdate()
-    {
-        Debug.Log(GetCollision());
-    }
-
     private bool GetCollision()
     {
         Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position + offset, collisionBox / 2, Quaternion.identity);
@@ -27,7 +22,6 @@ public class Door : MonoBehaviour
         {
             return true;
         }
-
 
         return false;
     }

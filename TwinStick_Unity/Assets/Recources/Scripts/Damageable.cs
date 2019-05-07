@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] protected float health;
+    [SerializeField] protected float health = 100;
+    [SerializeField] protected bool invincible = false;
 
     protected bool death;
 
@@ -14,6 +15,10 @@ public class Damageable : MonoBehaviour
 
         if (health == 0)
             Debug.LogError("Health is not set");
+
+
+
+        Debug.Log(Stats.LoadStats().healthGaind);
     }
 
     /// <summary>
@@ -24,7 +29,10 @@ public class Damageable : MonoBehaviour
     /// <summary>
     /// Is Called When Health Is Removed
     /// </summary>
-    protected virtual void OnHit() { }
+    protected virtual void OnHit()
+    {
+ 
+    }
 
 
     /// <summary>
@@ -32,7 +40,7 @@ public class Damageable : MonoBehaviour
     /// </summary>
     private void CheckDeath()
     {
-        if (health <= 0 && death == false)
+        if (health <= 0 && death == false && !invincible)
         {
             OnDeath();
             death = true;
@@ -84,4 +92,5 @@ public class Damageable : MonoBehaviour
 
         health = startHealth = damage;
     }
+
 }
