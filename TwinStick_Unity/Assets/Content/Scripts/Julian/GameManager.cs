@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
-    public Stats statsController;
+    public StatsController statsController;
+    public InventoryController inventory;
 
     private void Awake()
     {
@@ -22,7 +23,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        statsController = new Stats();
+        statsController = new StatsController();
+        inventory = new InventoryController();
     }
 
 }

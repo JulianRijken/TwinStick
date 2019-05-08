@@ -18,6 +18,7 @@ public class Player : Damageable
     void Start()
     {
         rig = GetComponent<Rigidbody>();
+
     }
 
     void FixedUpdate()

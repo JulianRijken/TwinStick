@@ -4,16 +4,16 @@ using System.Linq.Expressions;
 using UnityEngine;
 
 
-public class Stats
+public class StatsController
 {
-    private CharacterData statsData;
+    private StatsData statsData;
 
     /// <summary>
     /// Stats Constructor
     /// </summary>
-    public Stats()
+    public StatsController()
     {
-        statsData = new CharacterData()
+        statsData = new StatsData()
         {
             healthLost = 0,
         };
@@ -31,14 +31,14 @@ public class Stats
     /// <summary>
     ///  Returns The stats
     /// </summary>
-    public CharacterData GetData()
+    public StatsData GetData()
     {
         return statsData;
     }
 
 }
 
-public class CharacterData
+public struct StatsData
 {
     public float healthLost;
 }

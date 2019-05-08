@@ -16,11 +16,8 @@ public class Door : MonoBehaviour
         progres = 0;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-
-       
-
         if (colliding)
             progres += Time.deltaTime * speed;
         else
