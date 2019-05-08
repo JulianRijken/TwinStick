@@ -11,7 +11,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 8382224788464246119}
-    m_Position: {x: 250, y: 210, z: 0}
+    m_Position: {x: 250, y: 220, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -31,8 +31,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 1827226128182048838, guid: 5971867ffd4469a4f8a23239e541e237,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 2c50d346becac544f9465c88d39e3129, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: -1
@@ -40,8 +39,7 @@ BlendTree:
     m_DirectBlendParameter: progress
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 1827226128182048838, guid: 5971867ffd4469a4f8a23239e541e237,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 2c50d346becac544f9465c88d39e3129, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -69,7 +67,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

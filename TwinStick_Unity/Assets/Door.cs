@@ -4,52 +4,46 @@ public class Door : MonoBehaviour
 {
 
     [SerializeField] private float speed = 4;
-
-    [SerializeField] private float radius = 1;
-    [SerializeField] private Vector3 offset = Vector3.zero;
     [SerializeField] private string parameterName = "progress";
     [SerializeField] private Animator animator = null;
+    [SerializeField] private AnimationCurve curve = null;
 
-    [Header("Gizoms")]
-    [SerializeField] private Color color = Color.red;
+    private float progres;
+    private bool colliding;
+
+    private void Awake()
+    {
+        progres = 0;
+    }
 
     private void FixedUpdate()
     {
-        float progres = animator.GetFloat(parameterName);
 
-        if (GetCollision())
+       
+
+        if (colliding)
             progres += Time.deltaTime * speed;
         else
             progres -= Time.deltaTime * speed;
 
         progres = Mathf.Clamp(progres, 0, 1);
 
-        animator.SetFloat(parameterName, progres);
+        animator.SetFloat(parameterName, curve.Evaluate(progres));
     }
 
-    /// <summary>
-    /// Checks Collision
-    /// </summary>
-    private bool GetCollision()
+
+
+
+    private void OnTriggerEnter(Collider collision)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position + offset, radius);
-        for (int i = 0; i < hitColliders.Length; i++)
-        {
-            if(hitColliders[i].GetComponent<Player>() != null)
-                return true;
-        }
-        
-
-        return false;
+        if (collision.gameObject.GetComponent<Player>() != null)
+            colliding = true;
     }
 
-
-#if UNITY_EDITOR
-    void OnDrawGizmos()
+    private void OnTriggerExit(Collider collision)
     {
-        Gizmos.color = color;
-        Gizmos.DrawSphere(transform.position + offset, radius);
+        if (collision.gameObject.GetComponent<Player>() != null)
+            colliding = false;
     }
-#endif
 
 }

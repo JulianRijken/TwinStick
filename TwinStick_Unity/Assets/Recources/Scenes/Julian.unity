@@ -1061,6 +1061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 740832175}
   - component: {fileID: 740832173}
+  - component: {fileID: 740832174}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -1081,11 +1082,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  radius: 5.09
-  offset: {x: 0.25, y: 0, z: 1.14}
   parameterName: progress
   animator: {fileID: 3166231814464682832}
-  color: {r: 0.41821158, g: 1, b: 0, a: 0.42745098}
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!65 &740832174
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740832172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.1500616, y: 3.5046616, z: 3.7765841}
+  m_Center: {x: 0.04061985, y: 1.2523308, z: -0.18}
 --- !u!4 &740832175
 Transform:
   m_ObjectHideFlags: 0
@@ -1859,7 +1894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1097194010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1873,11 +1908,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  radius: 5.09
-  offset: {x: 0.25, y: 0, z: 1.14}
   parameterName: progress
   animator: {fileID: 123506781}
-  color: {r: 0.41821158, g: 1, b: 0, a: 0.42745098}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1097194011
 Transform:
   m_ObjectHideFlags: 0
@@ -2250,7 +2288,6 @@ GameObject:
   - component: {fileID: 1406023417}
   - component: {fileID: 1406023420}
   - component: {fileID: 1406023419}
-  - component: {fileID: 1406023418}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2277,18 +2314,6 @@ RectTransform:
   m_AnchoredPosition: {x: -251, y: 178}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1406023418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406023416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3de40c2a7e2a0d44ad3c9a454749f0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1406023419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2781,7 +2806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1822830141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2795,11 +2820,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  radius: 5.09
-  offset: {x: 0.25, y: 0, z: 1.14}
   parameterName: progress
   animator: {fileID: 818830273}
-  color: {r: 0.41821158, g: 1, b: 0, a: 0.42745098}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1822830142
 Transform:
   m_ObjectHideFlags: 0
@@ -2845,7 +2873,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
+  m_Height: 4.59
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1860861319
