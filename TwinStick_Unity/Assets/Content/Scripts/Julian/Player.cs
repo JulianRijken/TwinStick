@@ -18,7 +18,7 @@ public class Player : Damageable
     void Start()
     {
         rig = GetComponent<Rigidbody>();
-
+        InventoryController inventory = GameManager.instance.inventory;
     }
 
     void FixedUpdate()

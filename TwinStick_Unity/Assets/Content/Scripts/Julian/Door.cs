@@ -3,10 +3,16 @@
 public class Door : MonoBehaviour
 {
 
+    [Header("Animation")]
     [SerializeField] private float speed = 4;
     [SerializeField] private string parameterName = "progress";
     [SerializeField] private Animator animator = null;
     [SerializeField] private AnimationCurve curve = null;
+
+    [Header("Item Requirement")]
+    [SerializeField] private ItemID requiredItem;
+    [SerializeField] private int requiredItemCount = 1;
+    [SerializeField] private bool requireItem;
 
     private float progres;
     private bool colliding;
@@ -18,7 +24,7 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        if (colliding)
+        if (CanOpen())
             progres += Time.deltaTime * speed;
         else
             progres -= Time.deltaTime * speed;
@@ -28,8 +34,10 @@ public class Door : MonoBehaviour
         animator.SetFloat(parameterName, curve.Evaluate(progres));
     }
 
-
-
+    private bool CanOpen()
+    {
+        return (colliding && GameManager.instance.inventory.CheckItemSlot(requiredItem, requiredItemCount) || colliding && requireItem == false ? true : false);
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
