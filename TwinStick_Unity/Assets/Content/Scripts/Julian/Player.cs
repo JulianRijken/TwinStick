@@ -13,12 +13,14 @@ public class Player : Damageable
     [SerializeField] private float rotationSpeed = 30f;
 
     private Vector3 input = Vector3.zero;
+    private Camera mainCamera;
 
 
     void Start()
     {
         rig = GetComponent<Rigidbody>();
-
+        InventoryController inventory = GameManager.instance.inventory;
+        mainCamera = Camera.main;
     }
 
     void FixedUpdate()
@@ -41,7 +43,7 @@ public class Player : Damageable
     /// </summary>
     private void Rotate()
     {
-        float yRot = Quaternion.LookRotation(GetMousePos() - transform.position, Vector3.up).eulerAngles.y;
+        float yRot = Quaternion.LookRotation(GetMousePos(mainCamera) - transform.position, Vector3.up).eulerAngles.y;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
     }
 
@@ -64,9 +66,9 @@ public class Player : Damageable
     /// <summary>
     /// Returns The Mouse Pos
     /// </summary>
-    private Vector3 GetMousePos()
+    private Vector3 GetMousePos(Camera cam)
     {
-        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 
         float rayLength;
