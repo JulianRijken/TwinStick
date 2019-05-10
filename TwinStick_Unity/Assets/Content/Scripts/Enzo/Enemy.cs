@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Patrol : MonoBehaviour
+public class Enemy : Damageable
 {
     public Transform[] points;
     private int destPoint = 0;
