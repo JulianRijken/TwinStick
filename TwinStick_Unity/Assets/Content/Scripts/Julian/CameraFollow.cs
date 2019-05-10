@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float distance = 10;
     [SerializeField] private float offsetDistance = 0.5f;
     [SerializeField] private Vector3 maxOffset = new Vector3();
-    [SerializeField] private Transform target;
+    [SerializeField] private Transform target = null;
 
 
     void FixedUpdate()
@@ -16,8 +16,6 @@ public class CameraFollow : MonoBehaviour
         mouseOffset *= offsetDistance;
 
         mouseOffset = new Vector3(Mathf.Clamp(mouseOffset.x, -maxOffset.x, maxOffset.x), 0, Mathf.Clamp(mouseOffset.z, -maxOffset.z, maxOffset.z));
-
-        Debug.Log(mouseOffset);
 
         Vector3 toPos = target.position + new Vector3(0, distance, -distance) + mouseOffset;
         transform.position = toPos;

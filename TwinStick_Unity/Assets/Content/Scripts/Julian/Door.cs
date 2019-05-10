@@ -10,9 +10,9 @@ public class Door : MonoBehaviour
     [SerializeField] private AnimationCurve curve = null;
 
     [Header("Item Requirement")]
-    [SerializeField] private ItemID requiredItem;
+    [SerializeField] private ItemID requiredItem = ItemID.Ammo;
     [SerializeField] private int requiredItemCount = 1;
-    [SerializeField] private bool requireItem;
+    [SerializeField] private bool requireItem = false;
 
     private float progres;
     private bool colliding;
