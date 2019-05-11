@@ -34,7 +34,7 @@ public class Lazer : MonoBehaviour
             if (lineRender != null)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, 10))
+                if (Physics.Raycast(transform.position, transform.forward, out hit, 100f))
                 {
                     lineRender.SetPosition(0, transform.position);
                     lineRender.SetPosition(1, hit.point);
