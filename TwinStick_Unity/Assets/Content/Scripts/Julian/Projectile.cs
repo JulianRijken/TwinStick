@@ -2,38 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
 
-    [SerializeField] float speed = 5;
+    [SerializeField] float moveSpeed = 5;
     [SerializeField] float damage = 1;
 
-    private Rigidbody2D rig;
-    private Vector2 direction;
+    private Rigidbody rig;
 
 
     private void Start()
     {
-        rig = GetComponent<Rigidbody2D>();
+        rig = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        rig.MovePosition(transform.position + new Vector3(direction.x,direction.y,0) * Time.deltaTime * speed);
+        rig.MovePosition(transform.position + transform.forward * Time.deltaTime * moveSpeed);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        Damageable damageable = collision.GetComponent<Damageable>();
-
+        Damageable damageable = collision.transform.GetComponent<Damageable>();
         if (damageable != null)
+        {
             damageable.RemoveHealth(damage);
-
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public void SetDirection(Vector2 direction)
-    {
-        this.direction = direction;
-    }
 }

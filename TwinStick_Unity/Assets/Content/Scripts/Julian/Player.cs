@@ -6,12 +6,13 @@ using UnityEngine;
 public class Player : Damageable
 {
 
-    private Rigidbody rig = null;
 
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float moveAcceleration = 15f;
     [SerializeField] private float rotationSpeed = 30f;
+    [SerializeField] private Gun gun = null;
 
+    private Rigidbody rig = null;
     private Vector3 input = Vector3.zero;
     private Camera mainCamera;
 
@@ -21,6 +22,30 @@ public class Player : Damageable
         rig = GetComponent<Rigidbody>();
         InventoryController inventory = GameManager.instance.inventory;
         mainCamera = Camera.main;
+    }
+
+    private void Update()
+    {
+        HandleGun();
+    }
+
+    private void HandleGun()
+    {
+        if (gun != null)
+        {
+            // Hier kan je hem niet laten schieten als je in een animatie zit
+
+            if (Input.GetButtonDown("Reload"))
+                gun.ReloadMag();
+            else if (Input.GetButtonDown("Shoot"))
+                gun.Shoot();
+            else if (Input.GetButton("Shoot"))
+                gun.ShootAuto();
+
+            if (Input.GetButtonDown("SwitchLazer"))
+                gun.SwitchLazer();
+
+        }
     }
 
     void FixedUpdate()
