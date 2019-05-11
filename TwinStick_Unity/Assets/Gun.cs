@@ -5,62 +5,149 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 
-    private enum GunType{Semi,Burst,Auto}
-    private enum GunState{ReadyToFire,Reloading,Empty,LoadingChamber }
+    private enum GunType{Semi,Auto}
+    private enum GunState{Active,Reloading,Empty }
 
-    [SerializeField] private Transform shootPoint = null;
+
     [SerializeField] private GunType gunType = GunType.Auto;
+    [SerializeField] private ItemID ammoType = ItemID.Ammo;
+
     [SerializeField] private float timeBitweenShots = 0.1f;
     [SerializeField] private float reloadTime = 1f;
+    [SerializeField] private int magSize = 30;
+    [SerializeField] private int startingAmmo = 30;
 
-    private GunState gunState = GunState.ReadyToFire;
+    [SerializeField] private Transform shootPoint = null;
+    [SerializeField] private GameObject muzzleFlash = null;
+    [SerializeField] private GameObject projectile = null;
+    [SerializeField] public Lazer lazer = null;
 
-    private bool shootDelayOver = true;
+
+    private GunState gunState = GunState.Active;
+    private int ammoInMag = 0;
+    private bool chamberLoaded = true;
+
+
+    private void Start()
+    {
+        chamberLoaded = true;
+        ammoInMag = startingAmmo;
+    }
+
+    /// <summary>
+    /// Turns the lazer on or off
+    /// </summary>
+    public void SwitchLazer()
+    {
+        if(lazer != null)
+        {
+            lazer.SwitchPower();
+        }
+    }
+
+
+    /// <summary>
+    /// Triggers the gun to shot
+    /// </summary>
+    public void Shoot()
+    {
+        if(gunState.Equals(GunState.Active))
+        {
+            if (ammoInMag > 0)
+            {
+                if (chamberLoaded)
+                {
+                    if (muzzleFlash != null)
+                        Instantiate(muzzleFlash, shootPoint.position, shootPoint.rotation, shootPoint);
+
+                    if (projectile != null)
+                        Instantiate(projectile, shootPoint.position, shootPoint.rotation);
+                    ammoInMag--;
+
+                    StartCoroutine(IReloadChamber());
+                }
+            }
+            else
+            {
+                gunState = GunState.Empty;
+            }
+
+        }
+    }
 
     public void ShootAuto()
     {
-        if(gunType.Equals(GunType.Auto))
-        Shoot();
+        if (gunType.Equals(GunType.Auto))
+            Shoot();
     }
 
-    public void Shoot()
-    {
-        if(gunState.Equals(GunState.ReadyToFire))
-        {
-            Debug.Log("SHOT!");
 
-            StartCoroutine(ReloadChamber());
-        }
-    }
-
-    private void Update()
+    /// <summary>
+    /// ReloadsTheGunChamber
+    /// </summary>
+    IEnumerator IReloadChamber()
     {
-        Debug.Log(gunState.ToString());
-    }
-
-    IEnumerator ReloadChamber()
-    {
-        gunState = GunState.LoadingChamber;
+        chamberLoaded = false;
         yield return new WaitForSeconds(timeBitweenShots);
-        gunState = GunState.ReadyToFire;
+        chamberLoaded = true;
     }
 
 
-    public void Reload()
+    /// <summary>
+    /// Reloads Tha magasine
+    /// </summary>
+    public void ReloadMag()
     { 
         if(!gunState.Equals(GunState.Reloading))
-        {
-           StartCoroutine(ReloadMag());
+        {   
+            StartCoroutine(IReloadMag());
         }
     }
 
-    IEnumerator ReloadMag()
+    IEnumerator IReloadMag()
     {
         gunState = GunState.Reloading;
-        yield return new WaitForSeconds(reloadTime);
-        gunState = GunState.ReadyToFire;
+        ItemSlot itemSlot = GameManager.instance.inventory.GetItemSlot(ammoType);
+
+        // Check if inventoy has ammo
+        if (itemSlot != null && itemSlot.count > 0)
+        {
+            int ammoRequired = magSize - ammoInMag;
+
+            // Check if the inventoy has the required ammo count
+            if (itemSlot.count >= ammoRequired)
+            {
+                yield return new WaitForSeconds(reloadTime);
+                itemSlot.count -= ammoRequired;
+                ammoInMag = magSize;
+            }
+            else // Else just takes what is left in the inventory
+            {
+                yield return new WaitForSeconds(reloadTime);
+                ammoInMag += itemSlot.count;
+                itemSlot.count = 0;
+
+            }
+        }
+        else
+        {
+            OnReloadDenied();
+        }
+
+
+
+        if (ammoInMag > 0)
+            gunState = GunState.Active;
+        else       
+            gunState = GunState.Empty;
+        
+
     }
 
+    private void OnReloadDenied()
+    {
+        Debug.Log("RELOAD DENIED");
+    }
 
 
 
@@ -82,7 +169,6 @@ public class Gun : MonoBehaviour
             Gizmos.DrawRay(shootPoint.position + direction, left * 0.25f);
         }
     }
-
 
 
 }

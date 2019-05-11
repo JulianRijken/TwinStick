@@ -35,12 +35,15 @@ public class Player : Damageable
         {
             // Hier kan je hem niet laten schieten als je in een animatie zit
 
-            if (Input.GetButton("Reload"))
-                gun.Reload();
+            if (Input.GetButtonDown("Reload"))
+                gun.ReloadMag();
             else if (Input.GetButtonDown("Shoot"))
                 gun.Shoot();
             else if (Input.GetButton("Shoot"))
                 gun.ShootAuto();
+
+            if (Input.GetButtonDown("SwitchLazer"))
+                gun.SwitchLazer();
 
         }
     }

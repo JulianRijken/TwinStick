@@ -27,14 +27,11 @@ public class InventoryController
     /// </summary>
     public void AddItem(ItemID item, int count = 1)
     {
-        count = Mathf.Clamp(count,1, int.MaxValue);
-
         for (int i = 0; i < inventoryItems.Count; i++)
         {
             if (inventoryItems[i].itemID == item)
             {
-                int lastCount = inventoryItems[i].count;           
-                inventoryItems.Add(new ItemSlot(item, lastCount + count));
+                inventoryItems[i].count += count;           
                 return;
             }
         }
@@ -46,7 +43,30 @@ public class InventoryController
     /// <summary>
     /// Returns true if the item exits
     /// </summary>
-    public bool CheckItemSlot(ItemID item,int neededCount = 1)
+    public ItemSlot GetItemSlot(ItemID item)
+    {
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (inventoryItems[i].itemID == item)               
+                    return inventoryItems[i];
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Returns The Item when given a Id 
+    /// </summary>
+    public Item_SO GetItem(ItemID item)
+    {
+        return (Item_SO)Resources.Load("Items/" + item.ToString());
+    }
+
+
+    /// <summary>
+    /// Returns true if the item exits
+    /// </summary>
+    public bool CheckItemSlot(ItemID item, int neededCount = 1)
     {
         neededCount = Mathf.Clamp(neededCount, 1, int.MaxValue);
 
@@ -61,21 +81,13 @@ public class InventoryController
     }
 
 
-    /// <summary>
-    /// Returns The Item when given a Id 
-    /// </summary>
-    public Item_SO GetItem(ItemID item)
-    {
-        return (Item_SO)Resources.Load("Items/" + item.ToString());
-    }
-
 }
 
 
 /// <summary>
 /// holds a type of item and a count of them
 /// </summary>
-public struct ItemSlot
+public class ItemSlot
 {
     public ItemSlot(ItemID _itemID,int _count)
     {
