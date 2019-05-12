@@ -5,6 +5,7 @@ using UnityEngine;
 public class Damageable : MonoBehaviour
 {
     [SerializeField] protected float health = 100;
+    [SerializeField] protected float maxHealth = 100;
     [SerializeField] protected bool invincible = false;
 
     protected bool death;
@@ -15,7 +16,11 @@ public class Damageable : MonoBehaviour
 
         if (health == 0)
             Debug.LogError("Health is not set");
+    }
 
+    private void Update()
+    {
+        health = Mathf.Clamp(health,0, maxHealth);
     }
 
     /// <summary>
@@ -54,6 +59,15 @@ public class Damageable : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+
+    /// <summary>
+    /// Returns The Max Health
+    /// </summary>
+    /// <returns></returns>
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 
     /// <summary>

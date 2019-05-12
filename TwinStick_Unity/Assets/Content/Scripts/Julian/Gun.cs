@@ -8,7 +8,6 @@ public class Gun : MonoBehaviour
     private enum GunType{Semi,Auto}
     private enum GunState{Active,Reloading,Empty }
 
-
     [SerializeField] private GunType gunType = GunType.Auto;
     [SerializeField] private ItemID ammoType = ItemID.Ammo;
 
@@ -18,8 +17,13 @@ public class Gun : MonoBehaviour
     [SerializeField] private int startingAmmo = 30;
 
     [SerializeField] private Transform shootPoint = null;
-    [SerializeField] private GameObject muzzleFlash = null;
     [SerializeField] private GameObject projectile = null;
+
+    [Header("Extra")]
+    [SerializeField] private bool infintAmmo = false;
+    [SerializeField] private GameObject muzzleFlash = null;
+    [SerializeField] private GameObject gunShotAudio = null;
+    [SerializeField] private GameObject gunEmptyAudio = null;
     [SerializeField] public Lazer lazer = null;
 
 
@@ -34,6 +38,7 @@ public class Gun : MonoBehaviour
         ammoInMag = startingAmmo;
     }
 
+
     /// <summary>
     /// Turns the lazer on or off
     /// </summary>
@@ -45,31 +50,25 @@ public class Gun : MonoBehaviour
         }
     }
 
-
     /// <summary>
-    /// Triggers the gun to shot
+    /// Triggers the gun to shoot Once
     /// </summary>
     public void Shoot()
     {
         if(gunState.Equals(GunState.Active))
         {
-            if (ammoInMag > 0)
+            if (ammoInMag > 0 || infintAmmo)
             {
                 if (chamberLoaded)
                 {
-                    if (muzzleFlash != null)
-                        Instantiate(muzzleFlash, shootPoint.position, shootPoint.rotation, shootPoint);
-
-                    if (projectile != null)
-                        Instantiate(projectile, shootPoint.position, shootPoint.rotation);
-                    ammoInMag--;
-
+                    OnShot();
                     StartCoroutine(IReloadChamber());
                 }
             }
             else
             {
                 gunState = GunState.Empty;
+                ReloadMag();
             }
 
         }
@@ -81,17 +80,15 @@ public class Gun : MonoBehaviour
             Shoot();
     }
 
-
     /// <summary>
     /// ReloadsTheGunChamber
     /// </summary>
-    IEnumerator IReloadChamber()
+    private IEnumerator IReloadChamber()
     {
         chamberLoaded = false;
         yield return new WaitForSeconds(timeBitweenShots);
         chamberLoaded = true;
     }
-
 
     /// <summary>
     /// Reloads Tha magasine
@@ -104,7 +101,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    IEnumerator IReloadMag()
+    private IEnumerator IReloadMag()
     {
         gunState = GunState.Reloading;
         ItemSlot itemSlot = GameManager.instance.inventory.GetItemSlot(ammoType);
@@ -138,17 +135,57 @@ public class Gun : MonoBehaviour
 
         if (ammoInMag > 0)
             gunState = GunState.Active;
-        else       
+        else
             gunState = GunState.Empty;
-        
+
 
     }
 
+    /// <summary>
+    /// Is called When the reload is denied
+    /// </summary>
     private void OnReloadDenied()
     {
-        Debug.Log("RELOAD DENIED");
+        if (gunEmptyAudio != null)
+            Instantiate(gunEmptyAudio);
     }
 
+
+    /// <summary>
+    /// Is called when the gun is shot
+    /// </summary>
+    private void OnShot()
+    {
+        if (muzzleFlash != null)
+            Instantiate(muzzleFlash, shootPoint.position, shootPoint.rotation, shootPoint);
+
+        if (projectile != null)
+            Instantiate(projectile, shootPoint.position, shootPoint.rotation);
+
+        if(!infintAmmo)
+            ammoInMag--;
+
+        if (gunShotAudio != null)
+            Instantiate(gunShotAudio);
+    }
+
+
+    /// <summary>
+    /// Returns the ammo from the magasine
+    /// </summary>
+    /// <returns></returns>
+    public int GetAmmoInMag()
+    {
+        return ammoInMag;
+    }
+
+    /// <summary>
+    /// Returns the type of ammo used for the gun
+    /// </summary>
+    public ItemID GetAmmoType()
+    {
+        return ammoType;
+    }
 
 
     /// <summary>

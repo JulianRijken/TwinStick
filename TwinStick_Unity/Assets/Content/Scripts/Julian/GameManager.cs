@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public StatsController statsController;
     public InventoryController inventory;
+    public Player player;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         statsController = new StatsController();
         inventory = new InventoryController();
+        player = FindObjectOfType<Player>();
     }
 
 }
