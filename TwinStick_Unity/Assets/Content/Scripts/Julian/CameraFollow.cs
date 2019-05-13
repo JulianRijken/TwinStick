@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private float distance = 10;
@@ -9,10 +10,16 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector3 maxOffset = new Vector3();
     [SerializeField] private Transform target = null;
 
+    private Camera cam = null;
+
+    private void Start()
+    {
+        cam = GetComponent<Camera>();
+    }
 
     void FixedUpdate()
     {
-        Vector3 mouseOffset = GetMousePos(Camera.main) - target.position;
+        Vector3 mouseOffset = GetMousePos(cam) - target.position;
         mouseOffset *= offsetDistance;
 
         mouseOffset = new Vector3(Mathf.Clamp(mouseOffset.x, -maxOffset.x, maxOffset.x), 0, Mathf.Clamp(mouseOffset.z, -maxOffset.z, maxOffset.z));
