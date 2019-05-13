@@ -3587,6 +3587,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2640959620728567429, guid: 5d4519f851a86734d8c6bb53661e9d71,
+        type: 3}
+      propertyPath: requiredItem
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d4519f851a86734d8c6bb53661e9d71, type: 3}
 --- !u!4 &3533194809216180308
@@ -3738,7 +3743,7 @@ MonoBehaviour:
   shootPoint: {fileID: 1990261239}
   projectile: {fileID: 1440799186717699457, guid: 5206eb9c34792b849b765b400633b860,
     type: 3}
-  infintAmmo: 1
+  infintAmmo: 0
   muzzleFlash: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
     type: 3}
   gunShotAudio: {fileID: 3858428130516584653, guid: dc070343b2b63174fa51d7237dd1b7c3,

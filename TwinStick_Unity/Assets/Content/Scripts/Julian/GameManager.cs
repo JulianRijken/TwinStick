@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public StatsController statsController;
     public InventoryController inventory;
     public Player player;
+    public NotificationCenter notificationCenter;
 
     private void Awake()
     {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+
+        notificationCenter = new NotificationCenter();
     }
 
 
@@ -29,4 +32,16 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<Player>();
     }
 
+}
+
+public class NotificationCenter {
+
+    public delegate void GunAmmoUpdateAction(int newAmmoInMag, ItemSlot itemSlot);
+
+    public event GunAmmoUpdateAction OnGunAmmoUpdated;
+
+    public void FireOnGunAmmoUpdated(int newAmmoInMag, ItemSlot itemSlot)
+    {
+        OnGunAmmoUpdated?.Invoke(newAmmoInMag, itemSlot);
+    }
 }

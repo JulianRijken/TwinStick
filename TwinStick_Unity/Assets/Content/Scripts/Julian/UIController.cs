@@ -13,6 +13,18 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.instance;
+        gameManager.notificationCenter.OnGunAmmoUpdated += HandleOnGunAmmoUpdated;
+    }
+
+    private void HandleOnGunAmmoUpdated(int newAmmoInMag, ItemSlot itemSlot)
+    {
+        playerUI.SetAmmoInMag(newAmmoInMag);
+        playerUI.SetAmmoInInventory(itemSlot != null ? itemSlot.count : 0);
+    }
+
+    private void OnDestroy()
+    {
+        gameManager.notificationCenter.OnGunAmmoUpdated -= HandleOnGunAmmoUpdated;
     }
 
     private void LateUpdate()
@@ -24,31 +36,8 @@ public class UIController : MonoBehaviour
             if (player != null)
             {
                 playerUI.SetHealth(player.GetHealth(), player.GetMaxHealth());
-
-                // Manages the gun UI
-                Gun gun = player.GetGun();
-                if (gun != null)
-                {
-                    playerUI.SetGunUIActive(true);
-
-                    playerUI.SetAmmoInMag(gun.GetAmmoInMag());
-
-                    ItemSlot itemSlot = gameManager.inventory.GetItemSlot(gun.GetAmmoType());
-                    if (itemSlot != null)
-                        playerUI.SetAmmoInInventory(itemSlot.count);
-                    else
-                        playerUI.SetAmmoInInventory(0);
-                }
-                else
-                {
-                    playerUI.SetGunUIActive(false);
-                }
-
             }
 
         }
-
-
-
     }
 }

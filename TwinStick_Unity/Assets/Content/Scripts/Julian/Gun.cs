@@ -36,6 +36,7 @@ public class Gun : MonoBehaviour
     {
         chamberLoaded = true;
         ammoInMag = startingAmmo;
+        GameManager.instance.notificationCenter.FireOnGunAmmoUpdated(ammoInMag, GameManager.instance.inventory.GetItemSlot(ammoType));
     }
 
 
@@ -125,6 +126,9 @@ public class Gun : MonoBehaviour
                 itemSlot.count = 0;
 
             }
+
+            // Update UI
+            GameManager.instance.notificationCenter.FireOnGunAmmoUpdated(ammoInMag, GameManager.instance.inventory.GetItemSlot(ammoType));
         }
         else
         {
@@ -167,6 +171,8 @@ public class Gun : MonoBehaviour
 
         if (gunShotAudio != null)
             Instantiate(gunShotAudio);
+
+        GameManager.instance.notificationCenter.FireOnGunAmmoUpdated(ammoInMag, GameManager.instance.inventory.GetItemSlot(ammoType));
     }
 
 
