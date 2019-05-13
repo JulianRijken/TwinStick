@@ -40,11 +40,6 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        DrawFieldOfView();
-    }
-
     private void LateUpdate()
     {
         DrawFieldOfView();
@@ -204,5 +199,10 @@ public class FieldOfView : MonoBehaviour
             pointA = _pointA;
             pointB = _pointB;
         }
+    }
+
+    public List<Transform> GetTargets()
+    {
+        return visibleTargets;
     }
 }

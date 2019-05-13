@@ -6,7 +6,6 @@ using UnityEngine;
 public class Player : Damageable
 {
 
-
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float moveAcceleration = 15f;
     [SerializeField] private float rotationSpeed = 30f;
@@ -102,4 +101,9 @@ public class Player : Damageable
         return cameraRay.GetPoint(rayLength);
     }
 
+
+    public Gun GetGun()
+    {
+        return gun;
+    }
 }
