@@ -1723,6 +1723,36 @@ Transform:
   m_Father: {fileID: 153259890}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1112926222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112926223}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1112926223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112926222}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7796207305110192613}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1157696520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3299,14 +3329,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 1
   ammoType: 0
-  timeBitweenShots: 0.01
+  timeBitweenShots: 0.1
   reloadTime: 2
   magSize: 30
   startingAmmo: 30
   shootPoint: {fileID: 1842027507}
   projectile: {fileID: 1440799186717699457, guid: 5206eb9c34792b849b765b400633b860,
     type: 3}
-  infintAmmo: 1
+  infintAmmo: 0
   muzzleFlash: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
     type: 3}
   gunShotAudio: {fileID: 3858428130516584653, guid: dc070343b2b63174fa51d7237dd1b7c3,
@@ -4341,6 +4371,8 @@ MonoBehaviour:
   - {fileID: 2120429148}
   - {fileID: 1959019599}
   status: 0
+  bullet: {fileID: 1440799186717699457, guid: 5206eb9c34792b849b765b400633b860, type: 3}
+  shootPoint: {fileID: 1112926223}
 --- !u!1 &6623796842758913376
 GameObject:
   m_ObjectHideFlags: 0
@@ -4495,6 +4527,7 @@ Transform:
   - {fileID: 3012984706164912636}
   - {fileID: 6629402798894610211}
   - {fileID: 1621605430}
+  - {fileID: 1112926223}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
