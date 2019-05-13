@@ -8,29 +8,41 @@ public class StatsController
 {
     private StatsData statsData;
 
-    /// <summary>
-    /// Stats Constructor
-    /// </summary>
     public StatsController()
     {
         statsData = new StatsData()
         {
-            healthLost = 0,
+            timesPlayed = 0,
+            diedBy = new List<string>(),
+            score = 0,
         };
     }
 
-    /// <summary>
-    /// Adds the health to the lost health float
-    /// </summary>
-    public void AddHealthLost(float _healthLost)
+
+
+    public void AddTimesPlayed()
     {
-        statsData.healthLost += _healthLost;
+        statsData.timesPlayed++;
     }
 
-    
-    /// <summary>
-    ///  Returns The stats
-    /// </summary>
+
+    // !!!!!!!!!!!!!!! IK HEB VAN ENZO EERST DE ENEMY NODIG OM OOK DE NAAM TE KUNNEN CHECKEN
+    public void AddDiedBy(string diedBy)
+    {
+        statsData.diedBy.Add(diedBy);
+    }
+
+    public void AddScore(float score)
+    {
+        statsData.score += score;
+    }
+
+    public void AddHealthLost(float healthLost)
+    {
+        statsData.healthLost += healthLost;
+    }
+
+
     public StatsData GetData()
     {
         return statsData;
@@ -40,5 +52,8 @@ public class StatsController
 
 public struct StatsData
 {
+    public int timesPlayed;
+    public List<string> diedBy;
+    public float score;
     public float healthLost;
 }

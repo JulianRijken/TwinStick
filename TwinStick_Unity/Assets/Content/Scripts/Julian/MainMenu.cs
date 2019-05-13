@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject options;
-    [SerializeField] private GameObject home;
-    [SerializeField] private GameObject credits;
-    [SerializeField] private GameObject exit;
+    [SerializeField] private GameObject options = null;
+    [SerializeField] private GameObject home = null;
+    [SerializeField] private GameObject credits = null;
+    [SerializeField] private GameObject exit = null;
 
     private GameObject[] menuScreens = null;
 
@@ -45,7 +45,8 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        GameManager.instance.statsController.AddTimesPlayed();
+        SceneManager.LoadScene(1);        
     }
 
 
@@ -71,6 +72,11 @@ public class MainMenu : MonoBehaviour
 
     public void ExitApplication()
     {
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+# endif
+
         Application.Quit();
     }
 }

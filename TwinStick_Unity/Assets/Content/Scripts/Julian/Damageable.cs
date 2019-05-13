@@ -33,6 +33,11 @@ public class Damageable : MonoBehaviour
     /// <summary>
     /// Is Called When Health Is Removed
     /// </summary>
+    protected virtual void OnHit(float healthLost)
+    {
+
+    }
+
     protected virtual void OnHit()
     {
 
@@ -75,10 +80,8 @@ public class Damageable : MonoBehaviour
     /// </summary>
     public void RemoveHealth(float damage)
     {
-        // Update The Stats
-        GameManager.instance.statsController.AddHealthLost(damage);
         // Calls the hit function
-        OnHit();
+        OnHit(damage);
         // Removes The health
         health -= damage;
         // Cals the check death function
@@ -98,10 +101,11 @@ public class Damageable : MonoBehaviour
         float timer = 0;
         float startHealth = this.health;
 
-        while (timer < 1)
+        while (timer < overTime)
         {
-            timer += Time.deltaTime / overTime;
-            RemoveHealth(damage * timer * Time.deltaTime);
+            RemoveHealth((Time.deltaTime / overTime) * damage);
+
+            timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 

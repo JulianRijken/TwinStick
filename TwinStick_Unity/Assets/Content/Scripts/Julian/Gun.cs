@@ -36,7 +36,14 @@ public class Gun : MonoBehaviour
     {
         chamberLoaded = true;
         ammoInMag = startingAmmo;
-        GameManager.instance.notificationCenter.FireOnGunAmmoUpdated(ammoInMag, GameManager.instance.inventory.GetItemSlot(ammoType));
+
+        GameManager.instance.notificationCenter.OnItemAdded += OnItemAdded;
+
+
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+
+        GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
+
     }
 
 
@@ -127,8 +134,9 @@ public class Gun : MonoBehaviour
 
             }
 
-            // Update UI
-            GameManager.instance.notificationCenter.FireOnGunAmmoUpdated(ammoInMag, GameManager.instance.inventory.GetItemSlot(ammoType));
+            GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+            GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
+
         }
         else
         {
@@ -172,9 +180,16 @@ public class Gun : MonoBehaviour
         if (gunShotAudio != null)
             Instantiate(gunShotAudio);
 
-        GameManager.instance.notificationCenter.FireOnGunAmmoUpdated(ammoInMag, GameManager.instance.inventory.GetItemSlot(ammoType));
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
     }
 
+    /// <summary>
+    /// Runs when a itme is added to the inventoy
+    /// </summary>
+    private void OnItemAdded()
+    {
+        GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
+    }
 
     /// <summary>
     /// Returns the ammo from the magasine
@@ -213,5 +228,10 @@ public class Gun : MonoBehaviour
         }
     }
 
+
+    private void OnDestroy()
+    {
+        GameManager.instance.notificationCenter.OnItemAdded -= OnItemAdded;
+    }
 
 }

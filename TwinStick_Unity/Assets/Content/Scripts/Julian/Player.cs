@@ -21,6 +21,8 @@ public class Player : Damageable
         rig = GetComponent<Rigidbody>();
         InventoryController inventory = GameManager.instance.inventory;
         mainCamera = Camera.main;
+
+        GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
     }
 
     private void Update()
@@ -105,5 +107,19 @@ public class Player : Damageable
     public Gun GetGun()
     {
         return gun;
+    }
+
+
+    protected override void OnHit(float healthLost)
+    {
+        base.OnHit();
+        GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
+        GameManager.instance.statsController.AddHealthLost(healthLost);
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        GameManager.instance.notificationCenter.FirePlayerDied();
     }
 }

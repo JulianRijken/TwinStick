@@ -13,31 +13,35 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.instance;
-        gameManager.notificationCenter.OnGunAmmoUpdated += HandleOnGunAmmoUpdated;
+
+        // Subscribe to the notification center
+        gameManager.notificationCenter.OnGunMagAmmoUpdated += HandleAmmoInMag;
+        gameManager.notificationCenter.OnPlayerHealthChange += HandlePlayerHealth;
+        gameManager.notificationCenter.OnGunInventoyAmmoUpdated += HandleAmmoInInventoy;
     }
 
-    private void HandleOnGunAmmoUpdated(int newAmmoInMag, ItemSlot itemSlot)
+    private void HandleAmmoInMag(int newAmmoInMag)
     {
         playerUI.SetAmmoInMag(newAmmoInMag);
+    }
+
+    private void HandleAmmoInInventoy(ItemSlot itemSlot)
+    {
         playerUI.SetAmmoInInventory(itemSlot != null ? itemSlot.count : 0);
     }
 
-    private void OnDestroy()
+
+    private void HandlePlayerHealth(float newHealth, float newMaxHealth)
     {
-        gameManager.notificationCenter.OnGunAmmoUpdated -= HandleOnGunAmmoUpdated;
+        playerUI.SetHealth(newHealth, newMaxHealth);
     }
 
-    private void LateUpdate()
-    {
-        // handle Player UI
-        if (playerUI != null)
-        {
-            Player player = gameManager.player;
-            if (player != null)
-            {
-                playerUI.SetHealth(player.GetHealth(), player.GetMaxHealth());
-            }
 
-        }
+    private void OnDestroy()
+    {
+        // Unsubscrbe From the notification center
+        gameManager.notificationCenter.OnGunMagAmmoUpdated -= HandleAmmoInMag;
+        gameManager.notificationCenter.OnPlayerHealthChange -= HandlePlayerHealth;
+        gameManager.notificationCenter.OnGunInventoyAmmoUpdated -= HandleAmmoInInventoy;
     }
 }
