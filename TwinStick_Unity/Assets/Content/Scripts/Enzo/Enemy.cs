@@ -5,41 +5,67 @@ using UnityEngine.AI;
 
 public class Enemy : Damageable
 {
-    public Transform[] points;
-    private int destPoint = 0;
+    [SerializeField] private FieldOfView targetFinder = null;
+    [SerializeField] private Transform[] patrolPoints;
+    [SerializeField] private EnemyStatus status = EnemyStatus.Patrol;
+    [SerializeField] private Gun gun = null;
+
+    private int nextpoint = 0;
     private NavMeshAgent agent;
+    private Transform target;
+
+    private enum EnemyStatus { Patrol, Attack }
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 
-        // Disabling auto-braking allows for continuous movement
-        // between points (ie, the agent doesn't slow down as it
-        // approaches a destination point).
         agent.autoBraking = false;
 
         GotoNextPoint();
+
+        gun.Shoot();
+    }
+
+    private void Update()
+    {
+        if (status.Equals(EnemyStatus.Patrol))
+        {
+            if (!agent.pathPending && agent.remainingDistance < 0.5f)
+                GotoNextPoint();
+
+            List<Transform> targets = targetFinder.GetTargets();
+            if (targets != null && targets.Count > 0)
+            {
+                target = targets[0];
+                status = EnemyStatus.Attack;
+            }
+        }
+        else if (status.Equals(EnemyStatus.Attack))
+        {
+            if (target != null)
+                agent.destination = target.position;
+            gun.Shoot();
+        }
     }
 
     private void GotoNextPoint()
     {
         // Returns if no points have been set up
-        if (points.Length == 0)
+        if (patrolPoints.Length == 0)
             return;
 
         // Set the agent to go to the currently selected destination.
-        agent.destination = points[destPoint].position;
+        agent.destination = patrolPoints[nextpoint].position;
 
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
-        destPoint = (destPoint + 1) % points.Length;
+        nextpoint = (nextpoint + 1) % patrolPoints.Length;
     }
 
-    private void Update()
+    protected override void OnDeath()
     {
-        // Choose the next destination point when the agent gets
-        // close to the current one.
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-            GotoNextPoint();
+        base.OnDeath();
+        Destroy(gameObject);
     }
 }
