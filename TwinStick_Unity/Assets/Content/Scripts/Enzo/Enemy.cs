@@ -8,7 +8,6 @@ public class Enemy : Damageable
     [SerializeField] private FieldOfView targetFinder = null;
     [SerializeField] private Transform[] patrolPoints;
     [SerializeField] private EnemyStatus status = EnemyStatus.Patrol;
-    [SerializeField] private Gun gun = null;
 
     private int nextpoint = 0;
     private NavMeshAgent agent;
@@ -24,7 +23,6 @@ public class Enemy : Damageable
 
         GotoNextPoint();
 
-        gun.Shoot();
     }
 
     private void Update()
@@ -45,7 +43,7 @@ public class Enemy : Damageable
         {
             if (target != null)
                 agent.destination = target.position;
-            gun.Shoot();
+
         }
     }
 
