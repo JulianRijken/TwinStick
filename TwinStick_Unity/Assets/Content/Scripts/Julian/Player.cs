@@ -28,6 +28,12 @@ public class Player : Damageable
     private void Update()
     {
         HandleGun();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.instance.notificationCenter.FireGamePaused(!GameManager.instance.notificationCenter.gamePaused);
+        }
+
     }
 
     private void HandleGun()
@@ -94,13 +100,18 @@ public class Player : Damageable
     /// </summary>
     private Vector3 GetMousePos(Camera cam)
     {
-        Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        if (cam != null)
+        {
+            Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 
-        float rayLength;
-        groundPlane.Raycast(cameraRay, out rayLength);
+            float rayLength;
+            groundPlane.Raycast(cameraRay, out rayLength);
 
-        return cameraRay.GetPoint(rayLength);
+            return cameraRay.GetPoint(rayLength);
+        }
+
+        return Vector3.zero;
     }
 
 
