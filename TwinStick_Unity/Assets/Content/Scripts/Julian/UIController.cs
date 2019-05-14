@@ -21,7 +21,8 @@ public class UIController : MonoBehaviour
         gameManager.notificationCenter.OnGunInventoyAmmoUpdated += HandleAmmoInInventoy;
         gameManager.notificationCenter.OnGamePaused += HandlePauseGame;
 
-        pauseMenu.SetActive(false);
+        if (pauseMenu != null)
+            pauseMenu.SetActive(false);
     }
 
     private void HandleAmmoInMag(int newAmmoInMag)
@@ -44,6 +45,7 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = paused ? 0 : 1;
 
+        if(pauseMenu != null)
         pauseMenu.SetActive(paused);
     }
 
