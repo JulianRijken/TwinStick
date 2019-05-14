@@ -7,6 +7,7 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private PlayerUI playerUI = null;
+    [SerializeField] private GameObject pauseMenu = null;
 
     private GameManager gameManager;
 
@@ -18,6 +19,9 @@ public class UIController : MonoBehaviour
         gameManager.notificationCenter.OnGunMagAmmoUpdated += HandleAmmoInMag;
         gameManager.notificationCenter.OnPlayerHealthChange += HandlePlayerHealth;
         gameManager.notificationCenter.OnGunInventoyAmmoUpdated += HandleAmmoInInventoy;
+        gameManager.notificationCenter.OnGamePaused += HandlePauseGame;
+
+        pauseMenu.SetActive(false);
     }
 
     private void HandleAmmoInMag(int newAmmoInMag)
@@ -36,6 +40,30 @@ public class UIController : MonoBehaviour
         playerUI.SetHealth(newHealth, newMaxHealth);
     }
 
+    private void HandlePauseGame(bool paused)
+    {
+        Time.timeScale = paused ? 0 : 1;
+
+        pauseMenu.SetActive(paused);
+    }
+
+
+
+    // UI Buuttons
+
+    public void Return()
+    {
+        GameManager.instance.notificationCenter.FireGamePaused(false);
+    }
+
+    public void QuitToMainMenu()
+    {
+        GameManager.instance.notificationCenter.FireExitToMenu();
+        GameManager.instance.notificationCenter.FireGamePaused(false);
+
+    }
+
+
 
     private void OnDestroy()
     {
@@ -43,5 +71,6 @@ public class UIController : MonoBehaviour
         gameManager.notificationCenter.OnGunMagAmmoUpdated -= HandleAmmoInMag;
         gameManager.notificationCenter.OnPlayerHealthChange -= HandlePlayerHealth;
         gameManager.notificationCenter.OnGunInventoyAmmoUpdated -= HandleAmmoInInventoy;
+        gameManager.notificationCenter.OnGamePaused -= HandlePauseGame;
     }
 }

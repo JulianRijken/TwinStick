@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         notificationCenter = new NotificationCenter();
 
         notificationCenter.OnPlayerDie += OnPlayerDie;
+        notificationCenter.OnExitToMenu += OnExitToMenu;
     }
 
 
@@ -39,10 +40,16 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    private void OnExitToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 
     private void OnDestroy()
     {
         notificationCenter.OnPlayerDie -= OnPlayerDie;
+        notificationCenter.OnExitToMenu -= OnExitToMenu;
     }
 
 
@@ -78,6 +85,13 @@ public class NotificationCenter {
         OnPlayerDie?.Invoke();
     }
 
+    public delegate void ExitToMenuAction();
+    public event ExitToMenuAction OnExitToMenu;
+    public void FireExitToMenu()
+    {
+        OnExitToMenu?.Invoke();
+    }
+
     public delegate void ItemAddedAction();
     public event ItemAddedAction OnItemAdded;
     public void FireItemAdded()
@@ -85,4 +99,12 @@ public class NotificationCenter {
         OnItemAdded?.Invoke();
     }
 
+    public bool gamePaused;
+    public delegate void GamePausedAction(bool paused);
+    public event GamePausedAction OnGamePaused;
+    public void FireGamePaused(bool paused)
+    {
+        gamePaused = paused;
+        OnGamePaused?.Invoke(paused);
+    }
 }
