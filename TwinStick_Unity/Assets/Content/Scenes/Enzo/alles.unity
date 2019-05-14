@@ -1082,7 +1082,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 9ee1623d0a74ebc47a5e41ef86064c36,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: -1.53
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9ee1623d0a74ebc47a5e41ef86064c36,
         type: 3}
@@ -1092,7 +1092,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 9ee1623d0a74ebc47a5e41ef86064c36,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: -2.99
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9ee1623d0a74ebc47a5e41ef86064c36,
         type: 3}
@@ -1838,7 +1838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f2bfb58f24a93468030aebb5d62a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!4 &925618506
 Transform:
   m_ObjectHideFlags: 0
@@ -2269,37 +2268,37 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -6.19
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70710576
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70710784
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
@@ -2314,12 +2313,27 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90.00001
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 977469c47de88f04ca02da865ba8a349,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 977469c47de88f04ca02da865ba8a349, type: 3}
@@ -4618,14 +4632,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 1
   ammoType: 0
-  timeBitweenShots: 0.1
+  timeBitweenShots: 0.01
   reloadTime: 2
   magSize: 30
   startingAmmo: 30
   shootPoint: {fileID: 1990261239}
   projectile: {fileID: 1440799186717699457, guid: 5206eb9c34792b849b765b400633b860,
     type: 3}
-  infintAmmo: 0
+  infintAmmo: 1
   muzzleFlash: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
     type: 3}
   gunShotAudio: {fileID: 3858428130516584653, guid: dc070343b2b63174fa51d7237dd1b7c3,
