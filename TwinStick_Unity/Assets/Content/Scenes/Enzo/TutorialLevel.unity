@@ -119,7 +119,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: af22198dbf8a4a04aafe387113840fec, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 77cf1e0a01292614e94289fafecf40df, type: 2}
 --- !u!1 &41518333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,6 +2179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vloer Basic 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5f405aeebe2c4f24f814cd259047b9ec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5f405aeebe2c4f24f814cd259047b9ec,
         type: 3}
@@ -6840,7 +6845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2fed52f0fd611498d66e1082ce88a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 1
+  gunType: 0
   ammoType: 0
   timeBitweenShots: 0.2
   reloadTime: 2
@@ -6849,7 +6854,7 @@ MonoBehaviour:
   shootPoint: {fileID: 1990261239}
   projectile: {fileID: 1440799186717699457, guid: 5206eb9c34792b849b765b400633b860,
     type: 3}
-  infintAmmo: 1
+  infintAmmo: 0
   muzzleFlash: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
     type: 3}
   gunShotAudio: {fileID: 3858428130516584653, guid: dc070343b2b63174fa51d7237dd1b7c3,
