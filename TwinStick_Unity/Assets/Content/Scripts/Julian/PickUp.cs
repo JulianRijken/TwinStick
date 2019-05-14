@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PickUp : MonoBehaviour
 {
 
-    [SerializeField] private ItemID item = ItemID.Keycard; 
+    [SerializeField] private ItemID item = ItemID.keyCardA; 
     [SerializeField] private int count = 30;
     [SerializeField] private float pickUpDelay = 0.3f;
     [SerializeField] private int givePerPickUp = 5;

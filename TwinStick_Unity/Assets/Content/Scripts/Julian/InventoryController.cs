@@ -10,7 +10,8 @@ public enum ItemID
 {
     Ammo,
     HealthPack,
-    Keycard
+    keyCardA,
+    keyCardB
 }
 
 /// <summary>
