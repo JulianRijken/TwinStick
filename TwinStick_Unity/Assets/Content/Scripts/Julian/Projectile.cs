@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float destroyTime = 5;
 
     private Rigidbody rig;
+    [SerializeField] private string projectileName = "Bullet";
 
 
     private void Start()
@@ -29,7 +30,7 @@ public class Projectile : MonoBehaviour
         Damageable damageable = collision.transform.GetComponent<Damageable>();
         if (damageable != null)
         {
-            damageable.RemoveHealth(damage);
+            damageable.RemoveHealth(damage, projectileName);
             Destroy(gameObject);
         }
         else
