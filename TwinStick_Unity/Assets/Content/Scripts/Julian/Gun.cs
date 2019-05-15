@@ -42,12 +42,8 @@ public class Gun : MonoBehaviour
         ammoInMag = startingAmmo;
 
         GameManager.instance.notificationCenter.OnItemAdded += OnItemAdded;
-
-
         GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
-
         GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
-
     }
 
 
@@ -231,12 +227,6 @@ public class Gun : MonoBehaviour
             Gizmos.DrawRay(shootPoint.position + direction, right * 0.25f);
             Gizmos.DrawRay(shootPoint.position + direction, left * 0.25f);
         }
-    }
-
-
-    private void OnDestroy()
-    {
-        GameManager.instance.notificationCenter.OnItemAdded -= OnItemAdded;
     }
 
 }

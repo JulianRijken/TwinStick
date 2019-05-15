@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+
     public StatsController statsController;
     public InventoryController inventory;
     public NotificationCenter notificationCenter;
@@ -15,25 +16,21 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-
-        else if (instance != this)
+        else if (instance != this)     
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
 
+
         notificationCenter = new NotificationCenter();
+        statsController = new StatsController();
+        inventory = new InventoryController(); ;
 
         notificationCenter.OnPlayerDie += OnPlayerDie;
         notificationCenter.OnExitToMenu += OnExitToMenu;
+
     }
-
-
-    void Start()
-    {
-        statsController = new StatsController();
-        inventory = new InventoryController();;
-    }
-
+   
 
     private void OnPlayerDie()
     {
@@ -107,4 +104,9 @@ public class NotificationCenter {
         gamePaused = paused;
         OnGamePaused?.Invoke(paused);
     }
+
+
+
+
+
 }

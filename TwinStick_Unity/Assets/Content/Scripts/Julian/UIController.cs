@@ -11,17 +11,19 @@ public class UIController : MonoBehaviour
 
     private GameManager gameManager;
 
-    private void Start()
+    private void Awake()
     {
         gameManager = GameManager.instance;
 
-        // Subscribe to the notification center
         gameManager.notificationCenter.OnGunMagAmmoUpdated += HandleAmmoInMag;
         gameManager.notificationCenter.OnPlayerHealthChange += HandlePlayerHealth;
         gameManager.notificationCenter.OnGunInventoyAmmoUpdated += HandleAmmoInInventoy;
         gameManager.notificationCenter.OnGamePaused += HandlePauseGame;
+    }
 
-        if (pauseMenu != null)
+    private void Start()
+    {
+                if (pauseMenu != null)
             pauseMenu.SetActive(false);
     }
 
@@ -69,7 +71,6 @@ public class UIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Unsubscrbe From the notification center
         gameManager.notificationCenter.OnGunMagAmmoUpdated -= HandleAmmoInMag;
         gameManager.notificationCenter.OnPlayerHealthChange -= HandlePlayerHealth;
         gameManager.notificationCenter.OnGunInventoyAmmoUpdated -= HandleAmmoInInventoy;
