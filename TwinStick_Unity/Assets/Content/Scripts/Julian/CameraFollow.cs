@@ -19,13 +19,16 @@ public class CameraFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 mouseOffset = GetMousePos(cam) - target.position;
-        mouseOffset *= offsetDistance;
+        if (target != null)
+        {
+            Vector3 _mouseOffset = GetMousePos(cam) - target.position;
+            _mouseOffset *= offsetDistance;
 
-        mouseOffset = new Vector3(Mathf.Clamp(mouseOffset.x, -maxOffset.x, maxOffset.x), 0, Mathf.Clamp(mouseOffset.z, -maxOffset.z, maxOffset.z));
+            _mouseOffset = new Vector3(Mathf.Clamp(_mouseOffset.x, -maxOffset.x, maxOffset.x), 0, Mathf.Clamp(_mouseOffset.z, -maxOffset.z, maxOffset.z));
 
-        Vector3 toPos = target.position + new Vector3(0, distance, -distance) + mouseOffset;
-        transform.position = toPos;
+            Vector3 toPos = target.position + new Vector3(0, distance, -distance) + _mouseOffset;
+            transform.position = toPos;
+        }
     }
 
 

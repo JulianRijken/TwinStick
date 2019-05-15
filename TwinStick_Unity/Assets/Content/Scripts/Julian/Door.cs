@@ -1,54 +1,77 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
     [Header("Animation")]
-    [SerializeField] private float speed = 4;
     [SerializeField] private string parameterName = "progress";
     [SerializeField] private Animator animator = null;
-    [SerializeField] private AnimationCurve curve = null;
+    [SerializeField] private float animationSpeed = 1;
 
     [Header("Item Requirement")]
     [SerializeField] private ItemID requiredItem = ItemID.Ammo;
     [SerializeField] private int requiredItemCount = 1;
     [SerializeField] private bool requireItem = false;
 
-    private float progres;
-    private bool colliding;
+    [Header("Effects")]
+    [SerializeField] private Light[] lamp = null;
+    [SerializeField] private Color enabledColor = Color.green;
+    [SerializeField] private Color disabledColor = Color.red;
 
-    private void Awake()
-    {
-        progres = 0;
-    }
+    private bool colliding;
+    private float progress;
 
     private void Update()
     {
-        if (CanOpen())
-            progres += Time.deltaTime * speed;
+        if (colliding && GotItem())      
+            progress += Time.deltaTime * animationSpeed;       
         else
-            progres -= Time.deltaTime * speed;
+            progress -= Time.deltaTime * animationSpeed;
+        
 
-        progres = Mathf.Clamp(progres, 0, 1);
+        progress = Mathf.Clamp(progress, 0f, 1f);
+        animator.SetFloat(parameterName, progress);
 
-        animator.SetFloat(parameterName, curve.Evaluate(progres));
+        if (GotItem())
+        {
+            if (lamp != null)
+                for (int i = 0; i < lamp.Length; i++)
+                lamp[i].color = enabledColor;
+        }
+        else
+        {
+            if (lamp != null)
+                for (int i = 0; i < lamp.Length; i++)
+                    lamp[i].color = disabledColor;
+        }
+
     }
 
-    private bool CanOpen()
+
+    /// <summary>
+    /// Checks If you got the item
+    /// </summary>
+    private bool GotItem()
     {
-        return (colliding && GameManager.instance.inventory.CheckItemSlot(requiredItem, requiredItemCount) || colliding && requireItem == false ? true : false);
+        return requireItem ? GameManager.instance.inventory.CheckItemSlot(requiredItem, requiredItemCount) : true;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.GetComponent<Player>() != null)
+        {
             colliding = true;
+        }
     }
 
     private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.GetComponent<Player>() != null)
+        {
             colliding = false;
+        }
+
     }
 
 }

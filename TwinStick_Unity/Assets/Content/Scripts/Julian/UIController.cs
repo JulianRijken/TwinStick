@@ -7,37 +7,73 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private PlayerUI playerUI = null;
+    [SerializeField] private GameObject pauseMenu = null;
 
     private GameManager gameManager;
 
-    private void Start()
+    private void Awake()
     {
         gameManager = GameManager.instance;
-        gameManager.notificationCenter.OnGunAmmoUpdated += HandleOnGunAmmoUpdated;
+
+        gameManager.notificationCenter.OnGunMagAmmoUpdated += HandleAmmoInMag;
+        gameManager.notificationCenter.OnPlayerHealthChange += HandlePlayerHealth;
+        gameManager.notificationCenter.OnGunInventoyAmmoUpdated += HandleAmmoInInventoy;
+        gameManager.notificationCenter.OnGamePaused += HandlePauseGame;
     }
 
-    private void HandleOnGunAmmoUpdated(int newAmmoInMag, ItemSlot itemSlot)
+    private void Start()
+    {
+                if (pauseMenu != null)
+            pauseMenu.SetActive(false);
+    }
+
+    private void HandleAmmoInMag(int newAmmoInMag)
     {
         playerUI.SetAmmoInMag(newAmmoInMag);
+    }
+
+    private void HandleAmmoInInventoy(ItemSlot itemSlot)
+    {
         playerUI.SetAmmoInInventory(itemSlot != null ? itemSlot.count : 0);
     }
 
-    private void OnDestroy()
+
+    private void HandlePlayerHealth(float newHealth, float newMaxHealth)
     {
-        gameManager.notificationCenter.OnGunAmmoUpdated -= HandleOnGunAmmoUpdated;
+        playerUI.SetHealth(newHealth, newMaxHealth);
     }
 
-    private void LateUpdate()
+    private void HandlePauseGame(bool paused)
     {
-        // handle Player UI
-        if (playerUI != null)
-        {
-            Player player = gameManager.player;
-            if (player != null)
-            {
-                playerUI.SetHealth(player.GetHealth(), player.GetMaxHealth());
-            }
+        Time.timeScale = paused ? 0 : 1;
 
-        }
+        if(pauseMenu != null)
+        pauseMenu.SetActive(paused);
+    }
+
+
+
+    // UI Buuttons
+
+    public void Return()
+    {
+        GameManager.instance.notificationCenter.FireGamePaused(false);
+    }
+
+    public void QuitToMainMenu()
+    {
+        GameManager.instance.notificationCenter.FireExitToMenu();
+        GameManager.instance.notificationCenter.FireGamePaused(false);
+
+    }
+
+
+
+    private void OnDestroy()
+    {
+        gameManager.notificationCenter.OnGunMagAmmoUpdated -= HandleAmmoInMag;
+        gameManager.notificationCenter.OnPlayerHealthChange -= HandlePlayerHealth;
+        gameManager.notificationCenter.OnGunInventoyAmmoUpdated -= HandleAmmoInInventoy;
+        gameManager.notificationCenter.OnGamePaused -= HandlePauseGame;
     }
 }

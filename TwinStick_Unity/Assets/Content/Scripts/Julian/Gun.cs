@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//public enum GunID { Torpedo_Launcher }
+
 public class Gun : MonoBehaviour
 {
 
@@ -17,13 +19,15 @@ public class Gun : MonoBehaviour
     [SerializeField] private int startingAmmo = 30;
 
     [SerializeField] private Transform shootPoint = null;
-    [SerializeField] private GameObject projectile = null;
+    [SerializeField] private Projectile projectile = null;
 
     [Header("Extra")]
     [SerializeField] private bool infintAmmo = false;
     [SerializeField] private GameObject muzzleFlash = null;
     [SerializeField] private GameObject gunShotAudio = null;
     [SerializeField] private GameObject gunEmptyAudio = null;
+
+    [Header("Attachments")]
     [SerializeField] public Lazer lazer = null;
 
 
@@ -36,7 +40,10 @@ public class Gun : MonoBehaviour
     {
         chamberLoaded = true;
         ammoInMag = startingAmmo;
-        GameManager.instance.notificationCenter.FireOnGunAmmoUpdated(ammoInMag, GameManager.instance.inventory.GetItemSlot(ammoType));
+
+        GameManager.instance.notificationCenter.OnItemAdded += OnItemAdded;
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+        GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
     }
 
 
@@ -96,7 +103,7 @@ public class Gun : MonoBehaviour
     /// </summary>
     public void ReloadMag()
     { 
-        if(!gunState.Equals(GunState.Reloading))
+        if(!gunState.Equals(GunState.Reloading) && ammoInMag != magSize)
         {   
             StartCoroutine(IReloadMag());
         }
@@ -127,8 +134,9 @@ public class Gun : MonoBehaviour
 
             }
 
-            // Update UI
-            GameManager.instance.notificationCenter.FireOnGunAmmoUpdated(ammoInMag, GameManager.instance.inventory.GetItemSlot(ammoType));
+            GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+            GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
+
         }
         else
         {
@@ -163,8 +171,9 @@ public class Gun : MonoBehaviour
         if (muzzleFlash != null)
             Instantiate(muzzleFlash, shootPoint.position, shootPoint.rotation, shootPoint);
 
-        if (projectile != null)
-            Instantiate(projectile, shootPoint.position, shootPoint.rotation);
+        if (projectile != null)       
+            Instantiate(projectile, shootPoint.position, shootPoint.rotation);   
+        
 
         if(!infintAmmo)
             ammoInMag--;
@@ -172,9 +181,16 @@ public class Gun : MonoBehaviour
         if (gunShotAudio != null)
             Instantiate(gunShotAudio);
 
-        GameManager.instance.notificationCenter.FireOnGunAmmoUpdated(ammoInMag, GameManager.instance.inventory.GetItemSlot(ammoType));
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
     }
 
+    /// <summary>
+    /// Runs when a itme is added to the inventoy
+    /// </summary>
+    private void OnItemAdded()
+    {
+        GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
+    }
 
     /// <summary>
     /// Returns the ammo from the magasine
@@ -212,6 +228,5 @@ public class Gun : MonoBehaviour
             Gizmos.DrawRay(shootPoint.position + direction, left * 0.25f);
         }
     }
-
 
 }

@@ -28,28 +28,14 @@ public class Damageable : MonoBehaviour
     /// </summary>
     /// 
 
-    protected virtual void OnDeath(){}
+    protected virtual void OnDeath(string diedBy) {}
+
+    protected virtual void OnDeath() { }
 
     /// <summary>
     /// Is Called When Health Is Removed
     /// </summary>
-    protected virtual void OnHit()
-    {
-
-    }
-
-
-    /// <summary>
-    /// CHecks If the health is 0 or lower and turns the death to true
-    /// </summary>
-    private void CheckDeath()
-    {
-        if (health <= 0 && death == false && !invincible)
-        {
-            OnDeath();
-            death = true;
-        }
-    }
+    protected virtual void OnHit(float healthLost,string hitBy) {}
 
 
     /// <summary>
@@ -73,35 +59,39 @@ public class Damageable : MonoBehaviour
     /// <summary>
     /// Removes Health
     /// </summary>
-    public void RemoveHealth(float damage)
+    public void RemoveHealth(float damage,string removedBy)
     {
-        // Update The Stats
-        GameManager.instance.statsController.AddHealthLost(damage);
         // Calls the hit function
-        OnHit();
+        OnHit(damage, removedBy);
         // Removes The health
         health -= damage;
         // Cals the check death function
-        CheckDeath();
+        if (health <= 0 && death == false && !invincible)
+        {
+            OnDeath();
+            OnDeath(removedBy);
+            death = true;
+        }
     }
 
     /// <summary>
     /// Removes the health over time
     /// </summary>
-    public void RemoveHealth(float damage, float overTime)
+    public void RemoveHealth(float damage, float overTime, string removedBy)
     {
         // Zorgt dat je een noramale void kan roepen inplaats van start Courutine
-        StartCoroutine(IRemoveHealth(damage, overTime));
+        StartCoroutine(IRemoveHealth(damage, overTime, removedBy));
     }
-    IEnumerator IRemoveHealth(float damage, float overTime)
+    IEnumerator IRemoveHealth(float damage, float overTime, string removedBy)
     {
         float timer = 0;
         float startHealth = this.health;
 
-        while (timer < 1)
+        while (timer < overTime)
         {
-            timer += Time.deltaTime / overTime;
-            RemoveHealth(damage * timer * Time.deltaTime);
+            RemoveHealth((Time.deltaTime / overTime) * damage, removedBy);
+
+            timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 

@@ -21,11 +21,20 @@ public class Player : Damageable
         rig = GetComponent<Rigidbody>();
         InventoryController inventory = GameManager.instance.inventory;
         mainCamera = Camera.main;
+
+        GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
     }
 
     private void Update()
     {
         HandleGun();
+
+        // Verander dit en zorg voor een input manager
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.instance.notificationCenter.FireGamePaused(!GameManager.instance.notificationCenter.gamePaused);
+        }
+
     }
 
     private void HandleGun()
@@ -92,18 +101,37 @@ public class Player : Damageable
     /// </summary>
     private Vector3 GetMousePos(Camera cam)
     {
-        Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        if (cam != null)
+        {
+            Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 
-        float rayLength;
-        groundPlane.Raycast(cameraRay, out rayLength);
+            float rayLength;
+            groundPlane.Raycast(cameraRay, out rayLength);
 
-        return cameraRay.GetPoint(rayLength);
+            return cameraRay.GetPoint(rayLength);
+        }
+
+        return Vector3.zero;
     }
 
 
     public Gun GetGun()
     {
         return gun;
+    }
+
+
+    protected override void OnHit(float healthLost, string hitBy)
+    {
+        GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
+        GameManager.instance.statsController.AddHealthLost(healthLost);
+
+    }
+
+    protected override void OnDeath(string diedBy)
+    {
+        GameManager.instance.notificationCenter.FirePlayerDied();
+        GameManager.instance.statsController.AddDiedBy(diedBy);
     }
 }

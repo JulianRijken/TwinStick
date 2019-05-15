@@ -1,47 +1,112 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+
     public StatsController statsController;
     public InventoryController inventory;
-    public Player player;
     public NotificationCenter notificationCenter;
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
-
-        else if (instance != this)
+        else if (instance != this)     
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
 
+
         notificationCenter = new NotificationCenter();
-    }
-
-
-    void Start()
-    {
         statsController = new StatsController();
-        inventory = new InventoryController();
-        player = FindObjectOfType<Player>();
+        inventory = new InventoryController(); ;
+
+        notificationCenter.OnPlayerDie += OnPlayerDie;
+        notificationCenter.OnExitToMenu += OnExitToMenu;
+
     }
+   
+
+    private void OnPlayerDie()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void OnExitToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+
+    private void OnDestroy()
+    {
+        notificationCenter.OnPlayerDie -= OnPlayerDie;
+        notificationCenter.OnExitToMenu -= OnExitToMenu;
+    }
+
 
 }
 
 public class NotificationCenter {
 
-    public delegate void GunAmmoUpdateAction(int newAmmoInMag, ItemSlot itemSlot);
-
-    public event GunAmmoUpdateAction OnGunAmmoUpdated;
-
-    public void FireOnGunAmmoUpdated(int newAmmoInMag, ItemSlot itemSlot)
+    public delegate void GunMagUpdateAction(int newAmmoInMag);
+    public event GunMagUpdateAction OnGunMagAmmoUpdated;
+    public void FireGunMagAmmoChange(int newAmmoInMag)
     {
-        OnGunAmmoUpdated?.Invoke(newAmmoInMag, itemSlot);
+        OnGunMagAmmoUpdated?.Invoke(newAmmoInMag);
     }
+
+    public delegate void GunInventoyUpdateAction(ItemSlot itemSlot);
+    public event GunInventoyUpdateAction OnGunInventoyAmmoUpdated;
+    public void FireGunInventoyAmmoChange(ItemSlot itemSlot)
+    {
+        OnGunInventoyAmmoUpdated?.Invoke(itemSlot);
+    }
+
+    public delegate void PlayerHealthUpdateAction(float newHealth,float newMaxHealth);
+    public event PlayerHealthUpdateAction OnPlayerHealthChange;
+    public void FirePlayerHealthChange(float newHealth, float newMaxHealth)
+    {
+        OnPlayerHealthChange?.Invoke(newHealth,newMaxHealth);
+    }
+
+    public delegate void PlayerDiedAction();
+    public event PlayerDiedAction OnPlayerDie;
+    public void FirePlayerDied()
+    {
+        OnPlayerDie?.Invoke();
+    }
+
+    public delegate void ExitToMenuAction();
+    public event ExitToMenuAction OnExitToMenu;
+    public void FireExitToMenu()
+    {
+        OnExitToMenu?.Invoke();
+    }
+
+    public delegate void ItemAddedAction();
+    public event ItemAddedAction OnItemAdded;
+    public void FireItemAdded()
+    {
+        OnItemAdded?.Invoke();
+    }
+
+    public bool gamePaused;
+    public delegate void GamePausedAction(bool paused);
+    public event GamePausedAction OnGamePaused;
+    public void FireGamePaused(bool paused)
+    {
+        gamePaused = paused;
+        OnGamePaused?.Invoke(paused);
+    }
+
+
+
+
+
 }

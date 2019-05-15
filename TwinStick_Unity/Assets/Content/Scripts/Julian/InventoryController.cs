@@ -10,7 +10,8 @@ public enum ItemID
 {
     Ammo,
     HealthPack,
-    Keycard
+    keyCardA,
+    keyCardB
 }
 
 /// <summary>
@@ -31,12 +32,16 @@ public class InventoryController
         {
             if (inventoryItems[i].itemID == item)
             {
-                inventoryItems[i].count += count;           
+                inventoryItems[i].count += count;
+
+                GameManager.instance.notificationCenter.FireItemAdded();
                 return;
             }
         }
 
         inventoryItems.Add(new ItemSlot(item, count));
+        GameManager.instance.notificationCenter.FireItemAdded();
+
 
     }
 
