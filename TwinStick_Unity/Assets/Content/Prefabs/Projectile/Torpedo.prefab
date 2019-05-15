@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1440799186717699462}
   - component: {fileID: 1440799186717699461}
   m_Layer: 0
-  m_Name: Projectile_1
+  m_Name: Torpedo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,6 +63,7 @@ MonoBehaviour:
   moveSpeed: 100
   damage: 10
   destroyTime: 5
+  projectileName: Torpedo
 --- !u!54 &1440799186717699461
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ public class Player : Damageable
     {
         HandleGun();
 
+        // Verander dit en zorg voor een input manager
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             GameManager.instance.notificationCenter.FireGamePaused(!GameManager.instance.notificationCenter.gamePaused);
@@ -121,16 +122,16 @@ public class Player : Damageable
     }
 
 
-    protected override void OnHit(float healthLost)
+    protected override void OnHit(float healthLost, string hitBy)
     {
-        base.OnHit();
         GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
         GameManager.instance.statsController.AddHealthLost(healthLost);
+
     }
 
-    protected override void OnDeath()
+    protected override void OnDeath(string diedBy)
     {
-        base.OnDeath();
         GameManager.instance.notificationCenter.FirePlayerDied();
+        GameManager.instance.statsController.AddDiedBy(diedBy);
     }
 }

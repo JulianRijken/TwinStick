@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//public enum GunID { Torpedo_Launcher }
+
 public class Gun : MonoBehaviour
 {
 
@@ -17,13 +19,15 @@ public class Gun : MonoBehaviour
     [SerializeField] private int startingAmmo = 30;
 
     [SerializeField] private Transform shootPoint = null;
-    [SerializeField] private GameObject projectile = null;
+    [SerializeField] private Projectile projectile = null;
 
     [Header("Extra")]
     [SerializeField] private bool infintAmmo = false;
     [SerializeField] private GameObject muzzleFlash = null;
     [SerializeField] private GameObject gunShotAudio = null;
     [SerializeField] private GameObject gunEmptyAudio = null;
+
+    [Header("Attachments")]
     [SerializeField] public Lazer lazer = null;
 
 
@@ -103,7 +107,7 @@ public class Gun : MonoBehaviour
     /// </summary>
     public void ReloadMag()
     { 
-        if(!gunState.Equals(GunState.Reloading))
+        if(!gunState.Equals(GunState.Reloading) && ammoInMag != magSize)
         {   
             StartCoroutine(IReloadMag());
         }
@@ -171,8 +175,9 @@ public class Gun : MonoBehaviour
         if (muzzleFlash != null)
             Instantiate(muzzleFlash, shootPoint.position, shootPoint.rotation, shootPoint);
 
-        if (projectile != null)
-            Instantiate(projectile, shootPoint.position, shootPoint.rotation);
+        if (projectile != null)       
+            Instantiate(projectile, shootPoint.position, shootPoint.rotation);   
+        
 
         if(!infintAmmo)
             ammoInMag--;
