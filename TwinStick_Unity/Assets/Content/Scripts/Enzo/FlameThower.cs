@@ -5,11 +5,13 @@ using UnityEngine;
 public class FlameThower : MonoBehaviour
 {
     [SerializeField] private ParticleSystem FlameThrower;
+    [SerializeField] private ParticleSystem WaterGun;
 
     // Start is called before the first frame update
     private void Start()
     {
         FlameThrower.Stop();
+        WaterGun.Stop();
     }
 
     // Update is called once per frame
@@ -22,6 +24,14 @@ public class FlameThower : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             FlameThrower.Stop();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            WaterGun.Play();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            WaterGun.Stop();
         }
     }
 }
