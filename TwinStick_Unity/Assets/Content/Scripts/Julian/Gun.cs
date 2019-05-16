@@ -171,9 +171,15 @@ public class Gun : MonoBehaviour
         if (muzzleFlash != null)
             Instantiate(muzzleFlash, shootPoint.position, shootPoint.rotation, shootPoint);
 
-        if (projectile != null)       
-            Instantiate(projectile, shootPoint.position, shootPoint.rotation);   
-        
+        // Instantiate bullet
+        if (projectile != null)
+        {
+            Quaternion _projectileRotation = shootPoint.rotation;
+            _projectileRotation.eulerAngles += new Vector3(0, Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+
+            Instantiate(projectile, shootPoint.position, _projectileRotation);
+
+        }
 
         if(!infintAmmo)
             ammoInMag--;

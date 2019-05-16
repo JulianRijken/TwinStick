@@ -448,7 +448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &174902162
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2323,6 +2323,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 27963321060569844, guid: af8f7288319d5fb40b53e2a4436624b4,
+        type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 27963322162447077, guid: af8f7288319d5fb40b53e2a4436624b4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2383,6 +2388,20 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2067565439}
+    - target: {fileID: 27963322162447074, guid: af8f7288319d5fb40b53e2a4436624b4,
+        type: 3}
+      propertyPath: m_AllowDynamicResolution
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27963321060569843, guid: af8f7288319d5fb40b53e2a4436624b4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 321860050, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: weight
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
 --- !u!1001 &4097249525924657814
