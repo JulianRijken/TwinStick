@@ -10,15 +10,19 @@ public class Projectile : MonoBehaviour
     [SerializeField] float damage = 1;
     [SerializeField] float destroyTime = 5;
     [SerializeField] private string projectileName = "Bullet";
+    [SerializeField] private LayerMask collisionLayer = new LayerMask();
+    [SerializeField] private TrailRenderer testLine;
 
     private Rigidbody rig;
     private Vector3 lastPos;
+    private bool hitWall;
 
 
     private void Start()
     {
         rig = GetComponent<Rigidbody>();
         Destroy(gameObject, destroyTime);
+        hitWall = false;
     }
 
     // Gebruik linecast
@@ -26,18 +30,26 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit _hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _hit, Mathf.Infinity))
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * _hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
-        }
-        else
-        {
+        Color _col = testLine.material.color;
+        _col.a -= Time.deltaTime;
+        _col.a = Mathf.Clamp(_col.a, 0, 255);
+        testLine.material.color = _col;
 
-            rig.MovePosition(transform.position + transform.forward * Time.deltaTime * moveSpeed);
-            lastPos = transform.position;
+
+        if (!hitWall)
+        rig.MovePosition(transform.position + transform.forward * Time.deltaTime * moveSpeed);
+
+
+        RaycastHit _hit;
+        if (Physics.Linecast(lastPos, transform.position, out _hit,collisionLayer))
+        {
+            hitWall = true;
+            transform.position = _hit.point;
+            Debug.DrawLine(lastPos,transform.position,Color.red,2f);
         }
+
+        lastPos = transform.position;
+
     }
 
     void OnHit(GameObject hitObject)
