@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8827632921388358664}
   - component: {fileID: 8827632921388358670}
   - component: {fileID: 8827632921388358665}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8827632921466535884}
   - component: {fileID: 8827632921466535922}
   - component: {fileID: 8827632921466535885}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 8827632921905314606}
   - component: {fileID: 8827632921905314601}
   - component: {fileID: 8827632921905314600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 8827632922265757678}
   - component: {fileID: 8827632922265757676}
   - component: {fileID: 8827632922265757679}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 8827632922408549523}
   - component: {fileID: 8827632922408549521}
   - component: {fileID: 8827632922408549520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8827632923030120761}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,6 +504,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gun_TPL
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220072543033602448, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1942361173048902531, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
         type: 3}
@@ -565,6 +570,40 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.138
       objectReference: {fileID: 0}
+    - target: {fileID: 1717362155409007435, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717362156491180034, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013355815392950779, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5811812690219373415, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923315289815180, guid: e3dfdac36a60ee24baaf21b915e5e0d2, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842640794046966005, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578782432912195097, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3dfdac36a60ee24baaf21b915e5e0d2, type: 3}
 --- !u!4 &8620982211600286245 stripped
@@ -612,6 +651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rifel_MuzzleFlash
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034780878847433546, guid: a90b967d007876446ac5eb4f083dd791,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9036626160367949456, guid: a90b967d007876446ac5eb4f083dd791,
         type: 3}
@@ -667,6 +711,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034458902299649760, guid: a90b967d007876446ac5eb4f083dd791,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a90b967d007876446ac5eb4f083dd791, type: 3}

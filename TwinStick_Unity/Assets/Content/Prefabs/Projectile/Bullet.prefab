@@ -52,7 +52,7 @@ MonoBehaviour:
   projectileName: Bullet
   collisionLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2560
   smokeTrail: {fileID: 997408672500696517}
 --- !u!54 &1440799186717699461
 Rigidbody:
@@ -313,11 +313,11 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0.7254902}
       key1: {r: 1, g: 1, b: 1, a: 0.5647059}
       key2: {r: 0.9632838, g: 1, b: 0, a: 0.8235294}
       key3: {r: 0, g: 0, b: 0, a: 0.5647059}
-      key4: {r: 0, g: 0, b: 0, a: 1}
+      key4: {r: 0, g: 0, b: 0, a: 0.7254902}
       key5: {r: 0, g: 0, b: 0, a: 0.7254902}
       key6: {r: 0, g: 0, b: 0, a: 0.7921569}
       key7: {r: 0, g: 0, b: 0, a: 0}

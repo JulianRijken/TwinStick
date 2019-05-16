@@ -27,6 +27,7 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Make Smoke dissapere
         if (smokeTrail != null)
         {
             Color _smokeTrailColor = smokeTrail.material.color;
@@ -35,35 +36,49 @@ public class Projectile : MonoBehaviour
             smokeTrail.material.color = _smokeTrailColor;
         }
 
-
+        // Move the projectile
         if (!hitWall)
-        rig.MovePosition(transform.position + transform.forward * Time.deltaTime * moveSpeed);
-
-
-        RaycastHit _hit;
-        if (Physics.Linecast(lastPos, transform.position, out _hit,collisionLayer))
         {
-            hitWall = true;
-            transform.position = _hit.point;
-            Debug.DrawLine(lastPos,transform.position,Color.red,2f);
-        }
+            transform.position += transform.forward * Time.deltaTime * moveSpeed;
 
-        lastPos = transform.position;
+            RaycastHit _hit;
+            if (Physics.Linecast(lastPos, transform.position, out _hit, collisionLayer))
+            {
+                // !!!!!!!!!! Zorg dat je iets van een static layer manager heb zodat je niet errors krijgt als je een layer van plek veranderd
+                switch(_hit.transform.gameObject.layer)
+                {
+                    case 9:
+                        OnHitEnemy(_hit);
+                        break;
+                    case 11:
+                        OnHitWall(_hit);
+                        break;
+                }
+
+                //Debug.DrawLine(lastPos, transform.position, Color.red, 2f);
+            }
+
+            lastPos = transform.position;
+        }
 
     }
 
-    void OnHit(GameObject hitObject)
+    void OnHitWall(RaycastHit _hit)
     {
-        Damageable damageable = hitObject.GetComponent<Damageable>();
+        hitWall = true;
+        transform.position = _hit.point;
+        Destroy(gameObject, 2f);
+    }
+
+    void OnHitEnemy(RaycastHit _hit)
+    {
+        Damageable damageable = _hit.transform.gameObject.GetComponent<Damageable>();
         if (damageable != null)
         {
             damageable.RemoveHealth(damage, projectileName);
-
-            Destroy(gameObject, 0.5f);
-        }
-        else
-        {
-            Destroy(gameObject);
+            hitWall = true;
+            transform.position = _hit.point;
+            Destroy(gameObject, 2f);
         }
     }
 
