@@ -18,12 +18,12 @@ public class Gun : MonoBehaviour
     [SerializeField] private int magSize = 30;
     [SerializeField] private int startingAmmo = 30;
 
-    [SerializeField] private Transform shootPoint = null;
+    [SerializeField] private Transform shootPoint;
     [SerializeField] private Projectile projectile = null;
 
     [Header("Extra")]
     [SerializeField] private bool infintAmmo = false;
-    [SerializeField] private GameObject muzzleFlash = null;
+    [SerializeField] private ParticleSystem[] muzzleFlashses = new ParticleSystem[0];
     [SerializeField] private GameObject gunShotAudio = null;
     [SerializeField] private GameObject gunEmptyAudio = null;
 
@@ -168,8 +168,14 @@ public class Gun : MonoBehaviour
     /// </summary>
     private void OnShot()
     {
-        if (muzzleFlash != null)
-            Instantiate(muzzleFlash, shootPoint.position, shootPoint.rotation, shootPoint);
+        if(muzzleFlashses.Length > 0)
+        {
+            for (int i = 0; i < muzzleFlashses.Length; i++)
+            {
+                muzzleFlashses[i].Play();
+            }
+        }
+
 
         // Instantiate bullet
         if (projectile != null)
