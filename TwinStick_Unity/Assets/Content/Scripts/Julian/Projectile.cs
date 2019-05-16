@@ -11,29 +11,29 @@ public class Projectile : MonoBehaviour
     [SerializeField] float destroyTime = 5;
     [SerializeField] private string projectileName = "Bullet";
     [SerializeField] private LayerMask collisionLayer = new LayerMask();
-    [SerializeField] private TrailRenderer testLine;
+    [SerializeField] private TrailRenderer smokeTrail;
 
     private Rigidbody rig;
     private Vector3 lastPos;
     private bool hitWall;
-
 
     private void Start()
     {
         rig = GetComponent<Rigidbody>();
         Destroy(gameObject, destroyTime);
         hitWall = false;
+        lastPos = transform.position;
     }
-
-    // Gebruik linecast
-    // gebruik layer checkn voor wat te doen
 
     private void FixedUpdate()
     {
-        Color _col = testLine.material.color;
-        _col.a -= Time.deltaTime;
-        _col.a = Mathf.Clamp(_col.a, 0, 255);
-        testLine.material.color = _col;
+        if (smokeTrail != null)
+        {
+            Color _smokeTrailColor = smokeTrail.material.color;
+            _smokeTrailColor.a -= Time.deltaTime;
+            _smokeTrailColor.a = Mathf.Clamp(_smokeTrailColor.a, 0, 255);
+            smokeTrail.material.color = _smokeTrailColor;
+        }
 
 
         if (!hitWall)
@@ -66,4 +66,5 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }
