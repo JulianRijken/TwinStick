@@ -4,7 +4,6 @@ public class ParticleSystemAutoDestroy : MonoBehaviour
 {
     private ParticleSystem ps;
 
-
     public void Start()
     {
         ps = GetComponent<ParticleSystem>();
@@ -19,5 +18,7 @@ public class ParticleSystemAutoDestroy : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+       
     }
 }
