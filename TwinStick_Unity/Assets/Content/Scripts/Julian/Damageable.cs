@@ -4,92 +4,105 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] protected float health = 100;
-    [SerializeField] protected float maxHealth = 100;
+    [Header("Health")]
+    [SerializeField] protected float health = 100f;
+    [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected bool invincible = false;
 
-    protected bool death;
+    [Header("Armor")]
+    [SerializeField] protected float armor = 100f;
+    [SerializeField] protected float armorProtectionProcent = 50f;
+    [SerializeField] protected float armorDamageMultiplyer = 0.1f;
+    [SerializeField] protected float maxArmor = 100f;
+    [SerializeField] protected bool armorEnabled = true;
 
-    private void Awake()
+    protected bool died;
+
+    private void Start()
     {
-        death = false;
-
-        if (health == 0)
-            Debug.LogError("Health is not set");
+        died = false;
     }
 
-    private void Update()
-    {
-        health = Mathf.Clamp(health,0, maxHealth);
-    }
-
     /// <summary>
-    /// Is Called When health Is 0 or lower
+    /// Returns The current health
     /// </summary>
-    /// 
-
-    protected virtual void OnDeath(string diedBy) {}
-
-    protected virtual void OnDeath() { }
-
-    /// <summary>
-    /// Is Called When Health Is Removed
-    /// </summary>
-    protected virtual void OnHit(float healthLost,string hitBy) {}
-
-
-    /// <summary>
-    /// Returns The health
-    /// </summary>
-    /// <returns></returns>
     public float GetHealth()
     {
         return health;
     }
 
     /// <summary>
+    /// Returns The current armor
+    /// </summary>
+    public float GetArmor()
+    {
+        return armor;
+    }
+
+    /// <summary>
     /// Returns The Max Health
     /// </summary>
-    /// <returns></returns>
     public float GetMaxHealth()
     {
         return maxHealth;
     }
 
     /// <summary>
+    /// Returns The Max Armor
+    /// </summary>
+    public float GetMaxArmor()
+    {
+        return maxArmor;
+    }
+
+    /// <summary>
     /// Removes Health
     /// </summary>
-    public void RemoveHealth(float damage,string removedBy)
+    public void DoDamage(float damage,string removedBy)
     {
-        // Calls the hit function
-        OnHit(damage, removedBy);
-        // Removes The health
-        health -= damage;
-        // Cals the check death function
-        if (health <= 0 && death == false && !invincible)
+        if (!invincible)
         {
-            OnDeath();
-            OnDeath(removedBy);
-            death = true;
+            if(armorEnabled)
+            {
+                if(armor > 0)
+                {
+                    armor -= damage * armorDamageMultiplyer;
+                    float _damageProtected = (damage / 100) * armorProtectionProcent;
+                    damage -= _damageProtected;
+                }
+            }
+
+            OnRemoveHealth(damage, removedBy);
+
+            health -= damage;
+            health = Mathf.Clamp(health, 0, maxHealth);
+
+            if (health <= 0 && died == false)
+            {
+                OnDeath();
+                OnDeath(removedBy);
+                died = true;
+            }
         }
     }
+
 
     /// <summary>
     /// Removes the health over time
     /// </summary>
-    public void RemoveHealth(float damage, float overTime, string removedBy)
+    public void DoDamage(float damage, float overTime, string removedBy)
     {
         // Zorgt dat je een noramale void kan roepen inplaats van start Courutine
-        StartCoroutine(IRemoveHealth(damage, overTime, removedBy));
+        StartCoroutine(IDoDamage(damage, overTime, removedBy));
     }
-    IEnumerator IRemoveHealth(float damage, float overTime, string removedBy)
+    private IEnumerator IDoDamage(float damage, float overTime, string removedBy)
     {
         float timer = 0;
         float startHealth = this.health;
 
         while (timer < overTime)
         {
-            RemoveHealth((Time.deltaTime / overTime) * damage, removedBy);
+            DoDamage((Time.deltaTime / overTime) * damage, removedBy);
 
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
@@ -97,5 +110,37 @@ public class Damageable : MonoBehaviour
 
         health = startHealth = damage;
     }
+
+
+    /// <summary>
+    /// Returns The current health
+    /// </summary>
+    public void AddHealth(float _health)
+    {
+        health += _health;
+        health = Mathf.Clamp(health, 0, maxHealth);
+    }
+
+    /// <summary>
+    /// Returns The current armor
+    /// </summary>
+    public void AddArmor(float _armor)
+    {
+        armor += _armor;
+        armor = Mathf.Clamp(armor, 0, maxArmor);
+    }
+
+
+
+    /// <summary>
+    /// Is Called When health Is 0 or lower
+    /// </summary>
+    protected virtual void OnDeath(string diedBy) { }
+    protected virtual void OnDeath() { }
+
+    /// <summary>
+    /// Is Called When Health Is Removed
+    /// </summary>
+    protected virtual void OnRemoveHealth(float healthLost, string hitBy) { }
 
 }

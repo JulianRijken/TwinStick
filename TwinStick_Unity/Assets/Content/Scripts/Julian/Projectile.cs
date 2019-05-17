@@ -75,7 +75,7 @@ public class Projectile : MonoBehaviour
         Damageable damageable = _hit.transform.gameObject.GetComponent<Damageable>();
         if (damageable != null)
         {
-            damageable.RemoveHealth(damage, projectileName);
+            damageable.DoDamage(damage, projectileName);
             hitWall = true;
             transform.position = _hit.point;
             Destroy(gameObject, 2f);

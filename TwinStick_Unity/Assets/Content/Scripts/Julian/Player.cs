@@ -122,7 +122,7 @@ public class Player : Damageable
     }
 
 
-    protected override void OnHit(float healthLost, string hitBy)
+    protected override void OnRemoveHealth(float healthLost, string hitBy)
     {
         GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
         GameManager.instance.statsController.AddHealthLost(healthLost);
