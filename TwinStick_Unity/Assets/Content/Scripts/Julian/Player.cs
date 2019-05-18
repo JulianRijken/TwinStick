@@ -6,9 +6,12 @@ using UnityEngine;
 public class Player : Damageable
 {
 
+    [Header("Movement")]
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float moveAcceleration = 15f;
     [SerializeField] private float rotationSpeed = 30f;
+
+    [Header("Items")]
     [SerializeField] private Gun gun = null;
 
     private Rigidbody rig = null;
@@ -22,7 +25,10 @@ public class Player : Damageable
         InventoryController inventory = GameManager.instance.inventory;
         mainCamera = Camera.main;
 
+        DoDamage(100, 5f, "Player");
+
         GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
+        GameManager.instance.notificationCenter.FireArmorHealthChange(armorHealth, maxArmorHealth);
     }
 
     private void Update()
@@ -115,6 +121,9 @@ public class Player : Damageable
         return Vector3.zero;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
 
     public Gun GetGun()
     {
@@ -122,11 +131,16 @@ public class Player : Damageable
     }
 
 
-    protected override void OnRemoveHealth(float healthLost, string hitBy)
+    protected override void OnHealthLost(float healthLost, string hitBy)
     {
         GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
         GameManager.instance.statsController.AddHealthLost(healthLost);
 
+    }
+
+    protected override void OnArmorHealthLost(float armorHealthLost)
+    {
+        GameManager.instance.notificationCenter.FireArmorHealthChange(armorHealth, maxArmorHealth);
     }
 
     protected override void OnDeath(string diedBy)

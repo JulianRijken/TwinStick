@@ -265,6 +265,11 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   invincible: 0
+  armorEnabled: 1
+  armorHealth: 100
+  armorProtectionProcent: 50
+  armorStrength: 10
+  maxArmorHealth: 100
   moveSpeed: 10
   moveAcceleration: 15
   rotationSpeed: 30
@@ -484,6 +489,11 @@ PrefabInstance:
         type: 3}
       propertyPath: muzzleFlashses.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220072543033602449, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
+        type: 3}
+      propertyPath: timeBitweenShots
+      value: 0.075
       objectReference: {fileID: 0}
     - target: {fileID: 3220072543033602449, guid: e3dfdac36a60ee24baaf21b915e5e0d2,
         type: 3}

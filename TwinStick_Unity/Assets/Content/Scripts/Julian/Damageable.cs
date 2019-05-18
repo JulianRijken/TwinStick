@@ -7,23 +7,24 @@ public class Damageable : MonoBehaviour
 {
 
     [Header("Health")]
-    public float health = 100f;
-    public float maxHealth = 100f;
-    public bool invincible = false;
+    [SerializeField] protected bool invincible = false;
+    [SerializeField] protected float health = 100f;
+    [SerializeField] protected float maxHealth = 100f;
+    protected bool died;
 
     [Header("Armor")]
-    public bool armorEnabled = true;
-    public float armorHealth = 100f;
-    public float armorProtectionProcent = 50f;
-    public float armorStrength = 10f;
-    public float maxArmorHealth = 100f;
-
-    protected bool died;
+    [SerializeField] protected bool armorEnabled = true;
+    [SerializeField] protected float armorHealth = 100f;
+    [SerializeField] protected float armorProtectionProcent = 50f;
+    [SerializeField] protected float armorStrength = 10f;
+    [SerializeField] protected float maxArmorHealth = 100f;
 
     private void Start()
     {
         died = false;
     }
+
+    #region GetFunctions
 
     /// <summary>
     /// Returns The current health
@@ -57,7 +58,10 @@ public class Damageable : MonoBehaviour
         return maxArmorHealth;
     }
 
+    #endregion
 
+
+    #region DoFunctions
 
     /// <summary>
     /// Removes Health
@@ -71,12 +75,13 @@ public class Damageable : MonoBehaviour
                 if (armorHealth > 0)
                 {
                     armorHealth -= damage / armorStrength;
+                    OnArmorHealthLost(damage / armorStrength);
                     float _damageProtected = (damage / 100) * armorProtectionProcent;
                     damage -= _damageProtected;
                 }
             }
 
-            OnRemoveHealth(damage, removedBy);
+            OnHealthLost(damage, removedBy);
 
             health -= damage;
             health = Mathf.Clamp(health, 0, maxHealth);
@@ -118,7 +123,10 @@ public class Damageable : MonoBehaviour
         health = startHealth = damage;
     }
 
+    #endregion
 
+
+    #region AddFunctions
 
     /// <summary>
     /// Returns The current health
@@ -138,7 +146,10 @@ public class Damageable : MonoBehaviour
         armorHealth = Mathf.Clamp(armorHealth, 0, maxArmorHealth);
     }
 
+    #endregion
 
+
+    #region OnFuncitons
     /// <summary>
     /// Is Called When health Is 0 or lower with a name
     /// </summary>
@@ -152,6 +163,12 @@ public class Damageable : MonoBehaviour
     /// <summary>
     /// Is Called When Health Is Removed
     /// </summary>
-    protected virtual void OnRemoveHealth(float healthLost, string hitBy) { }
+    protected virtual void OnHealthLost(float healthLost, string hitBy) { }
 
+    /// <summary>
+    /// Is Called When Health Is Removed
+    /// </summary>
+    protected virtual void OnArmorHealthLost(float armorHealthLost) { }
+
+    #endregion
 }
