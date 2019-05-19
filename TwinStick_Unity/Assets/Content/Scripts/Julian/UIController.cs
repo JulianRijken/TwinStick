@@ -8,8 +8,12 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private PlayerUI playerUI = null;
     [SerializeField] private GameObject pauseMenu = null;
+    [SerializeField] private GameObject gameCursor = null;
+    [SerializeField] private Vector2 mouseOffset;
 
     private GameManager gameManager;
+    private Camera mainCamera;
+
 
     private void Awake()
     {
@@ -19,14 +23,31 @@ public class UIController : MonoBehaviour
         gameManager.notificationCenter.OnPlayerHealthChange += HandlePlayerHealth;
         gameManager.notificationCenter.OnGunInventoyAmmoUpdated += HandleAmmoInInventoy;
         gameManager.notificationCenter.OnGamePaused += HandlePauseGame;
+        gameManager.notificationCenter.OnGameUnPaused += HandleUnPauseGame;
         gameManager.notificationCenter.OnArmorHealthChange += HandleArmorHealth;
     }
 
     private void Start()
     {
-        if (pauseMenu != null)
-            pauseMenu.SetActive(false);
+        mainCamera = Camera.main;
+
+        HandleUnPauseGame();
     }
+
+    private void LateUpdate()
+    {
+        gameCursor.transform.position = GetMousePos();
+    }
+
+    /// <summary>
+    /// Returns the mouse position
+    /// </summary>
+    private Vector2 GetMousePos()
+    {
+        Vector2 _mousePos = (Vector2)Input.mousePosition + mouseOffset;
+        return _mousePos;
+    }
+
 
     #region Handel
 
@@ -65,12 +86,24 @@ public class UIController : MonoBehaviour
     /// <summary>
     /// handles Pause menu
     /// </summary>
-    private void HandlePauseGame(bool paused)
+    private void HandlePauseGame()
     {
-        Time.timeScale = paused ? 0 : 1;
+        Time.timeScale = 0;
+        Cursor.visible = true;
 
-        if(pauseMenu != null)
-        pauseMenu.SetActive(paused);
+        gameCursor.SetActive(false);
+        pauseMenu.SetActive(true);
+    }
+
+    /// <summary>
+    /// handles Un Pause menu
+    /// </summary>
+    private void HandleUnPauseGame()
+    {
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        gameCursor.SetActive(true);
+        pauseMenu.SetActive(false);
     }
 
     #endregion
@@ -83,7 +116,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void Return()
     {
-        GameManager.instance.notificationCenter.FireGamePaused(false);
+        GameManager.instance.notificationCenter.FireGameUnPaused();
     }
 
     /// <summary>
@@ -92,7 +125,7 @@ public class UIController : MonoBehaviour
     public void QuitToMainMenu()
     {
         GameManager.instance.notificationCenter.FireExitToMenu();
-        GameManager.instance.notificationCenter.FireGamePaused(false);
+        GameManager.instance.notificationCenter.FireGameUnPaused();
     }
 
     #endregion
@@ -103,6 +136,7 @@ public class UIController : MonoBehaviour
         gameManager.notificationCenter.OnPlayerHealthChange -= HandlePlayerHealth;
         gameManager.notificationCenter.OnGunInventoyAmmoUpdated -= HandleAmmoInInventoy;
         gameManager.notificationCenter.OnGamePaused -= HandlePauseGame;
+        gameManager.notificationCenter.OnGameUnPaused -= HandleUnPauseGame;
         gameManager.notificationCenter.OnArmorHealthChange -= HandleArmorHealth;
     }
 }

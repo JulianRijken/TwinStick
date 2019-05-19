@@ -77,14 +77,27 @@ public class NotificationCenter
     /// <summary>
     /// Fires Game Paused event
     /// </summary>
-    public void FireGamePaused(bool paused)
+    public void FireGamePaused()
     {
-        gamePaused = paused;
-        OnGamePaused?.Invoke(paused);
+        GameManager.instance.gamePaused = true;
+        OnGamePaused?.Invoke();
     }
-    public bool gamePaused;
-    public delegate void GamePausedAction(bool paused);
+
+    public delegate void GamePausedAction();
     public event GamePausedAction OnGamePaused;
+
+
+    /// <summary>
+    /// Fires Game Paused event
+    /// </summary>
+    public void FireGameUnPaused()
+    {
+        GameManager.instance.gamePaused = false;
+        OnGameUnPaused?.Invoke();
+    }
+
+    public delegate void GameUnPausedAction();
+    public event GameUnPausedAction OnGameUnPaused;
 
 
 

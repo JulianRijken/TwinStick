@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public InventoryController inventory;
     public NotificationCenter notificationCenter;
 
+    public bool gamePaused;
+
     private void Awake()
     {
         if (instance == null)

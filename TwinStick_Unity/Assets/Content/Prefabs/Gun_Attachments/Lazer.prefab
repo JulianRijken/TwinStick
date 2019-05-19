@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3712508934753248575}
   - component: {fileID: 3712508934753248573}
   - component: {fileID: 3712508934753248574}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Lazer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3712508934753248576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.0699, z: -0.066}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1583003, y: 1.1583, z: 1.1583003}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3eae4407a410b48ac1e239946d53aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: -0.1
 --- !u!120 &3712508934753248574
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -86,13 +87,13 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.07043263
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -104,8 +105,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 0.5803922}
-      key1: {r: 0.019141436, g: 1, b: 0, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0.5803922}
+      key1: {r: 1, g: 1, b: 1, a: 0.5803922}
       key2: {r: 0.9245283, g: 0.5538448, b: 0.5538448, a: 1}
       key3: {r: 1, g: 0, b: 0, a: 1}
       key4: {r: 1, g: 0, b: 0.07898474, a: 1}
@@ -113,7 +114,7 @@ LineRenderer:
       key6: {r: 0, g: 0, b: 0, a: 1}
       key7: {r: 0, g: 0, b: 0, a: 1}
       ctime0: 0
-      ctime1: 30069
+      ctime1: 65535
       ctime2: 65535
       ctime3: 65535
       ctime4: 65535
@@ -129,12 +130,12 @@ LineRenderer:
       atime6: 65535
       atime7: 65535
       m_Mode: 0
-      m_NumColorKeys: 3
+      m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 10
+    numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 1
   m_UseWorldSpace: 1

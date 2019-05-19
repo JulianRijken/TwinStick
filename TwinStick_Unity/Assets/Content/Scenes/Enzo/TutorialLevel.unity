@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.36748314, g: 0.3729381, b: 0.3474135, a: 1}
+  m_IndirectSpecularColor: {r: 0.3675763, g: 0.37307385, b: 0.34760857, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6903,6 +6903,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1500010942575315708, guid: af6f0bc240e539b45bf7cbb3279ba327,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: -2.0039036e-29
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500010942575315708, guid: af6f0bc240e539b45bf7cbb3279ba327,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 5.44e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500010942575315708, guid: af6f0bc240e539b45bf7cbb3279ba327,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.4033e-41
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500010942575315708, guid: af6f0bc240e539b45bf7cbb3279ba327,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.23e-43
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af6f0bc240e539b45bf7cbb3279ba327, type: 3}
 --- !u!1 &853248604
@@ -7642,7 +7662,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 3e-45}
+  m_BoundingSphereOverride: {x: 0, y: -2.1941204e-37, z: 5.44e-43, w: -1.6861087e-37}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -9997,6 +10017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f2bfb58f24a93468030aebb5d62a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePaused: 0
 --- !u!4 &1297908466
 Transform:
   m_ObjectHideFlags: 0
@@ -15595,6 +15616,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8064251677806693366, guid: adb2baed36fa32747ac0d12219dd16ee,
         type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 284230710, guid: adb2baed36fa32747ac0d12219dd16ee, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 284230710, guid: adb2baed36fa32747ac0d12219dd16ee, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}

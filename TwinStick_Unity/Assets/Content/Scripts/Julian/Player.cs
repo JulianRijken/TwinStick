@@ -12,7 +12,7 @@ public class Player : Damageable
     [SerializeField] private float rotationSpeed = 30f;
 
     [Header("Items")]
-    [SerializeField] private Gun gun = null;
+    [SerializeField] private Weapon weapon = null;
 
     private Rigidbody rig = null;
     private Vector3 input = Vector3.zero;
@@ -21,6 +21,7 @@ public class Player : Damageable
 
     void Start()
     {
+
         rig = GetComponent<Rigidbody>();
         InventoryController inventory = GameManager.instance.inventory;
         mainCamera = Camera.main;
@@ -33,31 +34,34 @@ public class Player : Damageable
 
     private void Update()
     {
-        HandleGun();
+        HandelWeaponInput();
 
         // Verander dit en zorg voor een input manager
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameManager.instance.notificationCenter.FireGamePaused(!GameManager.instance.notificationCenter.gamePaused);
+            if (GameManager.instance.gamePaused)
+                GameManager.instance.notificationCenter.FireGameUnPaused();
+            else
+                GameManager.instance.notificationCenter.FireGamePaused();
+
         }
 
     }
 
-    private void HandleGun()
+    private void HandelWeaponInput()
     {
-        if (gun != null)
+        if (weapon != null)
         {
-            // Hier kan je hem niet laten schieten als je in een animatie zit
+            // Als je will toevoegen dat het wapen niet kan schieten als de player niet in stat is zoals als hij van wapen switcht dan kan je dat hier verandern
 
             if (Input.GetButtonDown("Reload"))
-                gun.ReloadMag();
-            else if (Input.GetButtonDown("Shoot"))
-                gun.Shoot();
-            else if (Input.GetButton("Shoot"))
-                gun.ShootAuto();
+                weapon.Reload();
 
-            if (Input.GetButtonDown("SwitchLazer"))
-                gun.SwitchLazer();
+            if (weapon.weaponInput == WeaponInputType.hold ? Input.GetButton("Attack") : Input.GetButtonDown("Attack"))
+                weapon.Attack();
+
+            if (Input.GetButtonDown("Gadget"))
+                weapon.UseGadget();
 
         }
     }
@@ -122,12 +126,11 @@ public class Player : Damageable
     }
 
     /// <summary>
-    /// 
+    /// Retuns the weapon in hand
     /// </summary>
-
-    public Gun GetGun()
+    public Weapon GetWeapon()
     {
-        return gun;
+        return weapon;
     }
 
 

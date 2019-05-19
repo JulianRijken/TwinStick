@@ -8,11 +8,15 @@ public class Lazer : MonoBehaviour
     private LineRenderer lineRender;
     private bool on;
 
+    private Vector2 textureOffset;
+    [SerializeField] private float speed = 0.1f;
+
     private void Start()
     {
         lineRender = GetComponent<LineRenderer>();
         on = true;
         lineRender.enabled = true;
+        textureOffset.y = lineRender.material.mainTextureOffset.y;
     }
 
     public void SwitchPower()
@@ -25,6 +29,11 @@ public class Lazer : MonoBehaviour
     private void Update()
     {
         UpdateLazer();
+
+        textureOffset.x -= Time.deltaTime  * speed;
+        //textureOffset.y += Time.deltaTime  * speed;
+
+        lineRender.material.mainTextureOffset = textureOffset;
     }
 
     void UpdateLazer()
