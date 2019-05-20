@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum WeaponID {Rifle = 0,}
 public enum WeaponInputType { sigle = 0, hold = 1 }
+public enum WeaponSlotType { primary = 0, secondary = 1, empty = 2}
 
 public class Weapon : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float attackDelay = 0.075f;
     public WeaponID weaponID = WeaponID.Rifle;
     public WeaponInputType weaponInput = WeaponInputType.hold;
+    public WeaponSlotType weaponSlotType = WeaponSlotType.primary;
 
     private bool attackAllowed = true;
 

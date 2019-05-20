@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,21 +12,36 @@ public class Player : Damageable
     [SerializeField] private float moveAcceleration = 15f;
     [SerializeField] private float rotationSpeed = 30f;
 
-    [Header("Items")]
-    [SerializeField] private Weapon weapon = null;
+    [Header("Weapon")]
+    [SerializeField] private Transform weaponPivit;
+    [SerializeField] private Weapon[] weapons = null;
+
+    private Weapon[] weaponsInInventory;
+    private WeaponSlotType selectedSlot = WeaponSlotType.primary;
+    private int weaponSlotCount;
 
     private Rigidbody rig = null;
     private Vector3 input = Vector3.zero;
     private Camera mainCamera;
 
+    private void Awake()
+    {
+        weaponSlotCount = Enum.GetValues(typeof(WeaponSlotType)).Length;
+        weaponsInInventory = new Weapon[weaponSlotCount];
+
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i].gameObject.SetActive(false);       
+        }
+    }
 
     void Start()
     {
-
         rig = GetComponent<Rigidbody>();
         InventoryController inventory = GameManager.instance.inventory;
         mainCamera = Camera.main;
 
+        // Remove
         DoDamage(100, 5f, "Player");
 
         GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
@@ -36,6 +52,8 @@ public class Player : Damageable
     {
         HandelWeaponInput();
 
+        CheckWeaponInput();
+
         // Verander dit en zorg voor een input manager
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -43,25 +61,88 @@ public class Player : Damageable
                 GameManager.instance.notificationCenter.FireGameUnPaused();
             else
                 GameManager.instance.notificationCenter.FireGamePaused();
+        }
 
+
+    }
+
+    private void CheckWeaponInput()
+    {
+        float _input = Input.GetAxis("Mouse ScrollWheel");
+        if (_input > 0)
+        {
+            int newSLot;
+            newSLot = (int)selectedSlot;
+            newSLot++;
+
+            if (newSLot >= weaponSlotCount)
+                newSLot = 0;
+
+            selectedSlot = (WeaponSlotType)newSLot;
+
+
+
+        }
+        else if(_input < 0)
+        {
+            int newSLot;
+            newSLot = (int)selectedSlot;
+            newSLot--;
+
+            if (newSLot < 0)
+                newSLot = weaponSlotCount - 1;
+
+            selectedSlot = (WeaponSlotType)newSLot;
+
+        }
+
+
+    }
+
+    private void SwapWeapon()
+    {
+        if (selectedSlot == WeaponSlotType.primary && weaponsInInventory[1] != null)
+        {
+            selectedSlot = WeaponSlotType.secondary;
+        } else if (selectedSlot == WeaponSlotType.secondary && weaponsInInventory[0] != null)
+        {
+            selectedSlot = WeaponSlotType.primary;
         }
 
     }
 
+    private void PickupWeapon(WeaponID weaponID)
+    {
+
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            if (weapons[i].weaponID == weaponID)
+            {
+                if (weapons[i].weaponSlotType == WeaponSlotType.primary)
+                {
+                    weaponsInInventory[0] = weapons[i];
+                } else if (weapons[i].weaponSlotType == WeaponSlotType.secondary)
+                {
+                    weaponsInInventory[1] = weapons[i];
+                }
+            }
+        }
+    }
+
     private void HandelWeaponInput()
     {
-        if (weapon != null)
+        if (weaponsInInventory[(int)selectedSlot] != null)
         {
             // Als je will toevoegen dat het wapen niet kan schieten als de player niet in stat is zoals als hij van wapen switcht dan kan je dat hier verandern
 
             if (Input.GetButtonDown("Reload"))
-                weapon.Reload();
+                weaponsInInventory[(int)selectedSlot].Reload();
 
-            if (weapon.weaponInput == WeaponInputType.hold ? Input.GetButton("Attack") : Input.GetButtonDown("Attack"))
-                weapon.Attack();
+            if (weaponsInInventory[(int)selectedSlot].weaponInput == WeaponInputType.hold ? Input.GetButton("Attack") : Input.GetButtonDown("Attack"))
+                weaponsInInventory[(int)selectedSlot].Attack();
 
             if (Input.GetButtonDown("Gadget"))
-                weapon.UseGadget();
+                weaponsInInventory[(int)selectedSlot].UseGadget();
 
         }
     }
@@ -125,13 +206,6 @@ public class Player : Damageable
         return Vector3.zero;
     }
 
-    /// <summary>
-    /// Retuns the weapon in hand
-    /// </summary>
-    public Weapon GetWeapon()
-    {
-        return weapon;
-    }
 
 
     protected override void OnHealthLost(float healthLost, string hitBy)

@@ -9,7 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private PlayerUI playerUI = null;
     [SerializeField] private GameObject pauseMenu = null;
     [SerializeField] private GameObject gameCursor = null;
-    [SerializeField] private Vector2 mouseOffset;
+    [SerializeField] private Vector3 mouseOffset;
 
     private GameManager gameManager;
     private Camera mainCamera;
@@ -36,16 +36,30 @@ public class UIController : MonoBehaviour
 
     private void LateUpdate()
     {
-        gameCursor.transform.position = GetMousePos();
+        gameCursor.transform.position = GetMousePos(mainCamera);
     }
 
     /// <summary>
-    /// Returns the mouse position
+    /// Returns The Mouse Pos
     /// </summary>
-    private Vector2 GetMousePos()
+    private Vector3 GetMousePos(Camera cam)
     {
-        Vector2 _mousePos = (Vector2)Input.mousePosition + mouseOffset;
-        return _mousePos;
+        if (cam != null)
+        {
+            Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+
+            float rayLength;
+            groundPlane.Raycast(cameraRay, out rayLength);
+
+            Vector3 hitPoint = cameraRay.GetPoint(rayLength);
+            hitPoint += mouseOffset;
+
+            hitPoint = cam.WorldToScreenPoint(hitPoint);
+            return hitPoint;
+        }
+
+        return Vector3.zero;
     }
 
 

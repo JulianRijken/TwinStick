@@ -725,8 +725,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735299375}
   m_LocalRotation: {x: -0, y: -0.70710856, z: -0, w: -0.70710504}
-  m_LocalPosition: {x: 8.82, y: 1.28, z: 2.32}
-  m_LocalScale: {x: 8.097531, y: 2.56, z: 0.20098537}
+  m_LocalPosition: {x: 8.875, y: 1.28, z: 2.32}
+  m_LocalScale: {x: 8.097531, y: 2.56, z: 0.31052238}
   m_Children: []
   m_Father: {fileID: 1533628812}
   m_RootOrder: 7
@@ -1354,8 +1354,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529690046}
   m_LocalRotation: {x: -0, y: -0.0000014603138, z: -0, w: 1}
-  m_LocalPosition: {x: 6.51405, y: 1.28, z: 6.22}
-  m_LocalScale: {x: 5.1190505, y: 2.56, z: 0.38665903}
+  m_LocalPosition: {x: 6.4905, y: 1.28, z: 6.22}
+  m_LocalScale: {x: 5.0725813, y: 2.56, z: 0.38665903}
   m_Children: []
   m_Father: {fileID: 1533628812}
   m_RootOrder: 4
@@ -2087,6 +2087,11 @@ PrefabInstance:
     - target: {fileID: 284230710, guid: adb2baed36fa32747ac0d12219dd16ee, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064251676933265577, guid: adb2baed36fa32747ac0d12219dd16ee,
+        type: 3}
+      propertyPath: mouseOffset.y
+      value: 1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adb2baed36fa32747ac0d12219dd16ee, type: 3}
