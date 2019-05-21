@@ -26,8 +26,10 @@ public class Player : Damageable
     private Camera mainCamera;
 
 
-    // Weapon switchen werkt nu allen nog op pakken en weg gooien
-
+    //xtodo Refresh het wapen zodra je een niewe op pakt 
+    //todo Sla de refresh dingen op in een struct bij het wapen
+    //todo ui gewoon updaten zodra je van wapen switched
+    //todo fix het dropen van het wapen
 
     private void Awake()
     {
@@ -54,10 +56,6 @@ public class Player : Damageable
 
         GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
         GameManager.instance.notificationCenter.FireArmorHealthChange(armorHealth, maxArmorHealth);
-
-
-        PickUpWeapon(WeaponID.primaryTest);
-        PickUpWeapon(WeaponID.secondaryTest);
     }
 
     private void Update()
@@ -117,6 +115,7 @@ public class Player : Damageable
     public void PickUpWeapon(WeaponID _weaponID)
     {
         Weapon newWeapon = GetWeapon(_weaponID);
+        newWeapon.OnRefresh();
         Weapon oldWeapon = weaponsInInventory[(int)newWeapon.weaponSlotType];
 
         // Check if you already have the item
@@ -156,6 +155,8 @@ public class Player : Damageable
         if (Input.GetButton("Drop"))
             DropCurrenWeapon();
 
+        if (Input.GetKeyDown(KeyCode.P))
+            PickUpWeapon(WeaponID.primaryTest);
 
         if (weaponsInInventory[(int)selectedSlot] != null)
         {

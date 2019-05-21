@@ -76,6 +76,14 @@ public class Weapon : MonoBehaviour
     }
 
     /// <summary>
+    /// Refreshes the weapons Stats
+    /// </summary>
+    public virtual void OnRefresh()
+    {
+        Debug.Log("Refreshed Weapon");
+    }
+
+    /// <summary>
     /// Runs On Use Gadget Input
     /// </summary>
     protected virtual void OnUseGadget()

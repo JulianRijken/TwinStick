@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//public enum GunID { Torpedo_Launcher }
 
 public class Gun : Weapon
 {
@@ -205,6 +204,14 @@ public class Gun : Weapon
     }
 
 
+    /// <summary>
+    /// Is called When the weapon refreshes
+    /// </summary>
+    public override void OnRefresh()
+    {
+        base.OnRefresh();
+        Debug.Log("Refresh Gun");
+    }
 
     /// <summary>
     /// Draws The Gun Shooting Diraction And Point

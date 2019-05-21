@@ -25,6 +25,8 @@ public class UIController : MonoBehaviour
         gameManager.notificationCenter.OnGamePaused += HandlePauseGame;
         gameManager.notificationCenter.OnGameUnPaused += HandleUnPauseGame;
         gameManager.notificationCenter.OnArmorHealthChange += HandleArmorHealth;
+
+
     }
 
     private void Start()
