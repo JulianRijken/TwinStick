@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,14 +27,19 @@ public class Player : Damageable
 
 
     //xtodo Refresh het wapen zodra je een niewe op pakt 
-    //todo Sla de refresh dingen op in een struct bij het wapen
-    //todo ui gewoon updaten zodra je van wapen switched
-    //todo fix het dropen van het wapen
+    //xtodo Sla de refresh dingen op in een struct bij het wapen
+    //xtodo fix het dropen van het wapen
+
+    //todo fix dat het wapen niet meer werkt als je switchet dit is waarschijnelijk omdat hij de curotine stopt terwijl hij inactive word gezet 
+    //todo HIER VOOR ZIJN NU FUNCTIES GEMAAKT
+
+    //todo ui gewoon updaten zodra je van wapen switched, FIX DIT MET DIE FUNCTIONS
 
     private void Awake()
     {
         weaponSlotCount = Enum.GetValues(typeof(WeaponSlotType)).Length;
         weaponsInInventory = new Weapon[weaponSlotCount];
+        weaponSlotCount -= 1;
 
         for (int i = 0; i < weapons.Length; i++)
         {
@@ -72,42 +77,6 @@ public class Player : Damageable
 
     #region Weapon
 
-    private void SwitchUp()
-    {
-        weaponsInInventory[(int)selectedSlot].gameObject.SetActive(false);
-
-        selectedSlot++;
-        if ((int)selectedSlot >= weaponSlotCount)
-            selectedSlot = 0;
-
-        while (weaponsInInventory[(int)selectedSlot] == null)
-        {
-            selectedSlot++;
-            if ((int)selectedSlot >= weaponSlotCount)
-                selectedSlot = 0;
-        }
-
-        weaponsInInventory[(int)selectedSlot].gameObject.SetActive(true);
-    }
-
-    private void SwitchDown()
-    {
-        weaponsInInventory[(int)selectedSlot].gameObject.SetActive(false);
-
-        selectedSlot--;
-        if ((int)selectedSlot < 0)
-            selectedSlot = (WeaponSlotType)weaponSlotCount - 1;
-
-        while (weaponsInInventory[(int)selectedSlot] == null)
-        {
-            selectedSlot--;
-            if ((int)selectedSlot < 0)
-                selectedSlot = (WeaponSlotType)weaponSlotCount - 1; ;
-        }
-
-        weaponsInInventory[(int)selectedSlot].gameObject.SetActive(true);
-
-    }
 
     /// <summary>
     /// Picks up the weapon and if needed switches it in the invenety
@@ -133,31 +102,25 @@ public class Player : Damageable
     }
 
     /// <summary>
-    /// Spawns a item witch can be piket up
-    /// </summary>
-    private void SpawnPickupWeapon(WeaponID _weaponID)
-    {
-        Debug.Log(_weaponID.ToString() + " Dropped");
-    }
-
-    /// <summary>
     /// Allws the weapon to shoot and use all of its functions
     /// </summary>
     private void HandelWeaponInput()
     {
-
-        float _input = Input.GetAxis("Mouse ScrollWheel");
-        if (_input > 0)
+        // Switch the weapon
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
             SwitchUp();
-        else if (_input < 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
             SwitchDown();
 
+        // Drop the weapon
         if (Input.GetButton("Drop"))
             DropCurrenWeapon();
 
+        //Todo HAAL WEG DIT IS VOOR TESTING
         if (Input.GetKeyDown(KeyCode.P))
             PickUpWeapon(WeaponID.primaryTest);
 
+        // Give The weapon input
         if (weaponsInInventory[(int)selectedSlot] != null)
         {
             // Als je will toevoegen dat het wapen niet kan schieten als de player niet in stat is zoals als hij van wapen switcht dan kan je dat hier verandern
@@ -175,6 +138,99 @@ public class Player : Damageable
     }
 
     /// <summary>
+    /// Switches to the next above weapon
+    /// </summary>
+    private void SwitchUp()
+    {
+        SetCurrenWeaponInActive();
+
+        selectedSlot++;
+        if ((int)selectedSlot > weaponSlotCount)
+            selectedSlot = 0;
+
+        while (weaponsInInventory[(int)selectedSlot] == null)
+        {
+            selectedSlot++;
+            if ((int)selectedSlot > weaponSlotCount)
+                selectedSlot = 0;
+        }
+
+        SetCurrenWeaponActive();
+    }
+
+    /// <summary>
+    /// Switches to the next under weapon
+    /// </summary>
+    private void SwitchDown()
+    {
+        SetCurrenWeaponInActive();
+
+        selectedSlot--;
+        if ((int)selectedSlot < 0)
+            selectedSlot = (WeaponSlotType)weaponSlotCount;
+
+        while (weaponsInInventory[(int)selectedSlot] == null)
+        {
+            selectedSlot--;
+            if ((int)selectedSlot < 0)
+                selectedSlot = (WeaponSlotType)weaponSlotCount; ;
+        }
+
+        SetCurrenWeaponActive();
+    }
+
+    /// <summary>
+    /// Spawns a item witch can be piket up
+    /// </summary>
+    private void SpawnPickupWeapon(WeaponID _weaponID)
+    {
+        Debug.Log(_weaponID.ToString() + " Dropped");
+    }
+
+    /// <summary>
+    /// Drops the current weapon
+    /// </summary>
+    private void DropCurrenWeapon()
+    {
+        Weapon dropWeapon = weaponsInInventory[(int)selectedSlot];
+
+        if (dropWeapon.weaponSlotType != WeaponSlotType.empty)
+        {
+            int oldSelectedSlot = (int)selectedSlot;
+
+            SwitchDown();
+            weaponsInInventory[oldSelectedSlot] = null;
+            SpawnPickupWeapon(dropWeapon.weaponID);
+        }
+    }
+
+    /// <summary>
+    /// Sets the current holding weapon to Active
+    /// </summary>
+    private void SetCurrenWeaponActive()
+    {
+        Weapon oldWeapon = weaponsInInventory[(int)selectedSlot];
+        if (oldWeapon != null)
+        {
+            oldWeapon.gameObject.SetActive(true);
+            oldWeapon.OnActive();
+        }
+    }
+
+    /// <summary>
+    /// Sets the current holding weapon to InActive
+    /// </summary>
+    private void SetCurrenWeaponInActive()
+    {
+        Weapon oldWeapon = weaponsInInventory[(int)selectedSlot];
+        if (oldWeapon != null)
+        {
+            oldWeapon.OnInActive();
+            oldWeapon.gameObject.SetActive(false);
+        }
+    }
+
+    /// <summary>
     /// Retuns the weapon from the pool by a id
     /// </summary>
     private Weapon GetWeapon(WeaponID _weaponID)
@@ -186,22 +242,6 @@ public class Player : Damageable
         }
 
         return null;
-    }
-
-    /// <summary>
-    /// Drops the current weapon
-    /// </summary>
-    private void DropCurrenWeapon()
-    {
-        //Weapon dropWeapon = weaponsInInventory[(int)selectedSlot];
-
-        //if (dropWeapon.weaponSlotType != WeaponSlotType.empty)
-        //{
-        //    weaponsInInventory[(int)selectedSlot] = null;
-        //    SwitchDown();
-
-        //    SpawnPickupWeapon(dropWeapon.weaponID);
-        //}
     }
 
 

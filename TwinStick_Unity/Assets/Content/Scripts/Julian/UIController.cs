@@ -11,22 +11,20 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject gameCursor = null;
     [SerializeField] private Vector3 mouseOffset = Vector3.zero;
 
-    private GameManager gameManager;
+    private NotificationCenter notificationCenter;
     private Camera mainCamera;
 
 
     private void Awake()
     {
-        gameManager = GameManager.instance;
+        notificationCenter = GameManager.instance.notificationCenter;
 
-        gameManager.notificationCenter.OnGunMagAmmoUpdated += HandleAmmoInMag;
-        gameManager.notificationCenter.OnPlayerHealthChange += HandlePlayerHealth;
-        gameManager.notificationCenter.OnGunInventoyAmmoUpdated += HandleAmmoInInventoy;
-        gameManager.notificationCenter.OnGamePaused += HandlePauseGame;
-        gameManager.notificationCenter.OnGameUnPaused += HandleUnPauseGame;
-        gameManager.notificationCenter.OnArmorHealthChange += HandleArmorHealth;
-
-
+        notificationCenter.OnGunMagAmmoUpdated += HandleAmmoInMag;
+        notificationCenter.OnPlayerHealthChange += HandlePlayerHealth;
+        notificationCenter.OnGunInventoyAmmoUpdated += HandleAmmoInInventoy;
+        notificationCenter.OnGamePaused += HandlePauseGame;
+        notificationCenter.OnGameUnPaused += HandleUnPauseGame;
+        notificationCenter.OnArmorHealthChange += HandleArmorHealth;
     }
 
     private void Start()
@@ -148,11 +146,11 @@ public class UIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        gameManager.notificationCenter.OnGunMagAmmoUpdated -= HandleAmmoInMag;
-        gameManager.notificationCenter.OnPlayerHealthChange -= HandlePlayerHealth;
-        gameManager.notificationCenter.OnGunInventoyAmmoUpdated -= HandleAmmoInInventoy;
-        gameManager.notificationCenter.OnGamePaused -= HandlePauseGame;
-        gameManager.notificationCenter.OnGameUnPaused -= HandleUnPauseGame;
-        gameManager.notificationCenter.OnArmorHealthChange -= HandleArmorHealth;
+        notificationCenter.OnGunMagAmmoUpdated -= HandleAmmoInMag;
+        notificationCenter.OnPlayerHealthChange -= HandlePlayerHealth;
+        notificationCenter.OnGunInventoyAmmoUpdated -= HandleAmmoInInventoy;
+        notificationCenter.OnGamePaused -= HandlePauseGame;
+        notificationCenter.OnGameUnPaused -= HandleUnPauseGame;
+        notificationCenter.OnArmorHealthChange -= HandleArmorHealth;
     }
 }

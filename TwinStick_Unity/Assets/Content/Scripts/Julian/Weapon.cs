@@ -80,7 +80,23 @@ public class Weapon : MonoBehaviour
     /// </summary>
     public virtual void OnRefresh()
     {
-        Debug.Log("Refreshed Weapon");
+        //xDebug.Log("Refreshed Weapon");
+    }
+
+    /// <summary>
+    /// Is Called when the weapon is set to Active
+    /// </summary>
+    public virtual void OnActive()
+    {
+       
+    }
+
+    /// <summary>
+    /// Is Called when the weapon is set to InActive
+    /// </summary>
+    public virtual void OnInActive()
+    {
+     
     }
 
     /// <summary>
@@ -100,4 +116,9 @@ public class Weapon : MonoBehaviour
     }
 
     #endregion
+}
+
+public struct WeaponDefaultData
+{
+    // if somthing in the weapon has to refresh
 }

@@ -95,10 +95,7 @@ public class NotificationCenter
         GameManager.instance.gamePaused = false;
         OnGameUnPaused?.Invoke();
     }
-
     public delegate void GameUnPausedAction();
     public event GameUnPausedAction OnGameUnPaused;
-
-
 
 }
