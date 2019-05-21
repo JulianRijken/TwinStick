@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponID {Rifle = 0,}
+public enum WeaponID {emptyTest = 0, secondaryTest = 1, primaryTest = 2}
 public enum WeaponInputType { sigle = 0, hold = 1 }
-public enum WeaponSlotType { primary = 0, secondary = 1, empty = 2}
+public enum WeaponSlotType { empty = 0, secondary = 1, primary = 2}
 
 public class Weapon : MonoBehaviour
 {
     [Header("Standard")]
     [SerializeField] private float attackDelay = 0.075f;
-    public WeaponID weaponID = WeaponID.Rifle;
+    public WeaponID weaponID = WeaponID.emptyTest;
     public WeaponInputType weaponInput = WeaponInputType.hold;
     public WeaponSlotType weaponSlotType = WeaponSlotType.primary;
 

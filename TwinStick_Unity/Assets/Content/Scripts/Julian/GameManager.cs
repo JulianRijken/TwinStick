@@ -17,9 +17,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
-        else if (instance != this)     
-            Destroy(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(instance.gameObject);
+            instance = this;
+        }
 
         DontDestroyOnLoad(gameObject);
 
@@ -32,7 +37,19 @@ public class GameManager : MonoBehaviour
         notificationCenter.OnExitToMenu += OnExitToMenu;
 
     }
-   
+
+    private void Update()
+    {
+        //todo Verander dit en zorg voor een input manager
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gamePaused)
+                notificationCenter.FireGameUnPaused();
+            else
+                notificationCenter.FireGamePaused();
+        }
+    }
+
 
     private void OnPlayerDie()
     {

@@ -78,7 +78,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 361e6a2d739547b4a93a2cccc1166b18, type: 3}
+  - {fileID: 2100000, guid: c538998a538b7d64a8724b3ef293af95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 1942361173048902531}
   - component: {fileID: 3220072543033602449}
   m_Layer: 8
-  m_Name: Gun_TPL
+  m_Name: EmptyHandTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,6 +228,7 @@ MonoBehaviour:
   attackDelay: 0.075
   weaponID: 0
   weaponInput: 1
+  weaponSlotType: 0
   ammoType: 0
   reloadTime: 2
   magSize: 30

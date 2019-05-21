@@ -9,7 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private PlayerUI playerUI = null;
     [SerializeField] private GameObject pauseMenu = null;
     [SerializeField] private GameObject gameCursor = null;
-    [SerializeField] private Vector3 mouseOffset;
+    [SerializeField] private Vector3 mouseOffset = Vector3.zero;
 
     private GameManager gameManager;
     private Camera mainCamera;
