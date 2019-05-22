@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f2bfb58f24a93468030aebb5d62a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePaused: 0
 --- !u!4 &925618506
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,18 +1007,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41323edaada7c824682a3bfed2bc3eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invincible: 1
   health: 100
   maxHealth: 100
-  invincible: 1
-  armor: 100
-  armorProtectionProcent: 50
-  armorDamageMultiplyer: 0.1
-  maxArmor: 100
   armorEnabled: 1
+  armorHealth: 100
+  armorProtectionProcent: 50
+  armorStrength: 10
+  maxArmorHealth: 100
   moveSpeed: 10
   moveAcceleration: 15
   rotationSpeed: 30
-  gun: {fileID: 0}
+  weaponPivit: {fileID: 0}
+  weapons: []
+  weaponsInInventory: []
 --- !u!136 &2067565436
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1115,6 +1118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UiHelmet
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497666884053276267, guid: 7c0241c4d4ef31548b965b7074df3368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 590453048721958008, guid: 7c0241c4d4ef31548b965b7074df3368,
         type: 3}
