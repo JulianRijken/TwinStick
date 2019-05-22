@@ -8,8 +8,8 @@ public class Enemy : Damageable
     [SerializeField] private FieldOfView targetFinder = null;
     [SerializeField] private Transform[] patrolPoints;
     [SerializeField] private EnemyStatus status = EnemyStatus.Patrol;
-    //[SerializeField] private GameObject bullet = null;
-    // [SerializeField] private Transform shootPoint = null;
+    [SerializeField] private GameObject bullet = null;
+    [SerializeField] private Transform shootPoint = null;
 
     private int nextpoint = 0;
     private NavMeshAgent agent;
@@ -45,7 +45,7 @@ public class Enemy : Damageable
             if (target != null)
                 agent.destination = target.position;
 
-            //Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+            Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         }
     }
 
