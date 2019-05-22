@@ -213,7 +213,6 @@ public class Player : Damageable
         if (oldWeapon != null)
         {
             oldWeapon.gameObject.SetActive(true);
-            oldWeapon.OnActive();
         }
     }
 
@@ -225,7 +224,6 @@ public class Player : Damageable
         Weapon oldWeapon = weaponsInInventory[(int)selectedSlot];
         if (oldWeapon != null)
         {
-            oldWeapon.OnInActive();
             oldWeapon.gameObject.SetActive(false);
         }
     }

@@ -215,21 +215,16 @@ public class Gun : Weapon
         ammoInMag = magSize;
     }
 
-    /// <summary>
-    /// Is Called when the weapon is set to Active
-    /// </summary>
-    public override void OnActive()
-    {
-        base.OnActive();
-    }
+    //private void OnDisable()
+    //{
+    //    StopAllCoroutines();
+    //}
 
-    /// <summary>
-    /// Is Called when the weapon is set to InActive
-    /// </summary>
-    public override void OnInActive()
-    {
-        base.OnInActive();
-    }
+
+    //void OnEnable()
+    //{
+    //    chamberLoaded = true;
+    //}
 
 
     /// <summary>

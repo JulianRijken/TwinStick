@@ -100,21 +100,15 @@ public class Weapon : MonoBehaviour
 
     }
 
-
-    /// <summary>
-    /// Is Called when the weapon is set to Active
-    /// </summary>
-    public virtual void OnActive()
-    {
-       // Stop
-    }
-
-    /// <summary>
-    /// Is Called when the weapon is set to InActive
-    /// </summary>
-    public virtual void OnInActive()
+    private void OnDisable()
     {
         StopAllCoroutines();
+    }
+
+
+    void OnEnable()
+    {
+        attackAllowed = true;
     }
 
 

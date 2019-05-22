@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager instance;
+    [HideInInspector] public static GameManager instance;
 
-    public StatsController statsController;
-    public InventoryController inventory;
-    public NotificationCenter notificationCenter;
+    [HideInInspector] public StatsController statsController;
+    [HideInInspector] public InventoryController inventory;
+    [HideInInspector] public NotificationCenter notificationCenter;
 
-    public bool gamePaused;
+    [HideInInspector] public bool gamePaused;
+
 
     private void Awake()
     {
