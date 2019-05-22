@@ -437,8 +437,6 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   status: 0
   bullet: {fileID: 1440799186717699457, guid: 9128b65e430d2aa4f9f75cd4961ad4dd, type: 3}
   shootPoint: {fileID: 1500010942956945845}
@@ -454,14 +452,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5e1eb1ee1cb8b4d894b6097fa7a6c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 20
-  viewAngle: 64
+  viewRadius: 10
+  viewAngle: 47
   targetMask:
     serializedVersion: 2
     m_Bits: 256
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2048
   visibleTargets: []
   meshResolution: 1
   edgeResolveIterations: 4
