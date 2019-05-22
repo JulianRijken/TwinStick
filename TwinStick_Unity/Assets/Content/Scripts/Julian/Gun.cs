@@ -34,6 +34,7 @@ public class Gun : Weapon
         ammoInMag = startingAmmo;
 
         GameManager.instance.notificationCenter.OnItemAdded += OnItemAdded;
+
         GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
         GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
     }
@@ -215,17 +216,21 @@ public class Gun : Weapon
         ammoInMag = magSize;
     }
 
-    //private void OnDisable()
-    //{
-    //    StopAllCoroutines();
-    //}
+
+    public override void OnInActive()
+    {
+        StopAllCoroutines();
+    }
 
 
-    //void OnEnable()
-    //{
-    //    chamberLoaded = true;
-    //}
-
+    public override void OnActive()
+    {
+        base.OnActive();
+        chamberLoaded = true;
+        gunState = GunState.Active;
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+        GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
+    }
 
     /// <summary>
     /// Draws The Gun Shooting Diraction And Point

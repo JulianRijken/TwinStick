@@ -100,16 +100,17 @@ public class Weapon : MonoBehaviour
 
     }
 
-    private void OnDisable()
+    public virtual void OnInActive()
     {
-        StopAllCoroutines();
+
+    }
+
+    public virtual void OnActive()
+    {
+        StartCoroutine(IDelayAttack());
     }
 
 
-    void OnEnable()
-    {
-        attackAllowed = true;
-    }
 
 
     #endregion

@@ -26,6 +26,11 @@ public class Lazer : MonoBehaviour
         UpdateLazer();
     }
 
+    void OnEnable()
+    {
+        UpdateLazer();
+    }
+
     private void Update()
     {
         UpdateLazer();
