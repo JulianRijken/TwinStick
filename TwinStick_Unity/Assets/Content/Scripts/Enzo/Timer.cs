@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     //private float timeleft = 30.0f;
     private float currCountdownValue;
 
-    public IEnumerator StartCountdown(float countdownValue = 10)
+    public Text countwdown;
+
+    public IEnumerator StartCountdown(float countdownValue = 170)
     {
         currCountdownValue = countdownValue;
         while (currCountdownValue > 0)
