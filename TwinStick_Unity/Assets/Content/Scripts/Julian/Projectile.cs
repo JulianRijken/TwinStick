@@ -5,10 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
-
-    [SerializeField] float moveSpeed = 5;
-    [SerializeField] float damage = 1;
-    [SerializeField] float destroyTime = 5;
+    [SerializeField] private float moveSpeed = 5;
+    [SerializeField] private float damage = 1;
+    [SerializeField] private float destroyTime = 5;
     [SerializeField] private string projectileName = "Bullet";
     [SerializeField] private LayerMask collisionLayer = new LayerMask();
     [SerializeField] private TrailRenderer smokeTrail;
@@ -44,14 +43,14 @@ public class Projectile : MonoBehaviour
             RaycastHit _hit;
             if (Physics.Linecast(lastPos, transform.position, out _hit, collisionLayer))
             {
-                // !!!!!!!!!! Zorg dat je iets van een static layer manager heb zodat je niet errors krijgt als je een layer van plek veranderd
-                switch(_hit.transform.gameObject.layer)
+                switch (_hit.transform.gameObject.layer)
                 {
-                    case 9:
-                        OnHitEnemy(_hit);
-                        break;
                     case 11:
                         OnHitWall(_hit);
+                        break;
+
+                    default:
+                        OnHitTarget(_hit);
                         break;
                 }
 
@@ -60,17 +59,16 @@ public class Projectile : MonoBehaviour
 
             lastPos = transform.position;
         }
-
     }
 
-    void OnHitWall(RaycastHit _hit)
+    private void OnHitWall(RaycastHit _hit)
     {
         hitWall = true;
         transform.position = _hit.point;
         Destroy(gameObject, 2f);
     }
 
-    void OnHitEnemy(RaycastHit _hit)
+    private void OnHitTarget(RaycastHit _hit)
     {
         Damageable damageable = _hit.transform.gameObject.GetComponent<Damageable>();
         if (damageable != null)
@@ -81,5 +79,4 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject, 2f);
         }
     }
-
 }
