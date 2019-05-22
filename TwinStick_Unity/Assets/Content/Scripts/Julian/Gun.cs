@@ -216,6 +216,23 @@ public class Gun : Weapon
     }
 
     /// <summary>
+    /// Is Called when the weapon is set to Active
+    /// </summary>
+    public override void OnActive()
+    {
+        base.OnActive();
+    }
+
+    /// <summary>
+    /// Is Called when the weapon is set to InActive
+    /// </summary>
+    public override void OnInActive()
+    {
+        base.OnInActive();
+    }
+
+
+    /// <summary>
     /// Draws The Gun Shooting Diraction And Point
     /// </summary>
     private void OnDrawGizmos()

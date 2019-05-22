@@ -83,21 +83,6 @@ public class Weapon : MonoBehaviour
         //xDebug.Log("Refreshed Weapon");
     }
 
-    /// <summary>
-    /// Is Called when the weapon is set to Active
-    /// </summary>
-    public virtual void OnActive()
-    {
-       
-    }
-
-    /// <summary>
-    /// Is Called when the weapon is set to InActive
-    /// </summary>
-    public virtual void OnInActive()
-    {
-     
-    }
 
     /// <summary>
     /// Runs On Use Gadget Input
@@ -114,6 +99,24 @@ public class Weapon : MonoBehaviour
     {
 
     }
+
+
+    /// <summary>
+    /// Is Called when the weapon is set to Active
+    /// </summary>
+    public virtual void OnActive()
+    {
+       // Stop
+    }
+
+    /// <summary>
+    /// Is Called when the weapon is set to InActive
+    /// </summary>
+    public virtual void OnInActive()
+    {
+        StopAllCoroutines();
+    }
+
 
     #endregion
 }
