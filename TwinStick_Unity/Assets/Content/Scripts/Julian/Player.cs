@@ -108,7 +108,7 @@ public class Player : Damageable
 
         //Todo HAAL WEG DIT IS VOOR TESTING
         if (Input.GetKeyDown(KeyCode.P))
-            PickUpWeapon(WeaponID.primaryTest);
+            PickUpWeapon(WeaponID.flameThrower);
 
         // Give The weapon input
         if (weaponsInInventory[(int)selectedSlot] != null)
@@ -120,6 +120,9 @@ public class Player : Damageable
 
             if (weaponsInInventory[(int)selectedSlot].weaponInput == WeaponInputType.hold ? Input.GetButton("Attack") : Input.GetButtonDown("Attack"))
                 weaponsInInventory[(int)selectedSlot].Attack();
+
+            if (Input.GetButtonUp("Attack"))
+                weaponsInInventory[(int)selectedSlot].StopAttack();
 
             if (Input.GetButtonDown("Gadget"))
                 weaponsInInventory[(int)selectedSlot].UseGadget();

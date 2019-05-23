@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject pauseMenu = null;
     [SerializeField] private GameObject gameCursor = null;
     [SerializeField] private Vector3 mouseOffset = Vector3.zero;
+    [SerializeField] private Image fadeImage = null;
 
     private NotificationCenter notificationCenter;
     private Camera mainCamera;

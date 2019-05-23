@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponID {emptyTest = 0, secondaryTest = 1, primaryTest = 2}
+public enum WeaponID {emptyTest = 0, secondaryTest = 1, primaryTest = 2, flameThrower = 3}
 public enum WeaponInputType { sigle = 0, hold = 1 }
 public enum WeaponSlotType { empty = 0, secondary = 1, primary = 2}
 
@@ -35,7 +35,14 @@ public class Weapon : MonoBehaviour
             OnAttack();
             StartCoroutine(IDelayAttack());
         }
+    }
 
+    /// <summary>
+    /// Stops Attacking
+    /// </summary>
+    public void StopAttack()
+    {
+        OnStopAttack();
     }
 
     /// <summary>
@@ -71,6 +78,14 @@ public class Weapon : MonoBehaviour
     /// Runs On Attack Input
     /// </summary>
     protected virtual void OnAttack()
+    {
+
+    }
+
+    /// <summary>
+    /// Runs On Attack Input out
+    /// </summary>
+    protected virtual void OnStopAttack()
     {
 
     }
