@@ -15,6 +15,9 @@ public class Enemy : Damageable
     private NavMeshAgent agent;
     private Transform target;
 
+    public AudioSource Music;
+    public AudioClip Musicclip;
+
     private enum EnemyStatus { Patrol, Attack }
 
     private void Start()
@@ -24,6 +27,7 @@ public class Enemy : Damageable
         agent.autoBraking = false;
 
         GotoNextPoint();
+        Music.clip = Musicclip;
     }
 
     private void Update()
@@ -38,6 +42,7 @@ public class Enemy : Damageable
             {
                 target = targets[0];
                 status = EnemyStatus.Attack;
+                Music.Play();
             }
         }
         else if (status.Equals(EnemyStatus.Attack))
