@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public InventoryController inventory;
     [HideInInspector] public NotificationCenter notificationCenter;
 
-    [HideInInspector] public bool gamePaused;
-
+    [HideInInspector] public GameMenuState menuState;
 
     private void Awake()
     {
@@ -39,26 +38,32 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Update()
+    /// <summary>
+    /// Sets The Menu State
+    /// </summary>
+    public void SetMenuState(GameMenuState _state)
     {
-        //todo Verander dit en zorg voor een input manager
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (gamePaused)
-                notificationCenter.FireGameUnPaused();
-            else
-                notificationCenter.FireGamePaused();
-        }
+        menuState = _state;
+    }
+
+    /// <summary>
+    /// Retuns the menuState
+    /// </summary>
+    public GameMenuState GetMenuState()
+    {
+        return menuState;
     }
 
 
     private void OnPlayerDie()
     {
+        //todo Dit Kan natuurlijk veranderd worden naar een mooien fade out
         SceneManager.LoadScene(0);
     }
 
     private void OnExitToMenu()
     {
+        //todo Dit Kan natuurlijk veranderd worden naar een mooien fade out
         SceneManager.LoadScene(0);
     }
 

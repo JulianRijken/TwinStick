@@ -96,36 +96,40 @@ public class Player : Damageable
     /// </summary>
     private void HandelWeaponInput()
     {
-        // Switch the weapon
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            SwitchUp();
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
-            SwitchDown();
-
-        // Drop the weapon
-        if (Input.GetButton("Drop"))
-            DropCurrenWeapon();
-
-        //Todo HAAL WEG DIT IS VOOR TESTING
-        if (Input.GetKeyDown(KeyCode.P))
-            PickUpWeapon(WeaponID.flameThrower);
-
-        // Give The weapon input
-        if (weaponsInInventory[(int)selectedSlot] != null)
+        if (GameManager.instance.GetMenuState() == GameMenuState.clear)
         {
-            // Als je will toevoegen dat het wapen niet kan schieten als de player niet in stat is zoals als hij van wapen switcht dan kan je dat hier verandern
+            // Switch the weapon
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+                SwitchUp();
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+                SwitchDown();
 
-            if (Input.GetButtonDown("Reload"))
-                weaponsInInventory[(int)selectedSlot].Reload();
+            // Drop the weapon
+            if (Input.GetButton("Drop"))
+                DropCurrenWeapon();
 
-            if (weaponsInInventory[(int)selectedSlot].weaponInput == WeaponInputType.hold ? Input.GetButton("Attack") : Input.GetButtonDown("Attack"))
-                weaponsInInventory[(int)selectedSlot].Attack();
+            //Todo HAAL WEG DIT IS VOOR TESTING
+            if (Input.GetKeyDown(KeyCode.P))
+                PickUpWeapon(WeaponID.flameThrower);
 
-            if (Input.GetButtonUp("Attack"))
-                weaponsInInventory[(int)selectedSlot].StopAttack();
+            // Give The weapon input
+            if (weaponsInInventory[(int)selectedSlot] != null)
+            {
+                // Als je will toevoegen dat het wapen niet kan schieten als de player niet in stat is zoals als hij van wapen switcht dan kan je dat hier verandern
 
-            if (Input.GetButtonDown("Gadget"))
-                weaponsInInventory[(int)selectedSlot].UseGadget();
+                if (Input.GetButtonDown("Reload"))
+                    weaponsInInventory[(int)selectedSlot].Reload();
+
+                if (weaponsInInventory[(int)selectedSlot].weaponInput == WeaponInputType.hold ? Input.GetButton("Attack") : Input.GetButtonDown("Attack"))
+                    weaponsInInventory[(int)selectedSlot].Attack();
+
+                if (Input.GetButtonUp("Attack"))
+                    weaponsInInventory[(int)selectedSlot].StopAttack();
+
+                if (Input.GetButtonDown("Gadget"))
+                    weaponsInInventory[(int)selectedSlot].UseGadget();
+
+            }
 
         }
     }

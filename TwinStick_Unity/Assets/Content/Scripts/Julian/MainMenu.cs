@@ -14,6 +14,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
+        Time.timeScale = 1;
+
         menuScreens = new GameObject[] { options, home, credits, exit };
         SetScreenActive(home);
     }
