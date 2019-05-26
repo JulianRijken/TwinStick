@@ -819,7 +819,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 5.187638e+30, y: -2.018607e+13, z: 9.61046e+23, w: 157501700}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2069,8 +2069,44 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 321860051, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: antialiasingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321860051, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: subpixelMorphologicalAntialiasing.quality
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 321860051, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: volumeLayer.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 321860051, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: finalBlitToCameraTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321860051, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: stopNaNPropagation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 321860051, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: m_ShowToolkit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 321860051, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 321860050, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 321860050, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 321860050, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
+      propertyPath: isGlobal
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

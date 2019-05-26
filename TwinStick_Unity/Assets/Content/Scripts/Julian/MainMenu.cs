@@ -49,7 +49,9 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         GameManager.instance.statsController.AddTimesPlayed();
-        SceneManager.LoadScene(1);        
+        SceneManager.LoadScene(1);
+
+
     }
 
 
@@ -73,12 +75,13 @@ public class MainMenu : MonoBehaviour
         SetScreenActive(exit);
     }
 
+
     public void ExitApplication()
     {
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-# endif
+#endif
 
         Application.Quit();
     }

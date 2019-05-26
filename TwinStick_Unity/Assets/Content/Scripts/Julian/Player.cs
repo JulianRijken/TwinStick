@@ -55,7 +55,7 @@ public class Player : Damageable
 
     private void Update()
     {
-        HandelWeaponInput();
+        HandelWeaponInput();      
     }
 
     void FixedUpdate()
@@ -98,6 +98,7 @@ public class Player : Damageable
     {
         if (GameManager.instance.GetMenuState() == GameMenuState.clear)
         {
+
             // Switch the weapon
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
                 SwitchUp();
@@ -130,8 +131,8 @@ public class Player : Damageable
                     weaponsInInventory[(int)selectedSlot].UseGadget();
 
             }
-
         }
+
     }
 
     /// <summary>
@@ -255,8 +256,11 @@ public class Player : Damageable
     /// </summary>
     private void Move()
     {
-        input = Vector3.Lerp(input, GetInput().normalized,Time.deltaTime * moveAcceleration);
-        rig.MovePosition(transform.position + input * Time.deltaTime * moveSpeed);
+        if (GameManager.instance.GetMenuState() == GameMenuState.clear)
+        {
+            input = Vector3.Lerp(input, GetInput().normalized, Time.deltaTime * moveAcceleration);
+            rig.MovePosition(transform.position + input * Time.deltaTime * moveSpeed);
+        }
     }
 
     /// <summary>
@@ -264,8 +268,11 @@ public class Player : Damageable
     /// </summary>
     private void Rotate()
     {
-        float yRot = Quaternion.LookRotation(GetMousePos(mainCamera) - transform.position, Vector3.up).eulerAngles.y;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
+        if (GameManager.instance.GetMenuState() == GameMenuState.clear)
+        {
+            float yRot = Quaternion.LookRotation(GetMousePos(mainCamera) - transform.position, Vector3.up).eulerAngles.y;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
+        }
     }
 
     /// <summary>
