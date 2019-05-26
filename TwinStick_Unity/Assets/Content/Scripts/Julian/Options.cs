@@ -8,6 +8,8 @@ public class Options : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown resolutionDropdown = null;
 
+    //todo Save de options in een json file zo als dit https://answers.unity.com/questions/1531940/quality-menu-not-working.html
+
     void Start()
     {
         List<string> _resolutionOptions = new List<string>();
