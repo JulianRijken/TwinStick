@@ -11,12 +11,23 @@ public class PickUp : MonoBehaviour
     [SerializeField] private ItemID item = ItemID.keyCardA; 
     [SerializeField] private int count = 30;
     [SerializeField] private float pickUpDelay = 0.3f;
+    [SerializeField] private float hightOffset = 1;
     [SerializeField] private int givePerPickUp = 5;
     [SerializeField] private Slider slider = null;
 
     private bool pickUpAllowed = true;
     private bool colliding = false;
+    private Camera mainCamera;
+    private Canvas mainCanvas;
 
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+        mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
+
+        if (slider != null)
+            slider = Instantiate(slider, mainCanvas.transform.position, mainCanvas.transform.rotation, mainCanvas.transform);
+    }
 
     private void Start()
     {
@@ -62,20 +73,24 @@ public class PickUp : MonoBehaviour
                         slider.value = count;
 
                     // Create a delay
-                    StartCoroutine(IAllowDelay());
+                    StartCoroutine(AllowDelayCoroutine());
                 }
+    }
+
+    private void LateUpdate()
+    {
+        if (slider != null)
+            slider.transform.position = mainCamera.WorldToScreenPoint(new Vector3(transform.position.x,transform.position.y,transform.position.z + hightOffset));
     }
 
 
     // Resets the delay
-    IEnumerator IAllowDelay()
+    IEnumerator AllowDelayCoroutine()
     {
         pickUpAllowed = false;
         yield return new WaitForSeconds(pickUpDelay);
         pickUpAllowed = true;
     }
-
-
 
     // Checks Collition
     private void OnTriggerEnter(Collider other)
@@ -83,6 +98,7 @@ public class PickUp : MonoBehaviour
         if(other.gameObject.GetComponent<Player>() != null)
             colliding = true;
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<Player>() != null)
@@ -90,7 +106,6 @@ public class PickUp : MonoBehaviour
     }
 
 
-    // EDITOR \\
     [ExecuteInEditMode]
     void OnValidate()
     {
@@ -100,6 +115,12 @@ public class PickUp : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawIcon(transform.position + Vector3.up, "PickUp.psd");
+    }
+
+    private void OnDestroy()
+    {
+        if(slider != null)
+            Destroy(slider.gameObject);
     }
 
 }

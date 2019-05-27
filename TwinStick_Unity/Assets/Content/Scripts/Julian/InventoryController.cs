@@ -10,6 +10,7 @@ public enum ItemID
 {
     Ammo,
     HealthPack,
+    ArmorPack,
     keyCardA,
     keyCardB
 }
