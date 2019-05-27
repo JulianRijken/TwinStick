@@ -72,5 +72,6 @@ public class Enemy : Damageable
     {
         base.OnDeath();
         Destroy(gameObject);
+        //Music.Stop();
     }
 }
