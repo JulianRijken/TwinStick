@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject levelSelect = null;
+    [SerializeField] private GameObject stats = null;
     [SerializeField] private GameObject options = null;
-    [SerializeField] private GameObject home = null;
     [SerializeField] private GameObject credits = null;
     [SerializeField] private GameObject exit = null;
 
@@ -17,8 +18,8 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 1;
 
-        menuScreens = new GameObject[] { options, home, credits, exit };
-        SetScreenActive(home);
+        menuScreens = new GameObject[] { options, stats, credits, exit, levelSelect };
+        SetScreenActive(stats);
     }
 
     /// <summary>
@@ -50,19 +51,20 @@ public class MainMenu : MonoBehaviour
     {
         GameManager.instance.statsController.AddTimesPlayed();
         SceneManager.LoadScene(1);
-
-
     }
 
+    public void OpenLevleSelect()
+    {
+        SetScreenActive(levelSelect);
+    }
+    public void OpenStats()
+    {
+        SetScreenActive(stats);
+    }
 
     public void OpenOptions()
     {
         SetScreenActive(options);
-    }
-
-    public void OpenHome()
-    {
-        SetScreenActive(home);
     }
 
     public void OpenCredits()
@@ -70,7 +72,7 @@ public class MainMenu : MonoBehaviour
         SetScreenActive(credits);
     }
 
-    public void OpenExit()
+    public void OpenExitScreen()
     {
         SetScreenActive(exit);
     }
