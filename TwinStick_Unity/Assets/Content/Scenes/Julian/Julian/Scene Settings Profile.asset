@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7593b3a9277ac4696b20006c21dde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   skyType:
     m_OverrideState: 1
@@ -23,7 +23,7 @@ MonoBehaviour:
   fogType:
     m_OverrideState: 1
     m_Value: 1
---- !u!114 &-2475424410211620931
+--- !u!114 &-3237910966071284301
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33,13 +33,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ddcec8a8eb2d684d833ac8f5d26aebd, type: 3}
-  m_Name: 
+  m_Name: HDShadowSettings
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   maxShadowDistance:
     m_OverrideState: 1
-    m_Value: 500
+    m_Value: 60
     min: 0
   cascadeShadowSplitCount:
     m_OverrideState: 1
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: Scene Settings Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: -2475424410211620931}
+  - {fileID: -3237910966071284301}
   - {fileID: -6462966193292216186}
   - {fileID: 3744762999981707061}
   - {fileID: 3164343088082426937}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2150ee00179b2f4418ea8b21a7e98eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   colorMode:
     m_OverrideState: 1
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df29e7cc05fbec4aa43e06ea875565d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   rotation:
     m_OverrideState: 1
@@ -231,10 +231,10 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
+  m_AdvancedMode: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.36
+    m_Value: 0.1
     min: 0
     max: 1
   scatter:

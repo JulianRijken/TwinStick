@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
     [SerializeField] private bool requireItem = false;
 
     [Header("Effects")]
-    [SerializeField] private Light[] lamp = null;
+    [SerializeField] private Light[] lamp = new Light[0];
     [SerializeField] private Color enabledColor = Color.green;
     [SerializeField] private Color disabledColor = Color.red;
 
@@ -33,17 +33,18 @@ public class Door : MonoBehaviour
         progress = Mathf.Clamp(progress, 0f, 1f);
         animator.SetFloat(parameterName, progress);
 
-        if (GotItem())
+        if (lamp.Length > 0)
         {
-            if (lamp != null)
+            if (GotItem())
+            {
                 for (int i = 0; i < lamp.Length; i++)
-                lamp[i].color = enabledColor;
-        }
-        else
-        {
-            if (lamp != null)
+                    lamp[i].color = enabledColor;
+            }
+            else
+            {
                 for (int i = 0; i < lamp.Length; i++)
                     lamp[i].color = disabledColor;
+            }
         }
 
     }
