@@ -4,11 +4,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class PickUp : MonoBehaviour
 {
-
-    [SerializeField] private ItemID item = ItemID.keyCardA; 
+    [SerializeField] private ItemID item = ItemID.keyCardA;
     [SerializeField] private int count = 30;
     [SerializeField] private float pickUpDelay = 0.3f;
     [SerializeField] private float hightOffset = 1;
@@ -17,16 +15,18 @@ public class PickUp : MonoBehaviour
 
     private bool pickUpAllowed = true;
     private bool colliding = false;
-    private Camera mainCamera;
-    private Canvas mainCanvas;
+    private Camera mainCamera = null;
+    private Canvas mainCanvas = null;
 
     private void Awake()
     {
         mainCamera = Camera.main;
         mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
 
-        if (slider != null)
+        if (slider != null && mainCamera != null && mainCanvas != null)
             slider = Instantiate(slider, mainCanvas.transform.position, mainCanvas.transform.rotation, mainCanvas.transform);
+        else
+            slider = null;
     }
 
     private void Start()
@@ -80,12 +80,11 @@ public class PickUp : MonoBehaviour
     private void LateUpdate()
     {
         if (slider != null)
-            slider.transform.position = mainCamera.WorldToScreenPoint(new Vector3(transform.position.x,transform.position.y,transform.position.z + hightOffset));
+            slider.transform.position = mainCamera.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y, transform.position.z + hightOffset));
     }
 
-
     // Resets the delay
-    IEnumerator AllowDelayCoroutine()
+    private IEnumerator AllowDelayCoroutine()
     {
         pickUpAllowed = false;
         yield return new WaitForSeconds(pickUpDelay);
@@ -95,7 +94,7 @@ public class PickUp : MonoBehaviour
     // Checks Collition
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<Player>() != null)
+        if (other.gameObject.GetComponent<Player>() != null)
             colliding = true;
     }
 
@@ -105,9 +104,8 @@ public class PickUp : MonoBehaviour
             colliding = false;
     }
 
-
     [ExecuteInEditMode]
-    void OnValidate()
+    private void OnValidate()
     {
         gameObject.name = item.ToString() + "_PickUp";
     }
@@ -119,8 +117,7 @@ public class PickUp : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(slider != null)
+        if (slider != null)
             Destroy(slider.gameObject);
     }
-
 }
