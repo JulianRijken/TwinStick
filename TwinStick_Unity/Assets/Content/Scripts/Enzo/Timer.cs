@@ -39,5 +39,6 @@ public class Timer : MonoBehaviour
             //SceneManager.LoadScene(0);
             Debug.Log("Gameover");
         }
+        countwdown.text = "time =" + currCountdownValue.ToString();
     }
 }
