@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Damageable
 {
@@ -15,11 +16,13 @@ public class Player : Damageable
     [Header("Weapon")]
     [SerializeField] private Transform weaponPivit;
     [SerializeField] private Weapon[] weapons = null;
-
     [SerializeField] private Weapon[] weaponsInInventory;
+
+    [Header("Animations")]
+    [SerializeField] private Animator animator;
+
     private WeaponSlotType selectedSlot = WeaponSlotType.primary;
     private int weaponSlotCount;
-
 
     private Rigidbody rig = null;
     private Vector3 input = Vector3.zero;
@@ -55,7 +58,8 @@ public class Player : Damageable
 
     private void Update()
     {
-        HandelWeaponInput();      
+        HandelWeaponInput();
+        UpdateAnimatior();
     }
 
     void FixedUpdate()
@@ -249,6 +253,7 @@ public class Player : Damageable
     #endregion
 
 
+
     #region PlayerMovent
 
     /// <summary>
@@ -259,6 +264,8 @@ public class Player : Damageable
         if (GameManager.instance.GetMenuState() == GameMenuState.clear)
         {
             input = Vector3.Lerp(input, GetInput().normalized, Time.deltaTime * moveAcceleration);
+            SetAnimatorVeloctiy(input.magnitude * moveSpeed / 3);
+            SetAnimatorInput(transform.TransformDirection(input));
             rig.MovePosition(transform.position + input * Time.deltaTime * moveSpeed);
         }
     }
@@ -313,6 +320,7 @@ public class Player : Damageable
     #endregion
 
 
+
     #region Damageble
 
     protected override void OnHealthLost(float healthLost, string hitBy)
@@ -334,4 +342,38 @@ public class Player : Damageable
     }
 
     #endregion
+
+
+
+    #region Animations
+
+    void UpdateAnimatior()
+    {
+
+    }
+
+
+
+
+
+    /// <summary>
+    /// Sets the animatior input float
+    /// </summary>
+    void SetAnimatorInput(Vector3 _input)
+    {
+        animator.SetFloat("InputX", _input.x);
+        animator.SetFloat("InputY", _input.z);
+    }
+
+    /// <summary>
+    /// Sets the animatior velocity
+    /// </summary>
+    void SetAnimatorVeloctiy(float _velocity)
+    {
+        animator.SetFloat("Velocity", _velocity);
+    }
+
+    #endregion
+
+
 }
