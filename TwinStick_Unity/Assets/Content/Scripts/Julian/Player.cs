@@ -20,6 +20,7 @@ public class Player : Damageable
 
     [Header("Animations")]
     [SerializeField] private Animator animator;
+    [SerializeField] private float animationSpeedMultiplier = 0.5f;
 
     private WeaponSlotType selectedSlot = WeaponSlotType.primary;
     private int weaponSlotCount;
@@ -264,9 +265,11 @@ public class Player : Damageable
         if (GameManager.instance.GetMenuState() == GameMenuState.clear)
         {
             input = Vector3.Lerp(input, GetInput().normalized, Time.deltaTime * moveAcceleration);
-            SetAnimatorVeloctiy(input.magnitude * moveSpeed / 3);
-            SetAnimatorInput(transform.TransformDirection(input));
             rig.MovePosition(transform.position + input * Time.deltaTime * moveSpeed);
+
+            SetAnimatorVeloctiy(input.magnitude * moveSpeed * animationSpeedMultiplier);
+
+            SetAnimatorInput(transform.InverseTransformDirection(input));
         }
     }
 

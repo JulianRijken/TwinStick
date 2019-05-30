@@ -71,6 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4315741136029672012}
+  - component: {fileID: 1942022225}
   m_Layer: 8
   m_Name: WeaponPivit
   m_TagString: Untagged
@@ -85,13 +86,27 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445039055552524111}
-  m_LocalRotation: {x: 0.59015906, y: 0.5383867, z: 0.49419415, w: 0.34296384}
-  m_LocalPosition: {x: 0.265, y: -0.034, z: 0.058}
+  m_LocalRotation: {x: 0.000025928213, y: -0.000000040802615, z: 1.0516032e-12, w: 1}
+  m_LocalPosition: {x: 0.7377994, y: 0.43565583, z: -0.061713964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3012113370522138788}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: -7.3150005, y: 106.174, z: 100.75201}
+  m_Father: {fileID: 8827632921905314605}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1942022225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445039055552524111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1328221bcc85ae40874847069c6ad61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toTransform: {fileID: 1373248390268953960}
+  speed: 5
 --- !u!1 &617845402447114381
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +203,7 @@ Transform:
   - {fileID: 1682690855041436931}
   - {fileID: 4035906411228585281}
   m_Father: {fileID: 8827632921905314605}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5868958118169760445
 Animator:
@@ -1946,6 +1961,36 @@ Transform:
   m_Father: {fileID: 5641407337605360511}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7322558152193771638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373248390268953960}
+  m_Layer: 0
+  m_Name: toWeaponPivit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1373248390268953960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7322558152193771638}
+  m_LocalRotation: {x: 0.5690551, y: 0.56524986, z: 0.48408985, w: 0.34975138}
+  m_LocalPosition: {x: 0.286, y: -0.039, z: 0.059}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3012113370522138788}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -8.581, y: 106.852005, z: 96.757}
 --- !u!1 &7426991425991038263
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2342,7 @@ Transform:
   - {fileID: 5936027975526730731}
   - {fileID: 219976920043551641}
   - {fileID: 6075932283789744999}
-  - {fileID: 4315741136029672012}
+  - {fileID: 1373248390268953960}
   m_Father: {fileID: 2034308563895422776}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2361,6 +2406,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4315741136029672012}
   - {fileID: 4609638253538312135}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2375,7 +2421,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -2399,7 +2445,7 @@ MonoBehaviour:
   armorProtectionProcent: 50
   armorStrength: 10
   maxArmorHealth: 100
-  moveSpeed: 7
+  moveSpeed: 5
   moveAcceleration: 15
   rotationSpeed: 30
   weaponPivit: {fileID: 4315741136029672012}
@@ -2410,6 +2456,7 @@ MonoBehaviour:
   - {fileID: 7917292198353624616, guid: 52c6d6bef61553f4d8129a8ac60ec17f, type: 3}
   weaponsInInventory: []
   animator: {fileID: 5868958118169760445}
+  animationSpeedMultiplier: 0.2
 --- !u!54 &8827632921905314600
 Rigidbody:
   m_ObjectHideFlags: 0
