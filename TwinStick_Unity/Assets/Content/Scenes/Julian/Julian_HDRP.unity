@@ -57,7 +57,7 @@ LightmapSettings:
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
-    m_BakeResolution: 40
+    m_BakeResolution: 10
     m_AtlasSize: 128
     m_AO: 0
     m_AOMaxDistance: 1
@@ -194,8 +194,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96517887}
   m_LocalRotation: {x: -0.000000052154064, y: 0.00000008195639, z: -0.7071057, w: 0.70710796}
-  m_LocalPosition: {x: 1.1691, y: 2.42, z: 5.89}
-  m_LocalScale: {x: 0.12996125, y: 7.592156, z: 0.14567688}
+  m_LocalPosition: {x: 1.1685, y: 2.42, z: 5.89}
+  m_LocalScale: {x: 0.12996125, y: 7.592915, z: 0.14567688}
   m_Children:
   - {fileID: 1739314950}
   m_Father: {fileID: 297412761}
@@ -273,6 +273,26 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1007065994}
+    - target: {fileID: 6187902211940865753, guid: af8f7288319d5fb40b53e2a4436624b4,
+        type: 3}
+      propertyPath: backgroundColorHDR.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187902211940865753, guid: af8f7288319d5fb40b53e2a4436624b4,
+        type: 3}
+      propertyPath: backgroundColorHDR.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187902211940865753, guid: af8f7288319d5fb40b53e2a4436624b4,
+        type: 3}
+      propertyPath: backgroundColorHDR.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187902211940865753, guid: af8f7288319d5fb40b53e2a4436624b4,
+        type: 3}
+      propertyPath: clearColorMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af8f7288319d5fb40b53e2a4436624b4, type: 3}
 --- !u!1001 &148013466
@@ -2814,7 +2834,7 @@ MonoBehaviour:
   nonLightmappedOnly: 0
   lightTypeExtent: 2
   m_SpotLightShape: 0
-  shapeWidth: 15.92
+  shapeWidth: 15.1
   shapeHeight: 0.5
   aspectRatio: 1
   shapeRadius: 0
@@ -2852,7 +2872,7 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.1999434
+  m_Intensity: 0.21080124
   m_Range: 80
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2891,9 +2911,9 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 15.92, y: 0.01}
+  m_AreaSize: {x: 15.1, y: 0.01}
   m_BounceIntensity: 1
   m_ColorTemperature: 3927
   m_UseColorTemperature: 1
@@ -3171,8 +3191,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210301620}
   m_LocalRotation: {x: 0.4999985, y: -0.50000006, z: -0.49999997, w: 0.50000155}
-  m_LocalPosition: {x: -6.355, y: 2.42, z: -1.94}
-  m_LocalScale: {x: 0.1299612, y: 7.9027295, z: 0.14567694}
+  m_LocalPosition: {x: -6.355, y: 2.42, z: -1.9427}
+  m_LocalScale: {x: 0.1299612, y: 7.900308, z: 0.14567694}
   m_Children:
   - {fileID: 1020024383}
   m_Father: {fileID: 297412761}
@@ -3296,8 +3316,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600426517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalPosition: {x: -3.91, y: -0, z: 0.75}
+  m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 269907415}
   m_RootOrder: 0
@@ -3829,7 +3849,7 @@ MonoBehaviour:
   nonLightmappedOnly: 0
   lightTypeExtent: 2
   m_SpotLightShape: 0
-  shapeWidth: 15.49
+  shapeWidth: 15.05
   shapeHeight: 0.5
   aspectRatio: 1
   shapeRadius: 0
@@ -3867,7 +3887,7 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2054938
+  m_Intensity: 0.21150158
   m_Range: 80
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3906,9 +3926,9 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 15.49, y: 0.01}
+  m_AreaSize: {x: 15.05, y: 0.01}
   m_BounceIntensity: 1
   m_ColorTemperature: 3927
   m_UseColorTemperature: 1
