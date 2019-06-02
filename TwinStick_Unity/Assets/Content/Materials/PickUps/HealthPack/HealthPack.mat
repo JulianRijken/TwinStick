@@ -21,18 +21,36 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HealthPack
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 0f152699092c4214dac3509982c44333,
+    type: 3}
   m_ShaderKeywords: _EMISSION _METALLICSPECGLOSSMAP _NORMALMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
+  m_CustomRenderQueue: -1
   stringTagMap:
-    RenderType: Opaque
-  disabledShaderPasses: []
+    MotionVector: User
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_11A702BC:
+        m_Texture: {fileID: 2800000, guid: 077767d1445f95949b5fe4c3a9ac6d71, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_5399A871:
+        m_Texture: {fileID: 2800000, guid: 7773cf2378ce0a248a0fc760d08bbb51, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_865F544E:
+        m_Texture: {fileID: 2800000, guid: 834fe44981e836445b077ad06a5b3144, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_C91C1CE0:
+        m_Texture: {fileID: 2800000, guid: 84a9d898f0458e24896764ebfbba5251, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 077767d1445f95949b5fe4c3a9ac6d71, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -78,6 +96,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_3A38A331: 5
+    - Vector1_9BA93E36: 3
+    - Vector1_FE1F4947: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -110,6 +131,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_942133B0: {r: 13.928808, g: 13.928808, b: 13.928808, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 5.992157, g: 5.992157, b: 5.992157, a: 1}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour
@@ -34,7 +35,6 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Returns The Mouse Pos
     /// </summary>
@@ -47,5 +47,12 @@ public class CameraFollow : MonoBehaviour
         groundPlane.Raycast(cameraRay, out rayLength);
 
         return cameraRay.GetPoint(rayLength);
+    }
+
+
+    private void OnValidate()
+    {
+        if(target != null)
+        transform.position = target.position + new Vector3(0, distance, -distance);
     }
 }
