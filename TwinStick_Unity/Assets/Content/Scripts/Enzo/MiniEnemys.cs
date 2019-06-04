@@ -11,5 +11,9 @@ public class MiniEnemys : MonoBehaviour
     private void Update()
     {
         GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
+
+        //Instantiate(bullet, shootPoint.position, shootPoint.rotation);
     }
+
+    //protected override void ()
 }
