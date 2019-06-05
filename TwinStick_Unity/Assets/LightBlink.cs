@@ -5,9 +5,9 @@ using UnityEngine;
 public class LightBlink : MonoBehaviour
 {
     [SerializeField] private Light lamp;
-    [SerializeField] private float lerpSpeed;
-    [SerializeField] private Vector2 randomTimeBitween;
-    [SerializeField] private Vector2 randomIntensityBitween;
+    [SerializeField] private float lerpSpeed = 5;
+    [SerializeField] private Vector2 randomTimeBitween = new Vector2(0f,0.4f);
+    [SerializeField] private Vector2 randomIntensityBitween = new Vector2(0f,0.1f);
 
 
     float toIntensity;
