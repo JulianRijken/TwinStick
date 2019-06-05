@@ -93,6 +93,7 @@ public class Gun : Weapon
             Quaternion _projectileRotation = shootPoint.rotation;
             _projectileRotation.eulerAngles += new Vector3(0, Random.Range(-3f, 3f), Random.Range(-3f, 3f));
             Instantiate(projectile, shootPoint.position, _projectileRotation);
+            GameManager.instance.statsController.AddShotsFired(1);
 
         }
 

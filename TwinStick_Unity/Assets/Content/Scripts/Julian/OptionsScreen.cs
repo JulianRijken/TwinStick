@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
-public class Options : MonoBehaviour
+public class OptionsScreen : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown resolutionDropdown = null;
 

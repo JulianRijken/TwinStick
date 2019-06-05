@@ -75,6 +75,16 @@ public class NotificationCenter
     public event ItemAddedAction OnItemAdded;
 
     /// <summary>
+    /// Fires stats is changed
+    /// </summary>
+    public void FireStatsChanged()
+    {
+        OnStatsChanged?.Invoke();
+    }
+    public delegate void StatsChangedAction();
+    public event StatsChangedAction OnStatsChanged;
+
+    /// <summary>
     /// Fires Game Paused event
     /// </summary>
     //public void FireGamePaused()

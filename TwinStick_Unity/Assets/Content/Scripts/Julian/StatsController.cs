@@ -23,23 +23,31 @@ public class StatsController
     public void AddTimesPlayed()
     {
         statsData.timesPlayed++;
+        GameManager.instance.notificationCenter.FireStatsChanged();
     }
 
-
-    // !!!!!!!!!!!!!!! IK HEB VAN ENZO EERST DE ENEMY NODIG OM OOK DE NAAM TE KUNNEN CHECKEN
     public void AddDiedBy(string diedBy)
     {
         statsData.diedBy.Add(diedBy);
+        GameManager.instance.notificationCenter.FireStatsChanged();
     }
 
     public void AddScore(float score)
     {
         statsData.score += score;
+        GameManager.instance.notificationCenter.FireStatsChanged();
+    }
+
+    public void AddShotsFired(int shots)
+    {
+        statsData.shotsFired += shots;
+        GameManager.instance.notificationCenter.FireStatsChanged();
     }
 
     public void AddHealthLost(float healthLost)
     {
         statsData.healthLost += healthLost;
+        GameManager.instance.notificationCenter.FireStatsChanged();
     }
 
 
@@ -52,8 +60,9 @@ public class StatsController
 
 public struct StatsData
 {
-    public int timesPlayed;
     public List<string> diedBy;
+    public int timesPlayed;
     public float score;
     public float healthLost;
+    public int shotsFired;
 }
