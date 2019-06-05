@@ -20,6 +20,7 @@ public class StatsController
 
 
 
+
     public void AddTimesPlayed()
     {
         statsData.timesPlayed++;

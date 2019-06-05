@@ -23,7 +23,6 @@ public class MainMenu : MonoBehaviour
         SetScreenActive(homeScreen);
     }
 
-
     /// <summary>
     /// Disables all screens
     /// </summary>
