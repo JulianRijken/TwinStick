@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     //private float timeleft = 30.0f;
     private float currCountdownValue;
 
-    public Text countwdown;
+    //public Text countwdown;
 
     public IEnumerator StartCountdown(float countdownValue = 170)
     {
@@ -39,6 +39,6 @@ public class Timer : MonoBehaviour
             //SceneManager.LoadScene(0);
             Debug.Log("Gameover");
         }
-        countwdown.text = "time =" + currCountdownValue.ToString();
+        //countwdown.text = "time =" + currCountdownValue.ToString();
     }
 }
