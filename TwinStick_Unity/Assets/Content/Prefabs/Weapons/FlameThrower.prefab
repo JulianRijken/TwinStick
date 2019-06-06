@@ -83,7 +83,6 @@ MonoBehaviour:
   weaponSlotType: 2
   particleSystems:
   - {fileID: 4200178877620469145}
-  - {fileID: 4200607941707847045}
   sound: {fileID: 2395536129666001244}
 --- !u!82 &2395536129666001244
 AudioSource:
@@ -238,7 +237,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5802777c780721c468353fd3dd93b6d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -336,12 +335,6 @@ Transform:
 --- !u!198 &4200178877620469145 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 7592526429829339030, guid: 07655d73351e7934dbe600c1a674ec68,
-    type: 3}
-  m_PrefabInstance: {fileID: 5986439354394126863}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4200607941707847045 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7592950545979735946, guid: 07655d73351e7934dbe600c1a674ec68,
     type: 3}
   m_PrefabInstance: {fileID: 5986439354394126863}
   m_PrefabAsset: {fileID: 0}

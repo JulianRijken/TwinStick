@@ -11,14 +11,13 @@ Material:
   m_Shader: {fileID: 4800000, guid: c4edd00ff2db5b24391a4fcb1762e459, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _BLENDMODE_ALPHA _EMISSION _EMISSIVE_COLOR_MAP
     _FADING_ON _REQUIRE_UV2 _SURFACE_TYPE_TRANSPARENT
-  m_LightmapFlags: 0
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
-  - DistortionVectors
   - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
@@ -94,14 +93,14 @@ Material:
     - _DistortionBlurDstBlend: 1
     - _DistortionBlurRemapMax: 1
     - _DistortionBlurRemapMin: 0
-    - _DistortionBlurScale: 1
+    - _DistortionBlurScale: 0.5
     - _DistortionBlurSrcBlend: 1
     - _DistortionDepthTest: 1
     - _DistortionDstBlend: 1
-    - _DistortionEnable: 0
+    - _DistortionEnable: 1
     - _DistortionEnabled: 0
     - _DistortionOnly: 0
-    - _DistortionScale: 1
+    - _DistortionScale: 0.5
     - _DistortionSrcBlend: 1
     - _DistortionStrength: 1
     - _DistortionStrengthScaled: 0.1
@@ -111,7 +110,7 @@ Material:
     - _DstBlend: 10
     - _EmissionEnabled: 1
     - _EmissiveExposureWeight: 1
-    - _EmissiveIntensity: 10
+    - _EmissiveIntensity: 4
     - _EmissiveIntensityUnit: 0
     - _EnableFogOnTransparent: 0
     - _FlipbookMode: 1
@@ -147,10 +146,10 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 9.445757, g: 10, b: 4.292453, a: 10}
+    - _Color: {r: 3.87451, g: 1.9450982, b: 0.015686275, a: 4}
     - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 9.445757, g: 10, b: 4.292453, a: 10}
-    - _EmissiveColorLDR: {r: 0.94457567, g: 1, b: 0.4292453, a: 1}
+    - _EmissiveColor: {r: 3.87451, g: 1.9450982, b: 0.015686275, a: 4}
+    - _EmissiveColorLDR: {r: 0.9686275, g: 0.48627454, b: 0.003921569, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 2, b: 0, a: 0}
     - _UnlitColor: {r: 1, g: 1, b: 1, a: 1}
