@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class FlameThower : Weapon
 {
-    [SerializeField] private ParticleSystem[] particleSystems = null;
     [SerializeField] private AudioSource sound = null;
+    [SerializeField] private Transform emitterTransform = null;
+
+    private ParticleSystem flameParticle = null;
+
+    private void Start()
+    {    
+        flameParticle = FindObjectOfType<ParticleEmitters>().flameThrowerFlame;
+    }
+
+    private void LateUpdate()
+    {
+        if (flameParticle != null && emitterTransform != null)
+        {
+            flameParticle.transform.position = emitterTransform.position;
+            flameParticle.transform.rotation = emitterTransform.rotation;
+        }
+    }
 
     public override void OnActive()
     {
@@ -14,14 +30,9 @@ public class FlameThower : Weapon
     }
 
     protected override void OnAttack()
-    {
-        
+    {       
         sound.UnPause();
-
-        for (int i = 0; i < particleSystems.Length; i++)
-        {
-            particleSystems[i].Play();
-        }
+        flameParticle.Play();
     }
 
     protected override void OnStopAttack()
