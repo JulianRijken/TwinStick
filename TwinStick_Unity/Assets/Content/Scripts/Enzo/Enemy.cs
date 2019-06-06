@@ -15,6 +15,9 @@ public class Enemy : Damageable
     private NavMeshAgent agent;
     private Transform target;
 
+    private float timer = 5f;
+    //private float cooldowntimer;
+
     //public AudioSource Music;
     //public AudioClip Musicclip;
 
@@ -50,7 +53,12 @@ public class Enemy : Damageable
             if (target != null)
                 agent.destination = target.position;
 
-            Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+                //cooldowntimer = 1f;
+            }
         }
     }
 
