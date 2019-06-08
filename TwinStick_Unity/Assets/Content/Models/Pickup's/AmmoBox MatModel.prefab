@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5831791697742839004}
   - component: {fileID: 275325193038282789}
   m_Layer: 0
-  m_Name: Ammo
+  m_Name: AmmoBox MatModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012810796766164217}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0798, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -58,6 +58,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 358d4e52ea2f63c478ff96ef1522eea0, type: 2}
+  - {fileID: 2100000, guid: b692e36005bb185449d2c1f0de3d794f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

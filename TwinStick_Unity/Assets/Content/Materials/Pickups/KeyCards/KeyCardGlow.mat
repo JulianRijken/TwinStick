@@ -7,10 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmorPack
-  m_Shader: {fileID: 4800000, guid: 7252379db4c18b641b517f2c91bb57e1, type: 3}
+  m_Name: KeyCardGlow
+  m_Shader: {fileID: -6465566751694194690, guid: 207a19b6f64c1004093f949b61345cd1,
+    type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 1
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -37,10 +38,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 7dfb22bf0e09b844e8ed6a7d9c20245e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _CoatMaskMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -51,10 +48,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DistortionVectorMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 1557c8ee3f413aa4bb9dced7377e9f1b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveColorMap:
@@ -74,15 +67,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f3d9834ff9a178f468f4e48846cb4550, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 2bbe73b20c62e7a4e8f062a4dc9431ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -91,14 +80,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _NormalMapOS:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SpecGlossMap:
-        m_Texture: {fileID: 2800000, guid: a945e69a6e6aad248b6eccf952d67023, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularColorMap:
@@ -126,6 +107,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_3A38A331: 3
+    - Vector1_9BA93E36: 6
+    - Vector1_FE1F4947: 3
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -181,7 +165,6 @@ Material:
     - _EnableSpecularOcclusion: 0
     - _EnableWind: 0
     - _EnergyConservingSpecularColor: 1
-    - _Glossiness: 0
     - _HdrpVersion: 2
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
@@ -245,25 +228,20 @@ Material:
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
-    - _UseAoMap: 0
-    - _UseColorMap: 1
     - _UseEmissiveIntensity: 0
-    - _UseEmissiveMap: 1
-    - _UseMetallicMap: 1
-    - _UseNormalMap: 1
-    - _UseRoughnessMap: 1
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
     - _ZTestModeDistortion: 8
     - _ZWrite: 1
     m_Colors:
+    - Color_942133B0: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _EmissionColor: {r: 220.26176, g: 220.26176, b: 220.26176, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
@@ -274,5 +252,3 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
