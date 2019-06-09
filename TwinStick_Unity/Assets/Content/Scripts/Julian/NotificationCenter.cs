@@ -105,16 +105,6 @@ public class NotificationCenter
     //public delegate void GameUnPausedAction();
     //public event GameUnPausedAction OnGameUnPaused;
 
-    /// <summary>
-    /// Fires MenuScreenSwitched changed
-    /// </summary>
-    public void FireMenuScreenSwitched()
-    {
-        OnMenuScreenSwitched?.Invoke();
-    }
-    public delegate void MenuScreenSwitchedAction();
-    public event MenuScreenSwitchedAction OnMenuScreenSwitched;
-
     
 
 
