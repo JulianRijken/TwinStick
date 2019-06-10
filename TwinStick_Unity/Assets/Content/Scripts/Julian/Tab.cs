@@ -4,10 +4,12 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,IPointerExitHandler
+
+public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
-    [SerializeField] private bool startInteractable;
+    [SerializeField] private bool _interactable;
+    [SerializeField] private bool startSelected;
     [SerializeField] private Graphic graphic = null;
 
     [SerializeField] private Color normalColor = Color.white;
@@ -20,22 +22,67 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,IPoi
     [SerializeField] private UnityEvent onClick = null;
 
     private bool isSelected;
-    private bool interactable;
 
-    //todo Fix de Interactable bool!
 
     private void Start()
     {
-        interactable = startInteractable;
-        if (interactable)
-            LerpToColor(normalColor);
-        else
-            LerpToColor(disabledColor);
-
-
+        Interactable = _interactable;
         isSelected = false;
+
+        if(startSelected)
+        {
+            graphic.color = selectColor;
+
+            if (tabGroup != null)
+                tabGroup.SetDiffrentTab(this);
+            else
+                Debug.LogWarning("Tab Group not set");
+
+            onClick.Invoke();
+        }
     }
 
+    private void OnEnable()
+    {
+        if (Interactable)
+        {
+            if (isSelected)
+                graphic.color = selectColor;
+            else
+                graphic.color = normalColor;
+        }
+        else
+            graphic.color = disabledColor;
+
+
+    }
+
+    /// <summary>
+    /// Sets the color correct
+    /// </summary>
+    public bool Interactable
+    {
+        get { return _interactable; }
+        set
+        {
+            if (_interactable != value)
+            {
+                _interactable = value;
+
+                if (value == true)
+                {
+                    if (isSelected)                   
+                        LerpToColor(selectColor);                    
+                    else                    
+                        LerpToColor(normalColor);               
+                }
+                else
+                {
+                    LerpToColor(disabledColor);
+                }
+            }
+        }
+    }
 
 
     /// <summary>
@@ -43,7 +90,7 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,IPoi
     /// </summary>
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (interactable)
+        if (Interactable)
         {
             if (tabGroup != null)
                 tabGroup.SetDiffrentTab(this);
@@ -59,7 +106,7 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,IPoi
     /// </summary>
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (isSelected == false && interactable)
+        if (isSelected == false && Interactable)
             LerpToColor(normalColor);
     }
 
@@ -68,7 +115,7 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,IPoi
     /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (isSelected == false && interactable)
+        if (isSelected == false && Interactable)
             LerpToColor(highlightedColor);
     }
 
@@ -111,7 +158,11 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,IPoi
     /// </summary>
     public void SetToNormal()
     {
-        LerpToColor(normalColor);
+        if (Interactable)        
+            LerpToColor(normalColor);      
+        else
+            LerpToColor(disabledColor);
+
         isSelected = false;
     }
 
@@ -124,6 +175,11 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,IPoi
         isSelected = true;
     }
 
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
 
 
 }
