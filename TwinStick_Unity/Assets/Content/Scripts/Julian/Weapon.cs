@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponID {emptyTest = 0, secondaryTest = 1, primaryTest = 2, flameThrower = 3}
+public enum WeaponID {knife = 0, secondaryTest = 1, primaryTest = 2, flameThrower = 3}
 public enum WeaponInputType { sigle = 0, hold = 1 }
 public enum WeaponSlotType { empty = 0, secondary = 1, primary = 2}
 
@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
 {
     [Header("Standard")]
     [SerializeField] private float attackDelay = 0.075f;
-    public WeaponID weaponID = WeaponID.emptyTest;
+    public WeaponID weaponID = WeaponID.knife;
     public WeaponInputType weaponInput = WeaponInputType.hold;
     public WeaponSlotType weaponSlotType = WeaponSlotType.primary;
 

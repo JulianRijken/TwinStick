@@ -146,7 +146,7 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPo
 
                 graphic.color = Color.Lerp(startColor, _toColor, timer);
 
-                yield return new WaitForSeconds(Time.deltaTime);
+                yield return new WaitForEndOfFrame();
             }
 
             graphic.color = _toColor;

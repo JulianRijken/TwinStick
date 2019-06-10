@@ -104,6 +104,7 @@ public class Gun : Weapon
             Instantiate(gunShotAudio);
 
         GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+        GameManager.instance.notificationCenter.FirePlayerAnimation(PlayerAnimation.rifleAttack);
     }
 
 
@@ -130,6 +131,9 @@ public class Gun : Weapon
         // Check if inventoy has ammo
         if (itemSlot != null && itemSlot.count > 0)
         {
+            GameManager.instance.notificationCenter.FirePlayerAnimation(PlayerAnimation.rifleReload);
+
+
             int ammoRequired = magSize - ammoInMag;
 
             // Check if the inventoy has the required ammo count

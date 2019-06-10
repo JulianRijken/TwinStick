@@ -22,6 +22,12 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, destroyTime);
         hitWall = false;
         lastPos = transform.position;
+
+        Quaternion _flatRotation = transform.rotation;
+        _flatRotation.x = 0;
+        _flatRotation.z = 0;
+
+        transform.rotation = _flatRotation;
     }
 
     private void FixedUpdate()
