@@ -54,6 +54,7 @@ public class Player : Damageable
 
         weaponsInInventory[(int)WeaponSlotType.empty] = weapons[0];
         weaponsInInventory[(int)WeaponSlotType.secondary] = weapons[1];
+        weaponsInInventory[(int)WeaponSlotType.primary] = weapons[3];
         selectedSlot = WeaponSlotType.empty;
         weaponsInInventory[(int)WeaponSlotType.empty].gameObject.SetActive(true);
 
