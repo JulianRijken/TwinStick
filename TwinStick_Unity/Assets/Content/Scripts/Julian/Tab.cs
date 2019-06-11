@@ -142,7 +142,7 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPo
 
             while (timer < 1)
             {
-                timer += Time.deltaTime / fadeDuration;
+                timer += Time.unscaledDeltaTime / fadeDuration;
 
                 graphic.color = Color.Lerp(startColor, _toColor, timer);
 

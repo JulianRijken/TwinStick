@@ -15,19 +15,7 @@ public class PickUp : MonoBehaviour
 
     private bool pickUpAllowed = true;
     private bool colliding = false;
-    private Camera mainCamera = null;
-    private Canvas mainCanvas = null;
 
-    private void Awake()
-    {
-        mainCamera = Camera.main;
-        mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
-
-        if (slider != null && mainCamera != null && mainCanvas != null)
-            slider = Instantiate(slider, mainCanvas.transform.position, mainCanvas.transform.rotation, mainCanvas.transform);
-        else
-            slider = null;
-    }
 
     private void Start()
     {
@@ -46,41 +34,34 @@ public class PickUp : MonoBehaviour
 
     private void Update()
     {
-        if (colliding)
-            if (pickUpAllowed)
-                if (Input.GetButton("Use"))
-                {
-                    // Adds and removes the items
-                    if (count >= givePerPickUp)
-                    {
-                        GameManager.instance.inventory.AddItem(item, givePerPickUp);
-                        count -= givePerPickUp;
-                    }
-                    else if (count > 0)
-                    {
-                        GameManager.instance.inventory.AddItem(item, count);
-                        count = 0;
-                    }
 
-                    // Checks if done and destroy
-                    if (count <= 0)
-                    {
-                        Destroy(gameObject);
-                    }
+        if (Input.GetButton("Use") && pickUpAllowed && colliding)
+        {
+            // Adds and removes the items
+            if (count >= givePerPickUp)
+            {
+                GameManager.instance.inventory.AddItem(item, givePerPickUp);
+                count -= givePerPickUp;
+            }
+            else if (count > 0)
+            {
+                GameManager.instance.inventory.AddItem(item, count);
+                count = 0;
+            }
 
-                    // Update Slider
-                    if (slider != null)
-                        slider.value = count;
+            // Checks if done and destroy
+            if (count <= 0)
+            {
+                Destroy(gameObject);
+            }
 
-                    // Create a delay
-                    StartCoroutine(AllowDelayCoroutine());
-                }
-    }
+            // Update Slider
+            if (slider != null)
+                slider.value = count;
 
-    private void LateUpdate()
-    {
-        if (slider != null)
-            slider.transform.position = mainCamera.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y, transform.position.z + hightOffset));
+            // Create a delay
+            StartCoroutine(AllowDelayCoroutine());
+        }
     }
 
     // Resets the delay
@@ -113,11 +94,5 @@ public class PickUp : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawIcon(transform.position + Vector3.up, "PickUp.psd");
-    }
-
-    private void OnDestroy()
-    {
-        if (slider != null)
-            Destroy(slider.gameObject);
     }
 }
