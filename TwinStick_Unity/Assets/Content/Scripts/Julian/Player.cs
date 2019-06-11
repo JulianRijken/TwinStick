@@ -4,14 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum PlayerAnimation { rifleAttack = 0, knifeAttack = 1 , rifleReload = 3}
+public enum PlayerMovementState { walking = 0, rolling = 1}
+
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Damageable
 {
 
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float defaultMoveSpeed = 5f;
     [SerializeField] private float moveAcceleration = 15f;
     [SerializeField] private float rotationSpeed = 30f;
+    [SerializeField] private float rollDistance = 5f;
+    [SerializeField] private float rollTime = 5f;
+    [SerializeField] private AnimationCurve rollCurve;
 
     [Header("Weapon")]
     [SerializeField] private Transform weaponPivit;
@@ -20,17 +26,21 @@ public class Player : Damageable
 
     [Header("Animations")]
     [SerializeField] private Animator animator;
-    [SerializeField] private float animationSpeedMultiplier = 0.5f;
-
+ 
     private WeaponSlotType selectedSlot = WeaponSlotType.primary;
     private int weaponSlotCount;
 
     private Rigidbody rig = null;
     private Vector3 input = Vector3.zero;
     private Camera mainCamera;
+    private float moveSpeed = 5f;
+    private PlayerMovementState playerMovementState;
 
     private void Awake()
     {
+        GameManager.instance.notificationCenter.OnPlayerAnimation += HandleAnimations;
+
+
         weaponSlotCount = Enum.GetValues(typeof(WeaponSlotType)).Length;
         weaponsInInventory = new Weapon[weaponSlotCount];
         weaponSlotCount -= 1;
@@ -43,14 +53,18 @@ public class Player : Damageable
         }
 
         weaponsInInventory[(int)WeaponSlotType.empty] = weapons[0];
+        weaponsInInventory[(int)WeaponSlotType.secondary] = weapons[1];
         selectedSlot = WeaponSlotType.empty;
         weaponsInInventory[(int)WeaponSlotType.empty].gameObject.SetActive(true);
+
+
+        moveSpeed = defaultMoveSpeed;
+        playerMovementState = PlayerMovementState.walking;
     }
 
     void Start()
     {
         rig = GetComponent<Rigidbody>();
-        InventoryController inventory = GameManager.instance.inventory;
         mainCamera = Camera.main;
 
         GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
@@ -59,8 +73,8 @@ public class Player : Damageable
 
     private void Update()
     {
+        HandelMoveInput();
         HandelWeaponInput();
-        UpdateAnimatior();
     }
 
     void FixedUpdate()
@@ -104,38 +118,39 @@ public class Player : Damageable
         if (GameManager.instance.GetMenuState() == GameMenuState.clear)
         {
 
-            // Switch the weapon
-            if (Input.GetAxis("Mouse ScrollWheel") > 0)
-                SwitchUp();
-            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
-                SwitchDown();
 
-            // Drop the weapon
-            if (Input.GetButton("Drop"))
-                DropCurrenWeapon();
+                // Switch the weapon
+                if (Input.GetAxis("Mouse ScrollWheel") > 0)
+                    SwitchUp();
+                else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+                    SwitchDown();
 
-            //Todo HAAL WEG DIT IS VOOR TESTING
-            if (Input.GetKeyDown(KeyCode.P))
-                PickUpWeapon(WeaponID.flameThrower);
-
-            // Give The weapon input
-            if (weaponsInInventory[(int)selectedSlot] != null)
+            if (playerMovementState != PlayerMovementState.rolling)
             {
-                // Als je will toevoegen dat het wapen niet kan schieten als de player niet in stat is zoals als hij van wapen switcht dan kan je dat hier verandern
+                // Drop the weapon
+                if (Input.GetButton("Drop"))
+                    DropCurrenWeapon();
 
-                if (Input.GetButtonDown("Reload"))
-                    weaponsInInventory[(int)selectedSlot].Reload();
+                // Give The weapon input
+                if (weaponsInInventory[(int)selectedSlot] != null)
+                {
+                    // Als je will toevoegen dat het wapen niet kan schieten als de player niet in stat is zoals als hij van wapen switcht dan kan je dat hier verandern
 
-                if (weaponsInInventory[(int)selectedSlot].weaponInput == WeaponInputType.hold ? Input.GetButton("Attack") : Input.GetButtonDown("Attack"))
-                    weaponsInInventory[(int)selectedSlot].Attack();
+                    if (Input.GetButtonDown("Reload"))
+                        weaponsInInventory[(int)selectedSlot].Reload();
 
-                if (Input.GetButtonUp("Attack"))
-                    weaponsInInventory[(int)selectedSlot].StopAttack();
+                    if (weaponsInInventory[(int)selectedSlot].weaponInput == WeaponInputType.hold ? Input.GetButton("Attack") : Input.GetButtonDown("Attack"))
+                        weaponsInInventory[(int)selectedSlot].Attack();
 
-                if (Input.GetButtonDown("Gadget"))
-                    weaponsInInventory[(int)selectedSlot].UseGadget();
+                    if (Input.GetButtonUp("Attack"))
+                        weaponsInInventory[(int)selectedSlot].StopAttack();
 
+                    if (Input.GetButtonDown("Gadget"))
+                        weaponsInInventory[(int)selectedSlot].UseGadget();
+
+                }
             }
+
         }
 
     }
@@ -148,16 +163,16 @@ public class Player : Damageable
         weaponsInInventory[(int)selectedSlot].OnInActive();
         SetCurrenWeaponInActive();
 
-        selectedSlot++;
-        if ((int)selectedSlot > weaponSlotCount)
-            selectedSlot = 0;
-
-        while (weaponsInInventory[(int)selectedSlot] == null)
+        do
         {
             selectedSlot++;
             if ((int)selectedSlot > weaponSlotCount)
                 selectedSlot = 0;
         }
+        while (weaponsInInventory[(int)selectedSlot] == null);
+
+        animator.SetFloat("currentSlotType", (float)selectedSlot);
+        animator.SetTrigger("switchWeapon");
 
         SetCurrenWeaponActive();
         weaponsInInventory[(int)selectedSlot].OnActive();
@@ -171,16 +186,16 @@ public class Player : Damageable
         weaponsInInventory[(int)selectedSlot].OnInActive();
         SetCurrenWeaponInActive();
 
-        selectedSlot--;
-        if ((int)selectedSlot < 0)
-            selectedSlot = (WeaponSlotType)weaponSlotCount;
-
-        while (weaponsInInventory[(int)selectedSlot] == null)
+        do
         {
             selectedSlot--;
             if ((int)selectedSlot < 0)
-                selectedSlot = (WeaponSlotType)weaponSlotCount; ;
+                selectedSlot = (WeaponSlotType)weaponSlotCount;
         }
+        while (weaponsInInventory[(int)selectedSlot] == null);
+
+        animator.SetFloat("currentSlotType", (float)selectedSlot);
+        animator.SetTrigger("switchWeapon");
 
         SetCurrenWeaponActive();
         weaponsInInventory[(int)selectedSlot].OnActive();
@@ -257,19 +272,56 @@ public class Player : Damageable
 
     #region PlayerMovent
 
+    private void HandelMoveInput()
+    {
+        if (Input.GetKey(KeyCode.Space) && playerMovementState != PlayerMovementState.rolling )
+        {
+            Roll();
+        }
+    }
+
+    private void Roll()
+    {
+        StartCoroutine(RollCoroutine());
+    }
+
+    private IEnumerator RollCoroutine()
+    {
+        SetPlayerState(PlayerMovementState.rolling);
+        animator.SetTrigger("Roll");
+
+        float timer = 0;
+
+        while (timer < rollTime)
+        {
+            timer += Time.deltaTime;
+
+            Vector3 _moveDir = transform.TransformDirection(Vector3.forward);
+            rig.MovePosition(transform.position + _moveDir * Time.deltaTime * rollCurve.Evaluate(timer / rollTime) * rollDistance);
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        SetPlayerState(PlayerMovementState.walking);
+
+    }
+
     /// <summary>
     /// Moves The Player
     /// </summary>
     private void Move()
     {
-        if (GameManager.instance.GetMenuState() == GameMenuState.clear)
+        if (playerMovementState == PlayerMovementState.walking)
         {
-            input = Vector3.Lerp(input, GetInput().normalized, Time.deltaTime * moveAcceleration);
-            rig.MovePosition(transform.position + input * Time.deltaTime * moveSpeed);
+            if (GameManager.instance.GetMenuState() == GameMenuState.clear)
+            {
+                input = Vector3.Lerp(input, GetInput().normalized, Time.deltaTime * moveAcceleration);
+                rig.MovePosition(transform.position + input * Time.deltaTime * moveSpeed);
 
-            SetAnimatorVeloctiy(input.magnitude * moveSpeed * animationSpeedMultiplier);
+                SetAnimatorVeloctiy(input.magnitude * moveSpeed);
 
-            SetAnimatorInput(transform.InverseTransformDirection(input));
+                SetAnimatorInput(transform.InverseTransformDirection(input));
+            }
         }
     }
 
@@ -278,11 +330,14 @@ public class Player : Damageable
     /// </summary>
     private void Rotate()
     {
-        if (GameManager.instance.GetMenuState() == GameMenuState.clear)
-        {
-            float yRot = Quaternion.LookRotation(GetMousePos(mainCamera) - transform.position, Vector3.up).eulerAngles.y;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
-        }
+       // if (playerMovementState == PlayerMovementState.walking)
+       //{
+            if (GameManager.instance.GetMenuState() == GameMenuState.clear)
+            {
+                float yRot = Quaternion.LookRotation(GetMousePos(mainCamera) - transform.position, Vector3.up).eulerAngles.y;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
+            }
+        //}
     }
 
     /// <summary>
@@ -320,6 +375,8 @@ public class Player : Damageable
         return Vector3.zero;
     }
 
+
+
     #endregion
 
 
@@ -350,13 +407,23 @@ public class Player : Damageable
 
     #region Animations
 
-    void UpdateAnimatior()
+    void HandleAnimations(PlayerAnimation _animation)
     {
+        switch(_animation)
+        {
+            case PlayerAnimation.knifeAttack:
+                animator.SetTrigger("knifeAttack");
+                break;
 
+            case PlayerAnimation.rifleAttack:
+                animator.SetTrigger("rifleAttack");
+                break;
+
+            case PlayerAnimation.rifleReload:
+                animator.SetTrigger("rifleReload");
+                break;
+        }
     }
-
-
-
 
 
     /// <summary>
@@ -379,4 +446,16 @@ public class Player : Damageable
     #endregion
 
 
+    /// <summary>
+    /// Setst the player state
+    /// </summary>
+    public void SetPlayerState(PlayerMovementState _playerState)
+    {
+        playerMovementState = _playerState;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.notificationCenter.OnPlayerAnimation -= HandleAnimations;
+    }
 }

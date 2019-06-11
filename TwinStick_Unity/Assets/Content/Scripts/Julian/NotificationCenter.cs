@@ -55,6 +55,16 @@ public class NotificationCenter
     public event PlayerDiedAction OnPlayerDie;
 
     /// <summary>
+    /// Fires Weapon attack
+    /// </summary>
+    public void FirePlayerAnimation(PlayerAnimation _animation)
+    {
+        OnPlayerAnimation?.Invoke(_animation);
+    }
+    public delegate void PlayerAnimationAction(PlayerAnimation _animation);
+    public event PlayerAnimationAction OnPlayerAnimation;
+
+    /// <summary>
     /// Fires Exit To Menu event
     /// </summary>
     public void FireExitToMenu()
@@ -104,16 +114,6 @@ public class NotificationCenter
     //}
     //public delegate void GameUnPausedAction();
     //public event GameUnPausedAction OnGameUnPaused;
-
-    /// <summary>
-    /// Fires MenuScreenSwitched changed
-    /// </summary>
-    public void FireMenuScreenSwitched()
-    {
-        OnMenuScreenSwitched?.Invoke();
-    }
-    public delegate void MenuScreenSwitchedAction();
-    public event MenuScreenSwitchedAction OnMenuScreenSwitched;
 
     
 
