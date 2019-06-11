@@ -21,6 +21,4 @@ public class MiniEnemys : Damageable
         Destroy(gameObject);
         //Music.Stop();
     }
-
-    //protected override void ()
 }
