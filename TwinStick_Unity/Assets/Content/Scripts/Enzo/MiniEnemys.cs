@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MiniEnemys : MonoBehaviour
+public class MiniEnemys : Damageable
 {
     public GameObject Player;
 
@@ -13,6 +13,13 @@ public class MiniEnemys : MonoBehaviour
         GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
 
         //Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        Destroy(gameObject);
+        //Music.Stop();
     }
 
     //protected override void ()
