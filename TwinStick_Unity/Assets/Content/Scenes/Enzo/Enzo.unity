@@ -1092,7 +1092,7 @@ PrefabInstance:
     - target: {fileID: 1500010942362238385, guid: af6f0bc240e539b45bf7cbb3279ba327,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1500010942362238383, guid: af6f0bc240e539b45bf7cbb3279ba327,
         type: 3}
@@ -1174,10 +1174,20 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[2]
       value: 
       objectReference: {fileID: 1626188418}
+    - target: {fileID: 1500010942362238381, guid: af6f0bc240e539b45bf7cbb3279ba327,
+        type: 3}
+      propertyPath: resetShotTimer
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1500010942362238386, guid: af6f0bc240e539b45bf7cbb3279ba327,
         type: 3}
       propertyPath: targetMask.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500010942362238386, guid: af6f0bc240e539b45bf7cbb3279ba327,
+        type: 3}
+      propertyPath: viewAngle
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 1500010942575315708, guid: af6f0bc240e539b45bf7cbb3279ba327,
         type: 3}
@@ -5752,7 +5762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8546757861900791142
 MonoBehaviour:
   m_ObjectHideFlags: 0

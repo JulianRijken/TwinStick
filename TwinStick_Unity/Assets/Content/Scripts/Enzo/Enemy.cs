@@ -8,15 +8,16 @@ public class Enemy : Damageable
     [SerializeField] private FieldOfView targetFinder = null;
     [SerializeField] private Transform[] patrolPoints;
     [SerializeField] private EnemyStatus status = EnemyStatus.Patrol;
-    [SerializeField] private GameObject bullet = null;
+    [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootPoint = null;
+    [SerializeField] private float resetShotTimer;
 
     private int nextpoint = 0;
     private NavMeshAgent agent;
     private Transform target;
 
-    private float timer = 5f;
-    //private float cooldowntimer;
+    private float timer;
+    [SerializeField] private float shotTimer;
 
     //public AudioSource Music;
     //public AudioClip Musicclip;
@@ -31,10 +32,13 @@ public class Enemy : Damageable
 
         GotoNextPoint();
         //Music.clip = Musicclip;
+
+        shotTimer = resetShotTimer;
     }
 
     private void Update()
     {
+        timer += Time.deltaTime;
         if (status.Equals(EnemyStatus.Patrol))
         {
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
@@ -48,16 +52,17 @@ public class Enemy : Damageable
                 //Music.Play();
             }
         }
-        else if (status.Equals(EnemyStatus.Attack))
+        else if (status == EnemyStatus.Attack)
         {
             if (target != null)
                 agent.destination = target.position;
 
-            timer -= Time.deltaTime;
-            if (timer <= 0)
+            if (shotTimer > 0)
+                shotTimer -= Time.deltaTime;
+            else if (shotTimer < 0)
             {
-                Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-                //cooldowntimer = 1f;
+                Shoot();
+                shotTimer = resetShotTimer;
             }
         }
     }
@@ -74,6 +79,12 @@ public class Enemy : Damageable
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
         nextpoint = (nextpoint + 1) % patrolPoints.Length;
+    }
+
+    private void Shoot()
+    {
+        if (bullet != null)
+            Instantiate(bullet, shootPoint.position, shootPoint.rotation);
     }
 
     protected override void OnDeath()
