@@ -5,25 +5,26 @@ using UnityEngine;
 public class Enemyspawn : MonoBehaviour
 {
     //[SerializeField] public GameObject enemyspawn;
-    public float spawnTime = 3f;
+    public float spawnDelay = 3f;
+
+    private float spawnTimer = 3f;
 
     public GameObject smallenemy;
     [SerializeField] public Transform spawnpoint;
 
-    // Use this for initialization
-    private void Start()
-    {
-        InvokeRepeating("SpawnEnemy", spawnTime, spawnTime);
-    }
-
-    // Update is called once per frame
     private void Update()
     {
-        for (int i = 0; i < 4; i++)
+        spawnTimer += Time.deltaTime;
+
+        if (spawnTimer > spawnDelay)
         {
-            Vector3 _randomPos = spawnpoint.position + Random.insideUnitSphere * 10;
-            _randomPos.y = 0;
-            SpawnEnemy(_randomPos);
+            for (int i = 0; i < 4; i++)
+            {
+                Vector3 _randomPos = spawnpoint.position + Random.insideUnitSphere * 10;
+                _randomPos.y = 0;
+                SpawnEnemy(_randomPos);
+            }
+            spawnTimer = spawnDelay - spawnTimer;
         }
     }
 
