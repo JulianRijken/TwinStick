@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 1827985939326547162}
   - component: {fileID: 8634610255447398816}
   - component: {fileID: 3267851877493320862}
+  - component: {fileID: -6136937142116034087}
   m_Layer: 0
   m_Name: Mutant
   m_TagString: Untagged
@@ -417,6 +418,28 @@ MonoBehaviour:
   armorStrength: 10
   maxArmorHealth: 100
   Player: {fileID: 8827632921905314603, guid: afd503ed0ecda204290a814f71eb76a6, type: 3}
+--- !u!195 &-6136937142116034087
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3388138888594802377}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4107245853798339279
 GameObject:
   m_ObjectHideFlags: 0

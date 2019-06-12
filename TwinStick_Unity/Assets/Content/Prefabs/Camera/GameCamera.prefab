@@ -119,9 +119,9 @@ MonoBehaviour:
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
-    m_Bits: 7959
+    m_Bits: 4294967295
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 3
+  antialiasing: 1
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -203,6 +203,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 27963322162447077}
     m_Modifications:
+    - target: {fileID: 5173287937084454538, guid: a7b379c3a5f53104b8b820fd6b51ed13,
+        type: 3}
+      propertyPath: m_Name
+      value: BlurFilter
+      objectReference: {fileID: 0}
     - target: {fileID: 5173287937084454541, guid: a7b379c3a5f53104b8b820fd6b51ed13,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -257,11 +262,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5173287937084454538, guid: a7b379c3a5f53104b8b820fd6b51ed13,
-        type: 3}
-      propertyPath: m_Name
-      value: BlurFilter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7b379c3a5f53104b8b820fd6b51ed13, type: 3}
