@@ -6,7 +6,7 @@ public class TabGroup : MonoBehaviour
 {
     private Tab[] tabs;
 
-    void Start()
+    void Awake()
     {
         tabs = gameObject.GetComponentsInChildren<Tab>();
     }

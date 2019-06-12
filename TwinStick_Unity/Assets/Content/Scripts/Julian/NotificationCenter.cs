@@ -25,6 +25,16 @@ public class NotificationCenter
     public event GunInventoyUpdateAction OnGunInventoyAmmoUpdated;
 
     /// <summary>
+    /// Fires Blur
+    /// </summary>
+    public void FireBlur(bool _blur)
+    {
+        OnBlur?.Invoke(_blur);
+    }
+    public delegate void BlurAction(bool _blur);
+    public event BlurAction OnBlur;
+
+    /// <summary>
     /// Fires Player Health Change event
     /// </summary>
     public void FirePlayerHealthChange(float newHealth, float newMaxHealth)
