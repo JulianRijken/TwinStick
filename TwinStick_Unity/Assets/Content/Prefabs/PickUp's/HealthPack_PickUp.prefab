@@ -71,11 +71,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8085165611852020791}
     m_Modifications:
-    - target: {fileID: 5168558115806632758, guid: e1388dcf5afc4ea4aa506650edb1f913,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthPack MatModel
-      objectReference: {fileID: 0}
     - target: {fileID: 8205894835027781925, guid: e1388dcf5afc4ea4aa506650edb1f913,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -130,6 +125,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168558115806632758, guid: e1388dcf5afc4ea4aa506650edb1f913,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthPack MatModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1388dcf5afc4ea4aa506650edb1f913, type: 3}
