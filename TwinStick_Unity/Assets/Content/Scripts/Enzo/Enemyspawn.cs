@@ -19,11 +19,17 @@ public class Enemyspawn : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        for (int i = 0; i < 4; i++)
+        {
+            Vector3 _randomPos = spawnpoint.position + Random.insideUnitSphere * 10;
+            _randomPos.y = 0;
+            SpawnEnemy(_randomPos);
+        }
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemy(Vector3 _pos)
     {
-        var newsmallenemy = Instantiate(smallenemy, spawnpoint.position, spawnpoint.rotation);
+        var newsmallenemy = Instantiate(smallenemy, _pos, spawnpoint.rotation);
     }
 
     //private void SpawnCube()
