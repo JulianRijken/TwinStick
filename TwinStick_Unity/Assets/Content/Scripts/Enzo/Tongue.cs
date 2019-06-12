@@ -50,6 +50,7 @@ public class Tongue : MonoBehaviour
             {
                 //print("ik ben chill!");
                 state = TongueState.passive;
+                //GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
             }
         }
 
