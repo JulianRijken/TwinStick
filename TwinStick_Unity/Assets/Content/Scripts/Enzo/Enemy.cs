@@ -11,6 +11,7 @@ public class Enemy : Damageable
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootPoint = null;
     [SerializeField] private float resetShotTimer;
+    [SerializeField] private GameObject deadVersion = null;
 
     private int nextpoint = 0;
     private NavMeshAgent agent;
@@ -55,14 +56,40 @@ public class Enemy : Damageable
         else if (status == EnemyStatus.Attack)
         {
             if (target != null)
-                agent.destination = target.position;
-
-            if (shotTimer > 0)
-                shotTimer -= Time.deltaTime;
-            else if (shotTimer < 0)
             {
-                Shoot();
-                shotTimer = resetShotTimer;
+                float _distanceBitween = Vector3.Distance(transform.position, target.position);
+                if (_distanceBitween > 4)
+                {
+                    agent.destination = target.position;
+                    agent.speed = 3.5f;
+                }
+                else if(_distanceBitween > 2)
+                {
+                    Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position, Vector3.up);
+                    transform.rotation = Quaternion.Slerp(transform.rotation,lookRotation,Time.deltaTime * 4f);
+                    agent.speed = 0;
+
+
+                    if (shotTimer > 0)
+                        shotTimer -= Time.deltaTime;
+                    else if (shotTimer < 0)
+                    {
+                        Shoot();
+                        shotTimer = resetShotTimer;
+                    }
+
+                }
+                else
+                {
+                    Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position, Vector3.up);
+                    agent.destination = lookRotation * -Vector3.forward + transform.position;
+                    agent.speed = 2f;
+                }
+
+
+
+
+
             }
         }
     }
@@ -90,7 +117,10 @@ public class Enemy : Damageable
     protected override void OnDeath()
     {
         base.OnDeath();
+        if(deadVersion != null)
+        Instantiate(deadVersion, transform.position, transform.rotation);
         Destroy(gameObject);
+        
         //Music.Stop();
     }
 }

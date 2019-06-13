@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private string projectileName = "Bullet";
     [SerializeField] private LayerMask collisionLayer = new LayerMask();
     [SerializeField] private TrailRenderer smokeTrail;
+    [SerializeField] private GameObject targetHitSound = null;
 
     private Rigidbody rig;
     private Vector3 lastPos;
@@ -79,6 +80,8 @@ public class Projectile : MonoBehaviour
         Damageable damageable = _hit.transform.gameObject.GetComponent<Damageable>();
         if (damageable != null)
         {
+            if(targetHitSound != null)
+                Instantiate(targetHitSound);
             damageable.DoDamage(damage, projectileName);
             hitWall = true;
             transform.position = _hit.point;
