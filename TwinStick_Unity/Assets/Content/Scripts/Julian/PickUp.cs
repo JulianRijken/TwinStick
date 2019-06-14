@@ -11,8 +11,8 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float pickUpDelay = 0.3f;
     [SerializeField] private float hightOffset = 1;
     [SerializeField] private int givePerPickUp = 5;
+
     [SerializeField] private Slider slider = null;
-    //[SerializeField] private Camera uiCamera = null;
 
     private bool pickUpAllowed = true;
     private bool colliding = false;
@@ -64,12 +64,6 @@ public class PickUp : MonoBehaviour
             StartCoroutine(AllowDelayCoroutine());
         }
     }
-
-    //private void LateUpdate()
-    //{
-    //    if (slider != null)
-    //        slider.transform.position = uiCamera.WorldToViewportPoint(transform.position);
-    //}
 
     // Resets the delay
     private IEnumerator AllowDelayCoroutine()
