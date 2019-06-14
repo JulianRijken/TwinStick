@@ -7145,6 +7145,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8572626335121047336, guid: 23d33cb29bdfd0c43be75280046977c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7387626332643012233, guid: 23d33cb29bdfd0c43be75280046977c7,
         type: 3}
       propertyPath: m_Name
@@ -7221,11 +7226,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[3]
       value: 
       objectReference: {fileID: 1963425300}
-    - target: {fileID: 8572626335121047336, guid: 23d33cb29bdfd0c43be75280046977c7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7152162812763708358, guid: 23d33cb29bdfd0c43be75280046977c7,
         type: 3}
       propertyPath: m_RootOrder
@@ -7724,6 +7724,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8064251678223355108, guid: adb2baed36fa32747ac0d12219dd16ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 8064251676933265591, guid: adb2baed36fa32747ac0d12219dd16ee,
         type: 3}
       propertyPath: m_Name
@@ -7784,6 +7789,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 284230710, guid: adb2baed36fa32747ac0d12219dd16ee, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 284230710, guid: adb2baed36fa32747ac0d12219dd16ee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8064251677806693366, guid: adb2baed36fa32747ac0d12219dd16ee,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -7793,19 +7806,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284230710, guid: adb2baed36fa32747ac0d12219dd16ee, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284230710, guid: adb2baed36fa32747ac0d12219dd16ee, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064251678223355108, guid: adb2baed36fa32747ac0d12219dd16ee,
-        type: 3}
-      propertyPath: m_TagString
-      value: MainCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 6804873374669797291, guid: adb2baed36fa32747ac0d12219dd16ee,
         type: 3}
@@ -8096,6 +8096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2703513494806858872}
   - component: {fileID: 862444355292177828}
+  - component: {fileID: 9147533625286431143}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -8103,3 +8104,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &9147533625286431143
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9147533625286431142}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 31b2b5fe88e84be4aa95bf9304974548, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
