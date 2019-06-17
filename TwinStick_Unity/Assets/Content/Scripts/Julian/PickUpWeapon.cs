@@ -6,25 +6,35 @@ using UnityEngine.UI;
 
 public class PickUpWeapon : MonoBehaviour
 {
-    [SerializeField] private WeaponID weapon = WeaponID.knife;
+
+    [SerializeField] private WeaponID weaponID = WeaponID.knife;
 
     private bool pickUpAllowed = true;
     private bool colliding = false;
     private Player player = null;
+    private float timer;
 
 
     private void Start()
     {
         colliding = false;
+        timer = 0;
     }
 
     private void Update()
     {
-        if (Input.GetButton("Use") && pickUpAllowed && colliding)
+        timer += Time.deltaTime;
+
+        if (Input.GetButton("Use") && pickUpAllowed && colliding && timer > 1)
         {
-            player.PickUpWeapon(weapon);
+            player.PickUpWeapon(weaponID);
             Destroy(gameObject);
         }
+    }
+
+    public WeaponID GetWeaponID()
+    {
+        return weaponID;
     }
 
 
@@ -49,11 +59,10 @@ public class PickUpWeapon : MonoBehaviour
         }
     }
 
-    [ExecuteInEditMode]
-    private void OnValidate()
-    {
-        gameObject.name = weapon.ToString() + "_PickUp";
-    }
+    //private void OnValidate()
+    //{
+    //    gameObject.name = weaponID.ToString() + "_PickUp";
+    //}
 
     private void OnDrawGizmos()
     {

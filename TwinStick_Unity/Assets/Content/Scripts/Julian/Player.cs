@@ -17,12 +17,13 @@ public class Player : Damageable
     [SerializeField] private float rotationSpeed = 30f;
     [SerializeField] private float rollDistance = 5f;
     [SerializeField] private float rollTime = 5f;
-    [SerializeField] private AnimationCurve rollCurve;
+    [SerializeField] private AnimationCurve rollCurve = null;
 
     [Header("Weapon")]
     [SerializeField] private Transform weaponPivit;
     [SerializeField] private Weapon[] weapons = null;
-    [SerializeField] private Weapon[] weaponsInInventory;
+    [SerializeField] private Weapon[] weaponsInInventory = null;
+    [SerializeField] private PickUpWeapon[] weaponPickups = null;
 
     [Header("Animations")]
     [SerializeField] private Animator animator;
@@ -51,8 +52,6 @@ public class Player : Damageable
         }
 
         PickUpWeapon(WeaponID.knife);
-        PickUpWeapon(WeaponID.primaryTest);
-        PickUpWeapon(WeaponID.flameThrower);
 
 
         selectedSlot = WeaponSlotType.empty;
@@ -209,6 +208,15 @@ public class Player : Damageable
     private void SpawnPickupWeapon(WeaponID _weaponID)
     {
         Debug.Log(_weaponID.ToString() + " Dropped");
+
+        for (int i = 0; i < weaponPickups.Length; i++)
+        {
+            if(weaponPickups[i].GetWeaponID() == _weaponID)
+            {
+                Instantiate(weaponPickups[i],transform.position + transform.forward,transform.rotation);
+                break;
+            }
+        }
     }
 
     /// <summary>
