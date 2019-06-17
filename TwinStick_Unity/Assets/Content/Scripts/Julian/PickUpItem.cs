@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PickUp : MonoBehaviour
+public class PickUpItem : MonoBehaviour
 {
     [SerializeField] private ItemID item = ItemID.keyCardA;
     [SerializeField] private int count = 30;
