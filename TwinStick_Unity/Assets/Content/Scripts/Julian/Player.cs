@@ -47,14 +47,14 @@ public class Player : Damageable
 
         for (int i = 0; i < weapons.Length; i++)
         {
-            Weapon weapon = Instantiate(weapons[i], weaponPivit.position, weaponPivit.rotation, weaponPivit);
-            weapon.gameObject.SetActive(false);
-            weapons[i] = weapon;
+            weapons[i].gameObject.SetActive(false);
         }
 
-        weaponsInInventory[(int)WeaponSlotType.empty] = weapons[0];
-        weaponsInInventory[(int)WeaponSlotType.secondary] = weapons[1];
-        weaponsInInventory[(int)WeaponSlotType.primary] = weapons[2];
+        PickUpWeapon(WeaponID.knife);
+        PickUpWeapon(WeaponID.primaryTest);
+        PickUpWeapon(WeaponID.flameThrower);
+
+
         selectedSlot = WeaponSlotType.empty;
         weaponsInInventory[(int)WeaponSlotType.empty].gameObject.SetActive(true);
 
