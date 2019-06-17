@@ -18,9 +18,9 @@ public class Enemyspawn : MonoBehaviour
 
         if (spawnTimer > spawnDelay)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
-                Vector3 _randomPos = spawnpoint.position + Random.insideUnitSphere * 10;
+                Vector3 _randomPos = spawnpoint.position + Random.insideUnitSphere * 3;
                 _randomPos.y = 0;
                 SpawnEnemy(_randomPos);
             }
