@@ -74,6 +74,7 @@ public class UIController : MonoBehaviour
 
     private void OpenInventoy()
     {
+        Time.timeScale = 0;
         Cursor.visible = true;
         SetScreenActive(inventoryMenu, GameMenuState.inventoy);
         //todo Maak mis een aparte class voor de inventoyUI
