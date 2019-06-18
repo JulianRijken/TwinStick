@@ -201,6 +201,15 @@ public class Gun : Weapon
     }
 
     /// <summary>
+    /// Returns the ammo from the magasine
+    /// </summary>
+    /// <returns></returns>
+    public void SetAmmoInMag(int _ammo)
+    {
+        ammoInMag = _ammo;
+    }
+
+    /// <summary>
     /// Returns the type of ammo used for the gun
     /// </summary>
     public ItemID GetAmmoType()
