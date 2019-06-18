@@ -170,6 +170,7 @@ MonoBehaviour:
   - {fileID: 9125180904784365282}
   - {fileID: 3220072542668651758}
   weaponsInInventory: []
+  weaponPickups: []
   animator: {fileID: 7243803413002391991}
 --- !u!54 &8827632921905314600
 Rigidbody:
@@ -198,6 +199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220072543033602448, guid: 5d4f144bfc4b2434b92d73cf2e708ec9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1942361173048902531, guid: 5d4f144bfc4b2434b92d73cf2e708ec9,
         type: 3}
@@ -285,6 +291,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gun_PrimaryTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220072543033602448, guid: 701293e479db5a2499a11d97a58961df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1942361173048902531, guid: 701293e479db5a2499a11d97a58961df,
         type: 3}
