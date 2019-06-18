@@ -10,13 +10,13 @@ public class toxic : MonoBehaviour
     //        DealDamage(5);
     //    }
     //}
-    public static float health = 100;
+    //public static float health = 100;
 
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.name == "Player")
-        {
-            health -= 5;
-        }
-    }
+    //private void OnCollisionEnter(Collision col)
+    //{
+    //    if (col.gameObject.name == "Player")
+    //    {
+    //        health -= 5;
+    //    }
+    //}
 }

@@ -23,6 +23,7 @@ public class Rat : Damageable
     //private void Update()
     //{
     //}
+    [SerializeField]
     private Animator animRat;
 
     [SerializeField] private RatState Ratstate;
@@ -71,6 +72,7 @@ public class Rat : Damageable
 
     public void UpdateAnimatorValues()
     {
+        Debug.LogFormat("Change: {0}", (int)Ratstate);
         animRat.SetInteger("State", (int)Ratstate);
     }
 }
