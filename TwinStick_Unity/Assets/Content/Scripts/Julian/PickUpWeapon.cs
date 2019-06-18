@@ -8,26 +8,29 @@ public class PickUpWeapon : MonoBehaviour
 {
 
     [SerializeField] private WeaponID weaponID = WeaponID.knife;
+    [SerializeField] private int startingAmmo = 30;
 
     private bool pickUpAllowed = true;
     private bool colliding = false;
     private Player player = null;
     private float timer;
+    private int ammo;
 
 
-    private void Start()
+    private void Awake()
     {
         colliding = false;
         timer = 0;
+        ammo = startingAmmo;
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
 
-        if (Input.GetButton("Use") && pickUpAllowed && colliding && timer > 1)
+        if (Input.GetButton("Use") && pickUpAllowed && colliding && timer > 0.5f)
         {
-            player.PickUpWeapon(weaponID);
+            player.PickUpWeapon(weaponID,ammo);
             Destroy(gameObject);
         }
     }
@@ -37,6 +40,15 @@ public class PickUpWeapon : MonoBehaviour
         return weaponID;
     }
 
+    public void SetWeaponAmmo(int _ammo)
+    {
+        ammo = _ammo;
+    }
+
+    public int GetWeaponAmmo()
+    {
+        return ammo;
+    }
 
     // Checks Collition
     private void OnTriggerEnter(Collider other)

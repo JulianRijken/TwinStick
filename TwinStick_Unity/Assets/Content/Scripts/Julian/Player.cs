@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 
 public enum PlayerAnimation { rifleAttack = 0, knifeAttack = 1 , rifleReload = 3}
 public enum PlayerMovementState { walking = 0, rolling = 1}
@@ -21,6 +21,8 @@ public class Player : Damageable
 
     [Header("Weapon")]
     [SerializeField] private Transform weaponPivit;
+    [SerializeField] private float throwForce = 5f;
+    [SerializeField] private Vector2 torqueForce = new Vector2(-1,1);
     [SerializeField] private Weapon[] weapons = null;
     [SerializeField] private Weapon[] weaponsInInventory = null;
     [SerializeField] private PickUpWeapon[] weaponPickups = null;
@@ -51,11 +53,10 @@ public class Player : Damageable
             weapons[i].gameObject.SetActive(false);
         }
 
-        PickUpWeapon(WeaponID.knife);
 
 
         selectedSlot = WeaponSlotType.empty;
-        weaponsInInventory[(int)WeaponSlotType.empty].gameObject.SetActive(true);
+        PickUpWeapon(WeaponID.knife);
 
 
         moveSpeed = defaultMoveSpeed;
@@ -69,6 +70,7 @@ public class Player : Damageable
 
         GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
         GameManager.instance.notificationCenter.FireArmorHealthChange(armorHealth, maxArmorHealth);
+
     }
 
     private void Update()
@@ -90,10 +92,16 @@ public class Player : Damageable
     /// <summary>
     /// Picks up the weapon and if needed switches it in the invenety
     /// </summary>
-    public void PickUpWeapon(WeaponID _weaponID)
+    public void PickUpWeapon(WeaponID _weaponID,int _ammo = 0)
     {
         Weapon newWeapon = GetWeapon(_weaponID);
         newWeapon.OnRefresh();
+
+        Debug.Log("Ammo in mag" + _ammo);
+        Gun _gun = newWeapon.GetComponent<Gun>();
+        if (_gun != null)
+            _gun.SetAmmoInMag(_ammo);
+
         Weapon oldWeapon = weaponsInInventory[(int)newWeapon.weaponSlotType];
 
         // Check if you already have the item
@@ -106,8 +114,19 @@ public class Player : Damageable
         {
             // So no, throw away the old weapon and than switch it
             weaponsInInventory[(int)newWeapon.weaponSlotType] = newWeapon;
+            GetWeapon(oldWeapon.weaponID).gameObject.SetActive(false);
+
             SpawnPickupWeapon(oldWeapon.weaponID);
         }
+
+
+        if ((int)newWeapon.weaponSlotType > (int)selectedSlot)
+            SwitchUp();
+        else if ((int)newWeapon.weaponSlotType == (int)selectedSlot)
+            weaponsInInventory[(int)selectedSlot].gameObject.SetActive(true);
+        else if ((int)newWeapon.weaponSlotType < (int)selectedSlot)
+            SwitchDown();
+
     }
 
     /// <summary>
@@ -128,7 +147,7 @@ public class Player : Damageable
             if (playerMovementState != PlayerMovementState.rolling)
             {
                 // Drop the weapon
-                if (Input.GetButton("Drop"))
+                if (Input.GetButtonDown("Drop"))
                     DropCurrenWeapon();
 
                 // Give The weapon input
@@ -213,8 +232,22 @@ public class Player : Damageable
         {
             if(weaponPickups[i].GetWeaponID() == _weaponID)
             {
-                Instantiate(weaponPickups[i],transform.position + transform.forward,transform.rotation);
-                break;
+                PickUpWeapon _spawntWeapon = Instantiate(weaponPickups[i],transform.position + transform.forward,transform.rotation);
+
+                Rigidbody _rb = _spawntWeapon.GetComponent<Rigidbody>();
+                if(_rb != null)
+                {
+                    _rb.AddForce(transform.forward * throwForce, ForceMode.Impulse);
+                    _rb.AddTorque(new Vector3(Random.Range(torqueForce.x,torqueForce.y), Random.Range(torqueForce.x, torqueForce.y), Random.Range(torqueForce.x, torqueForce.y)),ForceMode.Impulse);
+                }
+
+                Gun _gun = GetWeapon(_weaponID).GetComponent<Gun>();
+                if (_gun != null)
+                    _spawntWeapon.SetWeaponAmmo(_gun.GetAmmoInMag());
+
+                Debug.Log(_spawntWeapon.GetWeaponAmmo());
+
+                return;
             }
         }
     }
@@ -269,6 +302,20 @@ public class Player : Damageable
         {
             if (weapons[i].weaponID == _weaponID)
                 return weapons[i];
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Retuns the weapon from the pool by a id
+    /// </summary>
+    private Weapon GetWeaponInInventory(WeaponID _weaponID)
+    {
+        for (int i = 0; i < weaponsInInventory.Length; i++)
+        {
+            if (weaponsInInventory[i].weaponID == _weaponID)
+                return weaponsInInventory[i];
         }
 
         return null;
