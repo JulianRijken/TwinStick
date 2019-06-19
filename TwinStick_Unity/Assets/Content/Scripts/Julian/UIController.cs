@@ -24,10 +24,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject inventoryMenu = null;
     [SerializeField] private GameObject exitWindow = null;
 
-    [Header("Crosshair")]
-    [SerializeField] private Transform crosshair = null;
-    [SerializeField] private Vector3 crosshairOffset = Vector3.up;
-
     private GameObject[] menuScreens = null;
 
     private NotificationCenter notificationCenter;
@@ -67,10 +63,6 @@ public class UIController : MonoBehaviour
             }
         }
 
-        Vector3 _crosshairPos = uiCamera.ScreenToWorldPoint(Input.mousePosition + crosshairOffset);
-        _crosshairPos.z = transform.position.z;
-        crosshair.position = _crosshairPos;
-
     }
 
 
@@ -88,7 +80,6 @@ public class UIController : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         SetScreenActive(inventoryMenu, GameMenuState.inventoy);
-        //todo Maak mis een aparte class voor de inventoyUI
     }
 
     public void ClearMenus()

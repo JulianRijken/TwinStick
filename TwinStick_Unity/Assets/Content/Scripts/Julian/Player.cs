@@ -97,7 +97,6 @@ public class Player : Damageable
         Weapon newWeapon = GetWeapon(_weaponID);
         newWeapon.OnRefresh();
 
-        Debug.Log("Ammo in mag" + _ammo);
         Gun _gun = newWeapon.GetComponent<Gun>();
         if (_gun != null)
             _gun.SetAmmoInMag(_ammo);
@@ -372,7 +371,7 @@ public class Player : Damageable
             if (GameManager.instance.GetMenuState() == GameMenuState.clear)
             {
                 input = Vector3.Lerp(input, GetInput().normalized, Time.deltaTime * moveAcceleration);
-                rig.MovePosition(transform.position + input * Time.deltaTime * moveSpeed);
+                rig.velocity = input * moveSpeed;
 
                 SetAnimatorVeloctiy(input.magnitude * moveSpeed);
 
