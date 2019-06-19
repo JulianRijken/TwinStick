@@ -226,7 +226,7 @@ public class Player : Damageable
     /// </summary>
     private void SpawnPickupWeapon(WeaponID _weaponID)
     {
-        Debug.Log(_weaponID.ToString() + " Dropped");
+        //Debug.Log(_weaponID.ToString() + " Dropped");
 
         for (int i = 0; i < weaponPickups.Length; i++)
         {
@@ -245,7 +245,7 @@ public class Player : Damageable
                 if (_gun != null)
                     _spawntWeapon.SetWeaponAmmo(_gun.GetAmmoInMag());
 
-                Debug.Log(_spawntWeapon.GetWeaponAmmo());
+                //Debug.Log(_spawntWeapon.GetWeaponAmmo());
 
                 return;
             }
