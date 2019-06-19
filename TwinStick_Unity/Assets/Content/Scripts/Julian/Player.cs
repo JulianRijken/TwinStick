@@ -29,7 +29,7 @@ public class Player : Damageable
 
     [Header("Animations")]
     [SerializeField] private Animator animator;
- 
+
     private WeaponSlotType selectedSlot = WeaponSlotType.primary;
     private int weaponSlotCount;
 

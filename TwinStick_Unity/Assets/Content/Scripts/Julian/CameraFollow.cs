@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (GameManager.instance.GetMenuState() == GameMenuState.clear)
         {

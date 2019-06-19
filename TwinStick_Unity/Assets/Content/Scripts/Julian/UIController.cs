@@ -24,10 +24,14 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject inventoryMenu = null;
     [SerializeField] private GameObject exitWindow = null;
 
+    [Header("Crosshair")]
+    [SerializeField] private Transform crosshair = null;
+    [SerializeField] private Vector3 crosshairOffset = Vector3.up;
+
     private GameObject[] menuScreens = null;
 
     private NotificationCenter notificationCenter;
-
+    private Camera uiCamera;
 
     private void Awake()
     {
@@ -35,6 +39,8 @@ public class UIController : MonoBehaviour
         menuScreens = new GameObject[] { pauseMenu, inventoryMenu , hud};
 
         SetScreenActive(hud,GameMenuState.clear);
+
+        uiCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
     }
 
 
@@ -61,7 +67,12 @@ public class UIController : MonoBehaviour
             }
         }
 
+        Vector3 _crosshairPos = uiCamera.ScreenToWorldPoint(Input.mousePosition + crosshairOffset);
+        _crosshairPos.z = transform.position.z;
+        crosshair.position = _crosshairPos;
+
     }
+
 
 
     private void OpenPauseMenu()
@@ -84,8 +95,7 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 1;
         GameManager.instance.notificationCenter.FireBlur(false);
-        // FIX HIER
-        Cursor.visible = true;
+        Cursor.visible = false;
         SetScreenActive(hud, GameMenuState.clear);
     }
 

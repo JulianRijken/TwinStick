@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3857524971795252800}
-  - component: {fileID: 275835989452715090}
   - component: {fileID: 275835989452715089}
   - component: {fileID: 275835989452715088}
   - component: {fileID: 8861481725144818357}
@@ -35,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &275835989452715090
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275835989452715091}
-  m_Material: {fileID: 13400000, guid: 35ae404918f5b2243849611839936346, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.3, z: 0.65}
-  m_Center: {x: 0, y: 0, z: -0.03}
 --- !u!54 &275835989452715089
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102,7 +88,8 @@ GameObject:
   - component: {fileID: 6973966026480914001}
   - component: {fileID: 2131196143412360295}
   - component: {fileID: 5669766891079288990}
-  m_Layer: 0
+  - component: {fileID: 4270655048720105484}
+  m_Layer: 13
   m_Name: Revolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,3 +155,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4270655048720105484
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6238568495003434050}
+  m_Material: {fileID: 13400000, guid: 35ae404918f5b2243849611839936346, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0093007125, y: 0.027775034, z: 0.03918575}
+  m_Center: {x: 0.000000015133992, y: 0.012815225, z: 0.017058348}
