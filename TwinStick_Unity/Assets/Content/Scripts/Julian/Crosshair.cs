@@ -12,11 +12,12 @@ public class Crosshair : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         uiCamera = Camera.main;
+        Cursor.visible = true;
     }
 
     void LateUpdate()
     {
-        if (player != null & uiCamera != null)
+        if (player != null && uiCamera != null && GameManager.instance.menuState == GameMenuState.clear)
         {
             Vector3 dir = transform.position - player.position;
             Quaternion torot = Quaternion.LookRotation(dir, Vector3.up);

@@ -14,6 +14,19 @@ public class NotificationCenter
     public delegate void GunMagUpdateAction(int newAmmoInMag);
     public event GunMagUpdateAction OnGunMagAmmoUpdated;
 
+
+
+    ///// <summary>
+    ///// Fires the Gun Mag Ammo Change event
+    ///// </summary>
+    //public void FireGunMagAmmoChange(int newAmmoInMag, int maxAmmo)
+    //{
+    //    OnGunMagAmmoUpdated?.Invoke(newAmmoInMag, maxAmmo);
+    //}
+    //public delegate void GunMagUpdateAction(int newAmmoInMag, int maxAmmo);
+    //public event GunMagUpdateAction OnGunMagAmmoUpdated;
+
+
     /// <summary>
     /// Fires Gun Inventoy Ammo Change event
     /// </summary>
@@ -44,8 +57,9 @@ public class NotificationCenter
     public delegate void PlayerHealthUpdateAction(float newHealth, float newMaxHealth);
     public event PlayerHealthUpdateAction OnPlayerHealthChange;
 
+
     /// <summary>
-    /// Fires Player ArmorHealth Change event
+    /// Fires Ammo
     /// </summary>
     public void FireArmorHealthChange(float newArmorHealth, float newArmorMaxHealth)
     {
