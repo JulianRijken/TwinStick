@@ -35,7 +35,7 @@ public class Gun : Weapon
 
         GameManager.instance.notificationCenter.OnItemAdded += OnItemAdded;
 
-        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag,magSize);
         GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
     }
 
@@ -103,7 +103,7 @@ public class Gun : Weapon
         if (gunShotAudio != null)
             Instantiate(gunShotAudio);
 
-        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag, magSize);
         GameManager.instance.notificationCenter.FirePlayerAnimation(PlayerAnimation.rifleAttack);
     }
 
@@ -151,7 +151,7 @@ public class Gun : Weapon
 
             }
 
-            GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+            GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag, magSize);
             GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
 
         }
@@ -242,7 +242,7 @@ public class Gun : Weapon
         base.OnActive();
         chamberLoaded = true;
         gunState = GunState.Active;
-        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag);
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag, magSize);
         GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
     }
 

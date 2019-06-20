@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Knife : Weapon
 {
+    public override void OnActive()
+    {
+        base.OnActive();
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(0, 0);
+    }
+
+
     /// <summary>
     /// Triggers the gun to shoot Once
     /// </summary>

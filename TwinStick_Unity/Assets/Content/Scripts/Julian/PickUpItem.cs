@@ -14,6 +14,8 @@ public class PickUpItem : MonoBehaviour
 
     [SerializeField] private Slider slider = null;
 
+    private Animator pickupAnimatior = null;
+
     private bool pickUpAllowed = true;
     private bool colliding = false;
 
@@ -31,6 +33,8 @@ public class PickUpItem : MonoBehaviour
             slider.minValue = 0;
             slider.value = slider.maxValue;
         }
+
+        pickupAnimatior = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -78,12 +82,18 @@ public class PickUpItem : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Player>() != null)
             colliding = true;
+
+        if(pickupAnimatior != null)
+        pickupAnimatior.SetBool("colliding", true);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<Player>() != null)
             colliding = false;
+
+        if (pickupAnimatior != null)
+            pickupAnimatior.SetBool("colliding", false);
     }
 
     [ExecuteInEditMode]

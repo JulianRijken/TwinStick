@@ -15,9 +15,6 @@ public class HudController : MonoBehaviour
     [SerializeField] private Slider healthSlider = null;
     [SerializeField] private Slider armorSlider = null;
     [SerializeField] private GameObject gunUIGroup = null;
-    //[SerializeField] private GameObject gameCursor = null;
-
-    //private Camera mainCamera;
 
 
     private NotificationCenter notificationCenter;
@@ -32,23 +29,15 @@ public class HudController : MonoBehaviour
         notificationCenter.OnGunInventoyAmmoUpdated += HandleAmmoInInventoy;
     }
 
-    //private void Start()
-    //{
-    //    mainCamera = Camera.main;
-    //}
-
-    //private void LateUpdate()
-    //{
-    //    gameCursor.transform.position = GetMousePos(mainCamera);
-    //}
-
 
     /// <summary>
     /// Handles the ammo in mag
     /// </summary>
-    private void HandleAmmoInMag(int newAmmoInMag)
+    private void HandleAmmoInMag(int newAmmoInMag, int maxAmmo)
     {
         ammoInMagText.text = newAmmoInMag.ToString();
+
+        gunUIGroup.SetActive(maxAmmo > 0 ? true : false);
     }
 
     /// <summary>

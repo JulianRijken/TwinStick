@@ -26,6 +26,7 @@ public class FlameThower : Weapon
     public override void OnActive()
     {
         base.OnActive();
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(0, 0);
         sound.Pause();
     }
 

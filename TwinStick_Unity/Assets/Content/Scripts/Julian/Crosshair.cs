@@ -1,18 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Crosshair : MonoBehaviour
 {
+    [SerializeField] private Image ammoCircle;
+    [SerializeField] private float hightOffset;
+    [SerializeField] private float sidewaysOffset;
 
     private Transform player;
     private Camera uiCamera;
+
+    private void Awake()
+    {
+        GameManager.instance.notificationCenter.OnGunMagAmmoUpdated += HandleAmmoInMag;
+    }
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         uiCamera = Camera.main;
-        Cursor.visible = true;
+        Cursor.visible = false;
     }
 
     void LateUpdate()
@@ -25,7 +34,22 @@ public class Crosshair : MonoBehaviour
 
             transform.rotation = torot;
 
-            transform.position = GetMousePos(uiCamera, new Vector3(0, 1.5f, 0));
+            transform.position = GetMousePos(uiCamera, new Vector3(0,hightOffset,0) + transform.right * sidewaysOffset);
+        }
+    }
+
+    /// <summary>
+    /// Handles the ammo in mag
+    /// </summary>
+    private void HandleAmmoInMag(int newAmmoInMag, int maxAmmo)
+    {
+        if (maxAmmo > 0)
+        {
+            ammoCircle.fillAmount = newAmmoInMag / (float)maxAmmo;
+        }
+        else
+        {
+            ammoCircle.fillAmount = 1;
         }
     }
 
@@ -46,5 +70,11 @@ public class Crosshair : MonoBehaviour
         }
 
         return Vector3.zero;
+    }
+
+
+    private void OnDestroy()
+    {
+        GameManager.instance.notificationCenter.OnGunMagAmmoUpdated -= HandleAmmoInMag;
     }
 }
