@@ -46,12 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78134d5663ee4d4e819bfd1e57fd768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupType: 1
   item: 0
   count: 30
   pickUpDelay: 0.2
   hightOffset: -0.75
   givePerPickUp: 10
-  slider: {fileID: 2083277700560218865}
+  weapon: 0
+  startingAmmo: 30
 --- !u!135 &5341564681833079171
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -72,11 +74,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5341564681833079175}
     m_Modifications:
-    - target: {fileID: 2012810796766164217, guid: ad192e395fabc44409bca1a821044ef8,
-        type: 3}
-      propertyPath: m_Name
-      value: AmmoBox MatModel
-      objectReference: {fileID: 0}
     - target: {fileID: 3293724630330083050, guid: ad192e395fabc44409bca1a821044ef8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -132,6 +129,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2012810796766164217, guid: ad192e395fabc44409bca1a821044ef8,
+        type: 3}
+      propertyPath: m_Name
+      value: AmmoBox MatModel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad192e395fabc44409bca1a821044ef8, type: 3}
 --- !u!4 &1240276893554031205 stripped
@@ -147,11 +149,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5341564681833079175}
     m_Modifications:
-    - target: {fileID: 7607035432643072614, guid: e6310968eef381040be8ed44eea318b0,
-        type: 3}
-      propertyPath: m_Name
-      value: Pickup Canvas
-      objectReference: {fileID: 0}
     - target: {fileID: 6671520813197584891, guid: e6310968eef381040be8ed44eea318b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -257,6 +254,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7607035432643072614, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Name
+      value: Pickup Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 9091083465036915870, guid: e6310968eef381040be8ed44eea318b0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -275,15 +277,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4657334350792137314}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2083277700560218865 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6650522444804321427, guid: e6310968eef381040be8ed44eea318b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 4657334350792137314}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

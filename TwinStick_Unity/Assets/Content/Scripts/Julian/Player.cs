@@ -25,7 +25,7 @@ public class Player : Damageable
     [SerializeField] private Vector2 torqueForce = new Vector2(-1,1);
     [SerializeField] private Weapon[] weapons = null;
     [SerializeField] private Weapon[] weaponsInInventory = null;
-    [SerializeField] private PickUpWeapon[] weaponPickups = null;
+    [SerializeField] private PickUp[] weaponPickups = null;
 
     [Header("Animations")]
     [SerializeField] private Animator animator;
@@ -234,7 +234,7 @@ public class Player : Damageable
         {
             if(weaponPickups[i].GetWeaponID() == _weaponID)
             {
-                PickUpWeapon _spawntWeapon = Instantiate(weaponPickups[i],transform.position + transform.forward,transform.rotation);
+                PickUp _spawntWeapon = Instantiate(weaponPickups[i],transform.position + transform.forward,transform.rotation);
 
                 Rigidbody _rb = _spawntWeapon.GetComponent<Rigidbody>();
                 if(_rb != null)
