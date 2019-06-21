@@ -14,6 +14,7 @@ public class FlameThower : Weapon
         flameParticle = FindObjectOfType<ParticleEmitters>().flameThrowerFlame;
     }
 
+
     private void LateUpdate()
     {
         if (flameParticle != null && emitterTransform != null)

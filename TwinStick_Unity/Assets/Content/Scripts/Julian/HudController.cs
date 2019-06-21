@@ -15,6 +15,8 @@ public class HudController : MonoBehaviour
     [SerializeField] private Slider healthSlider = null;
     [SerializeField] private Slider armorSlider = null;
     [SerializeField] private GameObject gunUIGroup = null;
+    [SerializeField] private Image ammoIcon;
+
 
 
     private NotificationCenter notificationCenter;
@@ -38,6 +40,15 @@ public class HudController : MonoBehaviour
         ammoInMagText.text = newAmmoInMag.ToString();
 
         gunUIGroup.SetActive(maxAmmo > 0 ? true : false);
+
+        if (maxAmmo > 0)
+        {
+            ammoIcon.fillAmount = newAmmoInMag / (float)maxAmmo;
+        }
+        else
+        {
+            ammoIcon.fillAmount = 1;
+        }
     }
 
     /// <summary>

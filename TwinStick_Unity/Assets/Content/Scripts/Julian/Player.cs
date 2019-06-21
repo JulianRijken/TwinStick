@@ -122,7 +122,10 @@ public class Player : Damageable
         if ((int)newWeapon.weaponSlotType > (int)selectedSlot)
             SwitchUp();
         else if ((int)newWeapon.weaponSlotType == (int)selectedSlot)
+        {
             weaponsInInventory[(int)selectedSlot].gameObject.SetActive(true);
+            weaponsInInventory[(int)selectedSlot].OnActive();
+        }
         else if ((int)newWeapon.weaponSlotType < (int)selectedSlot)
             SwitchDown();
 

@@ -28,7 +28,7 @@ public class Crosshair : MonoBehaviour
     {
         if (player != null && uiCamera != null && GameManager.instance.menuState == GameMenuState.clear)
         {
-            Vector3 dir = transform.position - player.position;
+            Vector3 dir = transform.position - (player.position + new Vector3(0, hightOffset, 0) + transform.right * sidewaysOffset);
             Quaternion torot = Quaternion.LookRotation(dir, Vector3.up);
             torot.eulerAngles = new Vector3(90, torot.eulerAngles.y, 0);
 
