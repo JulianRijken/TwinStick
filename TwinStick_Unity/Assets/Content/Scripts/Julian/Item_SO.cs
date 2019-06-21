@@ -6,5 +6,5 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "NAME THE SAME AS ENUM", menuName = "Inventory/New Item", order = 1)]
 public class Item_SO : ScriptableObject
 {
-    public Image icon;  
+    public Sprite icon;  
 }

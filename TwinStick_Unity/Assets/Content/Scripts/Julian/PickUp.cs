@@ -11,6 +11,7 @@ public class PickUp : MonoBehaviour
 
 
     [SerializeField] private PickupType pickupType = PickupType.item;
+    [SerializeField] private float activeDelay = 1;
 
     [Header("Item")]
     [SerializeField] private ItemID item = ItemID.keyCardA;
@@ -27,7 +28,7 @@ public class PickUp : MonoBehaviour
     private Player player = null;
     private int ammo;
 
-
+    private float timeAlive;
     private Slider slider = null;
     private Animator animator = null;
     private bool pickUpAllowed = true;
@@ -37,6 +38,7 @@ public class PickUp : MonoBehaviour
     private void Start()
     {
         colliding = false;
+        player = null;
 
         animator = GetComponentInChildren<Animator>();
         slider = GetComponentInChildren<Slider>();
@@ -51,12 +53,21 @@ public class PickUp : MonoBehaviour
 
         if (count == 1 || pickupType == PickupType.weapon)
             slider.gameObject.SetActive(false);
+
+
+        Vector3 scaleTmp = animator.transform.localScale;
+        scaleTmp.x /= transform.localScale.x;
+        scaleTmp.y /= transform.localScale.y;
+        scaleTmp.z /= transform.localScale.z;
+        animator.transform.localScale = scaleTmp;
+
     }
 
     private void Update()
     {
+        timeAlive += Time.deltaTime;
 
-        if (Input.GetButton("Use") && colliding)
+        if (Input.GetButton("Use") && colliding && timeAlive > activeDelay)
         {
 
             if(pickupType == PickupType.item)
@@ -91,8 +102,11 @@ public class PickUp : MonoBehaviour
             }
             else
             {
-                player.PickUpWeapon(weapon, ammo);
-                Destroy(gameObject);
+                if (player != null)
+                {
+                    player.PickUpWeapon(weapon, ammo);
+                    Destroy(gameObject);
+                }
             }
         }
     }
@@ -125,23 +139,32 @@ public class PickUp : MonoBehaviour
     // Checks Collition
     private void OnTriggerEnter(Collider other)
     {
-        player = other.gameObject.GetComponent<Player>();
-        if (player != null)
-            colliding = true;
+        if (timeAlive > activeDelay)
+        {
+            player = other.gameObject.GetComponent<Player>();
+            if (player != null)
+            {
+                colliding = true;
 
-        if(animator != null)
-        animator.SetBool("colliding", true);
+                if (animator != null)
+                    animator.SetBool("colliding", true);
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (timeAlive > activeDelay)
+        {
+            player = other.gameObject.GetComponent<Player>();
+            if (player != null)
+            {
+                colliding = false;
 
-        player = other.gameObject.GetComponent<Player>();
-        if (player != null)
-            colliding = false;
-
-        if (animator != null)
-            animator.SetBool("colliding", false);
+                if (animator != null)
+                    animator.SetBool("colliding", false);
+            }
+        }
     }
 
     private void OnDrawGizmos()

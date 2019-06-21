@@ -21,7 +21,7 @@ public enum ItemID
 public class InventoryController
 {
 
-    private List<ItemSlot> inventoryItems = new List<ItemSlot>();
+    private List<ItemSlot> itemSlots = new List<ItemSlot>();
 
 
     /// <summary>
@@ -29,18 +29,18 @@ public class InventoryController
     /// </summary>
     public void AddItem(ItemID item, int count = 1)
     {
-        for (int i = 0; i < inventoryItems.Count; i++)
+        for (int i = 0; i < itemSlots.Count; i++)
         {
-            if (inventoryItems[i].itemID == item)
+            if (itemSlots[i].itemID == item)
             {
-                inventoryItems[i].count += count;
+                itemSlots[i].count += count;
 
                 GameManager.instance.notificationCenter.FireItemAdded();
                 return;
             }
         }
 
-        inventoryItems.Add(new ItemSlot(item, count));
+        itemSlots.Add(new ItemSlot(item, count));
         GameManager.instance.notificationCenter.FireItemAdded();
 
 
@@ -51,10 +51,10 @@ public class InventoryController
     /// </summary>
     public ItemSlot GetItemSlot(ItemID item)
     {
-        for (int i = 0; i < inventoryItems.Count; i++)
+        for (int i = 0; i < itemSlots.Count; i++)
         {
-            if (inventoryItems[i].itemID == item)               
-                    return inventoryItems[i];
+            if (itemSlots[i].itemID == item)               
+                    return itemSlots[i];
         }
 
         return null;
@@ -76,16 +76,23 @@ public class InventoryController
     {
         neededCount = Mathf.Clamp(neededCount, 1, int.MaxValue);
 
-        for (int i = 0; i < inventoryItems.Count; i++)
+        for (int i = 0; i < itemSlots.Count; i++)
         {
-            if (inventoryItems[i].itemID == item)
-                if (inventoryItems[i].count >= neededCount)
+            if (itemSlots[i].itemID == item)
+                if (itemSlots[i].count >= neededCount)
                     return true;
         }
 
         return false;
     }
 
+    /// <summary>
+    /// Returns the item slots
+    /// </summary>
+    public List<ItemSlot> GetItemSlots()
+    {
+        return itemSlots;
+    }
 
 }
 
