@@ -14,6 +14,7 @@ public class FlameThower : Weapon
         flameParticle = FindObjectOfType<ParticleEmitters>().flameThrowerFlame;
     }
 
+
     private void LateUpdate()
     {
         if (flameParticle != null && emitterTransform != null)
@@ -26,6 +27,7 @@ public class FlameThower : Weapon
     public override void OnActive()
     {
         base.OnActive();
+        GameManager.instance.notificationCenter.FireGunMagAmmoChange(0, 0);
         sound.Pause();
     }
 
