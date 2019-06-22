@@ -12,10 +12,10 @@ public class HudController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI ammoInMagText = null; 
     [SerializeField] private TextMeshProUGUI ammoInInventoryText = null;
-    [SerializeField] private Slider healthSlider = null;
-    [SerializeField] private Slider armorSlider = null;
     [SerializeField] private GameObject gunUIGroup = null;
     [SerializeField] private Image ammoIcon;
+    [SerializeField] private Slider[] healthSliders = null;
+    [SerializeField] private Slider[] armorSliders = null;
 
 
 
@@ -64,8 +64,12 @@ public class HudController : MonoBehaviour
     /// </summary>
     private void HandlePlayerHealth(float newHealth, float newMaxHealth)
     {
-        healthSlider.maxValue = newMaxHealth;
-        healthSlider.value = newHealth;
+        for (int i = 0; i < healthSliders.Length; i++)
+        {
+            healthSliders[i].maxValue = newMaxHealth;
+            healthSliders[i].value = newHealth;
+        }
+
     }
 
     /// <summary>
@@ -73,8 +77,11 @@ public class HudController : MonoBehaviour
     /// </summary>
     private void HandleArmorHealth(float newArmorHealth, float newMaxArmorHealth)
     {
-        armorSlider.maxValue = newMaxArmorHealth;
-        armorSlider.value = newArmorHealth;
+        for (int i = 0; i < armorSliders.Length; i++)
+        {
+            armorSliders[i].maxValue = newMaxArmorHealth;
+            armorSliders[i].value = newArmorHealth;
+        }
     }
 
 

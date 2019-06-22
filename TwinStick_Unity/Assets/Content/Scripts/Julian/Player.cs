@@ -469,7 +469,6 @@ public class Player : Damageable
         {
             case ItemID.HealthPack:
                 AddHealth(30f);
-                Debug.Log("ff");
                 GameManager.instance.notificationCenter.FirePlayerHealthChange(health,maxHealth);
 
                 break;

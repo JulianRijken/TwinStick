@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupType: 1
+  activeDelay: 1
   item: 2
   count: 1
   pickUpDelay: 0.2
@@ -74,6 +75,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 729890193836296334}
     m_Modifications:
+    - target: {fileID: 7607035432643072614, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Name
+      value: Pickup Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 6671520813197584891, guid: e6310968eef381040be8ed44eea318b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -179,21 +185,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7607035432643072614, guid: e6310968eef381040be8ed44eea318b0,
-        type: 3}
-      propertyPath: m_Name
-      value: Pickup Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 9091083465036915870, guid: e6310968eef381040be8ed44eea318b0,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9091083465036915870, guid: e6310968eef381040be8ed44eea318b0,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6310968eef381040be8ed44eea318b0, type: 3}
 --- !u!224 &4951403857370479040 stripped
@@ -269,7 +260,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3202261692784182818, guid: 2ce0be0ffe5e12045bbe4c1c1babd9b4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ce0be0ffe5e12045bbe4c1c1babd9b4, type: 3}
 --- !u!4 &4251775625918247860 stripped
 Transform:
