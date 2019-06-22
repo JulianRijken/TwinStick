@@ -15,6 +15,7 @@ public enum ItemID
     keyCardB
 }
 
+
 /// <summary>
 /// Lets you edit the Inventory
 /// </summary>
@@ -35,15 +36,22 @@ public class InventoryController
             {
                 itemSlots[i].count += count;
 
-                GameManager.instance.notificationCenter.FireItemAdded();
+                GameManager.instance.notificationCenter.FireInventoyItemChange();
                 return;
             }
         }
 
         itemSlots.Add(new ItemSlot(item, count));
-        GameManager.instance.notificationCenter.FireItemAdded();
+        GameManager.instance.notificationCenter.FireInventoyItemChange();
+    }
 
-
+    /// <summary>
+    /// Adds the item to the inventory
+    /// </summary>
+    public void RemoveItemSlot(ItemSlot _slot)
+    {
+        itemSlots.Remove(_slot);
+        GameManager.instance.notificationCenter.FireInventoyItemChange();
     }
 
     /// <summary>

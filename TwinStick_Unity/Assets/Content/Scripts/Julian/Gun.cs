@@ -33,7 +33,7 @@ public class Gun : Weapon
         chamberLoaded = true;
         ammoInMag = startingAmmo;
 
-        GameManager.instance.notificationCenter.OnItemAdded += OnItemAdded;
+        GameManager.instance.notificationCenter.OnInventoyItemChange += OnInventoyItemChange;
 
         GameManager.instance.notificationCenter.FireGunMagAmmoChange(ammoInMag,magSize);
         GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
@@ -184,7 +184,7 @@ public class Gun : Weapon
     /// <summary>
     /// Runs when a itme is added to the inventoy
     /// </summary>
-    private void OnItemAdded()
+    private void OnInventoyItemChange()
     {
         GameManager.instance.notificationCenter.FireGunInventoyAmmoChange(GameManager.instance.inventory.GetItemSlot(ammoType));
     }
@@ -265,6 +265,11 @@ public class Gun : Weapon
         }
     }
 
+
+    private void OnDestroy()
+    {
+        GameManager.instance.notificationCenter.OnInventoyItemChange -= OnInventoyItemChange;
+    }
 
 
 }

@@ -91,12 +91,12 @@ public class NotificationCenter
     /// <summary>
     /// Fires Item Added event
     /// </summary>
-    public void FireItemAdded()
+    public void FireInventoyItemChange()
     {
-        OnItemAdded?.Invoke();
+        OnInventoyItemChange?.Invoke();
     }
-    public delegate void ItemAddedAction();
-    public event ItemAddedAction OnItemAdded;
+    public delegate void InventoyItemChangeAction();
+    public event InventoyItemChangeAction OnInventoyItemChange;
 
     /// <summary>
     /// Fires stats is changed
@@ -107,6 +107,16 @@ public class NotificationCenter
     }
     public delegate void StatsChangedAction();
     public event StatsChangedAction OnStatsChanged;
+
+    /// <summary>
+    /// Fires on item used
+    /// </summary>
+    public void FireItemUsed(ItemID _usedItem)
+    {
+        OnItemUsed?.Invoke(_usedItem);
+    }
+    public delegate void ItemUsedAction(ItemID _usedItem);
+    public event ItemUsedAction OnItemUsed;
 
     /// <summary>
     /// Fires Game Paused event
@@ -129,7 +139,7 @@ public class NotificationCenter
     //public delegate void GameUnPausedAction();
     //public event GameUnPausedAction OnGameUnPaused;
 
-    
+
 
 
 }

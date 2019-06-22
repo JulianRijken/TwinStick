@@ -42,6 +42,7 @@ public class Player : Damageable
     private void Awake()
     {
         GameManager.instance.notificationCenter.OnPlayerAnimation += HandleAnimations;
+        GameManager.instance.notificationCenter.OnItemUsed += HandleItemUsage;
 
 
         weaponSlotCount = Enum.GetValues(typeof(WeaponSlotType)).Length;
@@ -459,6 +460,28 @@ public class Player : Damageable
         GameManager.instance.statsController.AddDiedBy(diedBy);
     }
 
+    /// <summary>
+    /// Handles the items being used
+    /// </summary>
+    private void HandleItemUsage(ItemID _usedItem)
+    {
+        switch(_usedItem)
+        {
+            case ItemID.HealthPack:
+                AddHealth(30f);
+                Debug.Log("ff");
+                GameManager.instance.notificationCenter.FirePlayerHealthChange(health,maxHealth);
+
+                break;
+            case ItemID.ArmorPack:
+                AddArmorHealth(30f);
+                GameManager.instance.notificationCenter.FireArmorHealthChange(armorHealth, maxArmorHealth);
+
+                break;
+        }
+
+    }
+
     #endregion
 
 
@@ -514,6 +537,7 @@ public class Player : Damageable
 
     private void OnDestroy()
     {
+        GameManager.instance.notificationCenter.OnItemUsed += HandleItemUsage;
         GameManager.instance.notificationCenter.OnPlayerAnimation -= HandleAnimations;
     }
 }
