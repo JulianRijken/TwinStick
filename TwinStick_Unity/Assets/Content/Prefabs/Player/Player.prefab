@@ -91,7 +91,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8827632921905314603}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 93ccf058d625192488c065f7de4a0c81, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.35
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invincible: 0
-  health: 100
+  health: 10
   maxHealth: 100
   armorEnabled: 1
   armorHealth: 100
@@ -194,7 +194,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!1001 &1413819352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,11 +206,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Knife
-      objectReference: {fileID: 0}
-    - target: {fileID: 3220072543033602448, guid: 5d4f144bfc4b2434b92d73cf2e708ec9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1942361173048902531, guid: 5d4f144bfc4b2434b92d73cf2e708ec9,
         type: 3}
@@ -266,21 +261,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 334.093
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942361173048902531, guid: 5d4f144bfc4b2434b92d73cf2e708ec9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.94782
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942361173048902531, guid: 5d4f144bfc4b2434b92d73cf2e708ec9,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.94782
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942361173048902531, guid: 5d4f144bfc4b2434b92d73cf2e708ec9,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.94782
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d4f144bfc4b2434b92d73cf2e708ec9, type: 3}
@@ -409,17 +389,17 @@ PrefabInstance:
     - target: {fileID: 1942361173048902531, guid: 52c6d6bef61553f4d8129a8ac60ec17f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.005
+      value: 0.038
       objectReference: {fileID: 0}
     - target: {fileID: 1942361173048902531, guid: 52c6d6bef61553f4d8129a8ac60ec17f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.023
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 1942361173048902531, guid: 52c6d6bef61553f4d8129a8ac60ec17f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.195
+      value: -0.153
       objectReference: {fileID: 0}
     - target: {fileID: 1942361173048902531, guid: 52c6d6bef61553f4d8129a8ac60ec17f,
         type: 3}
@@ -460,21 +440,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942361173048902531, guid: 52c6d6bef61553f4d8129a8ac60ec17f,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7406293
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942361173048902531, guid: 52c6d6bef61553f4d8129a8ac60ec17f,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7406293
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942361173048902531, guid: 52c6d6bef61553f4d8129a8ac60ec17f,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7406293
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52c6d6bef61553f4d8129a8ac60ec17f, type: 3}

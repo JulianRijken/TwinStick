@@ -44,7 +44,6 @@ public class Player : Damageable
         GameManager.instance.notificationCenter.OnPlayerAnimation += HandleAnimations;
         GameManager.instance.notificationCenter.OnItemUsed += HandleItemUsage;
 
-
         weaponSlotCount = Enum.GetValues(typeof(WeaponSlotType)).Length;
         weaponsInInventory = new Weapon[weaponSlotCount];
         weaponSlotCount -= 1;
@@ -54,14 +53,12 @@ public class Player : Damageable
             weapons[i].gameObject.SetActive(false);
         }
 
-
-
         selectedSlot = WeaponSlotType.empty;
         PickUpWeapon(WeaponID.knife);
 
-
         moveSpeed = defaultMoveSpeed;
         playerMovementState = PlayerMovementState.walking;
+
     }
 
     void Start()
@@ -346,7 +343,7 @@ public class Player : Damageable
 
     private IEnumerator RollCoroutine()
     {
-        SetPlayerState(PlayerMovementState.rolling);
+        SetPlayerMovementState(PlayerMovementState.rolling);
         animator.SetTrigger("Roll");
 
         float timer = 0;
@@ -361,7 +358,7 @@ public class Player : Damageable
             yield return new WaitForFixedUpdate();
         }
 
-        SetPlayerState(PlayerMovementState.walking);
+        SetPlayerMovementState(PlayerMovementState.walking);
 
     }
 
@@ -434,6 +431,14 @@ public class Player : Damageable
         return Vector3.zero;
     }
 
+
+    /// <summary>
+    /// Setst the player state
+    /// </summary>
+    public void SetPlayerMovementState(PlayerMovementState _playerMovementState)
+    {
+        playerMovementState = _playerMovementState;
+    }
 
 
     #endregion
@@ -524,15 +529,6 @@ public class Player : Damageable
     }
 
     #endregion
-
-
-    /// <summary>
-    /// Setst the player state
-    /// </summary>
-    public void SetPlayerState(PlayerMovementState _playerState)
-    {
-        playerMovementState = _playerState;
-    }
 
     private void OnDestroy()
     {
