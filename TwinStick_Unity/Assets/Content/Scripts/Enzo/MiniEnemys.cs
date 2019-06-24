@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class MiniEnemys : Damageable
 {
+    [SerializeField] public GameObject Itemdrop;
     public GameObject Player;
     [SerializeField] private LayerMask hitLayer;
     //public float dealdamage;
@@ -23,6 +24,7 @@ public class MiniEnemys : Damageable
         base.OnDeath();
         Destroy(gameObject);
         //Music.Stop();
+        Instantiate(Itemdrop);
     }
 
     private void OnCollisionEnter(Collision collider_enemy)
@@ -32,7 +34,7 @@ public class MiniEnemys : Damageable
         if (_damageble != null && 1 << collider_enemy.gameObject.layer == hitLayer.value)
         {
             Debug.Log("DAMAGE");
-            _damageble.DoDamage(5, "Rat");
+            _damageble.DoDamage(20, "Rat");
         }
     }
 }
