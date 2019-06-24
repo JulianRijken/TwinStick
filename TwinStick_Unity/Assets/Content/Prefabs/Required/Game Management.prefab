@@ -97,11 +97,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6573790922938716231}
     m_Modifications:
-    - target: {fileID: 7753624565908762068, guid: 07655d73351e7934dbe600c1a674ec68,
-        type: 3}
-      propertyPath: m_Name
-      value: FlameThrowerFlame
-      objectReference: {fileID: 0}
     - target: {fileID: 7750676415102451110, guid: 07655d73351e7934dbe600c1a674ec68,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -156,6 +151,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592526429829339030, guid: 07655d73351e7934dbe600c1a674ec68,
+        type: 3}
+      propertyPath: CollisionModule.collisionMessages
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7753624565908762068, guid: 07655d73351e7934dbe600c1a674ec68,
+        type: 3}
+      propertyPath: m_Name
+      value: FlameThrowerFlame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07655d73351e7934dbe600c1a674ec68, type: 3}

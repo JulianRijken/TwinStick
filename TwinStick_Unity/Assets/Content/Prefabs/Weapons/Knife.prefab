@@ -160,7 +160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1942361173048902531
 Transform:
   m_ObjectHideFlags: 0
@@ -193,6 +193,13 @@ MonoBehaviour:
   weaponID: 0
   weaponInput: 1
   weaponSlotType: 0
+  animatorEventHelper: {fileID: 0}
+  damage: 50
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  targetHitSound: {fileID: 3858428130516584653, guid: be5c7ecb04aacc144975576ad2dd6797,
+    type: 3}
 --- !u!1 &8291809176477018000
 GameObject:
   m_ObjectHideFlags: 0
