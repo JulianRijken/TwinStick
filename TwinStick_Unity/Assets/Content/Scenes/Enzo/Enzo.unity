@@ -4424,7 +4424,7 @@ PrefabInstance:
     - target: {fileID: 7138234614950403414, guid: 5c591e14cca235f47906d663aa31bcba,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6146080157889392453, guid: 5c591e14cca235f47906d663aa31bcba,
         type: 3}
@@ -4486,9 +4486,25 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1747416753}
+    - target: {fileID: 7138234614950403413, guid: 5c591e14cca235f47906d663aa31bcba,
+        type: 3}
+      propertyPath: hitLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7138234614950403413, guid: 5c591e14cca235f47906d663aa31bcba,
+        type: 3}
+      propertyPath: Itemdrop
+      value: 
+      objectReference: {fileID: 1502027968394843122, guid: ecb611be5cfd36641af2280279f13da7,
+        type: 3}
     - target: {fileID: 1552673634812754785, guid: 5c591e14cca235f47906d663aa31bcba,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552673634597837081, guid: 5c591e14cca235f47906d663aa31bcba,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
