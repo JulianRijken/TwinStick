@@ -69,6 +69,16 @@ public class NotificationCenter
     public event PlayerDiedAction OnPlayerDie;
 
     /// <summary>
+    /// Fires Player Died event
+    /// </summary>
+    public void FirePlayerEscaped()
+    {
+        OnPlayerEscaped?.Invoke();
+    }
+    public delegate void PlayerPlayerEscaped();
+    public event PlayerPlayerEscaped OnPlayerEscaped;
+
+    /// <summary>
     /// Fires Weapon attack
     /// </summary>
     public void FirePlayerAnimation(PlayerAnimation _animation)

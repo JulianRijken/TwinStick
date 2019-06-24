@@ -5,7 +5,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public enum PlayerAnimation { rifleAttack = 0, knifeAttack = 1 , rifleReload = 3}
-public enum PlayerMovementState { walking = 0, rolling = 1}
+public enum PlayerMovementState { walking = 0, rolling = 1, locked = 2}
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Damageable
@@ -367,7 +367,7 @@ public class Player : Damageable
     /// </summary>
     private void Move()
     {
-        if (playerMovementState == PlayerMovementState.walking)
+        if (playerMovementState != PlayerMovementState.rolling)
         {
             if (GameManager.instance.GetMenuState() == GameMenuState.clear)
             {
@@ -401,7 +401,14 @@ public class Player : Damageable
     /// </summary>
     private Vector3 GetInput()
     {
-        return new Vector3(Input.GetAxisRaw("Horizontal"), 0,Input.GetAxisRaw("Vertical")); 
+        if (playerMovementState == PlayerMovementState.locked)
+        {
+            return Vector3.zero;
+        }
+        else
+        {
+            return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        }
     }
 
     /// <summary>
