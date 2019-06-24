@@ -12,18 +12,20 @@ public enum ItemID
     HealthPack,
     ArmorPack,
     keyCardA,
-    keyCardB
+    keyCardB,
+    keyCardC,
+    keyCardD,
+    keyCardE,
+    keyCardF,
+    keyCardG
 }
-
 
 /// <summary>
 /// Lets you edit the Inventory
 /// </summary>
 public class InventoryController
 {
-
     private List<ItemSlot> itemSlots = new List<ItemSlot>();
-
 
     /// <summary>
     /// Adds the item to the inventory
@@ -61,21 +63,20 @@ public class InventoryController
     {
         for (int i = 0; i < itemSlots.Count; i++)
         {
-            if (itemSlots[i].itemID == item)               
-                    return itemSlots[i];
+            if (itemSlots[i].itemID == item)
+                return itemSlots[i];
         }
 
         return null;
     }
 
     /// <summary>
-    /// Returns The Item when given a Id 
+    /// Returns The Item when given a Id
     /// </summary>
     public Item_SO GetItem(ItemID item)
     {
         return (Item_SO)Resources.Load("Items/" + item.ToString());
     }
-
 
     /// <summary>
     /// Returns true if the item exits
@@ -101,16 +102,14 @@ public class InventoryController
     {
         return itemSlots;
     }
-
 }
-
 
 /// <summary>
 /// holds a type of item and a count of them
 /// </summary>
 public class ItemSlot
 {
-    public ItemSlot(ItemID _itemID,int _count)
+    public ItemSlot(ItemID _itemID, int _count)
     {
         itemID = _itemID;
         count = _count;
