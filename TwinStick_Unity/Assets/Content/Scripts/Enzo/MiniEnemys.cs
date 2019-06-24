@@ -21,4 +21,12 @@ public class MiniEnemys : Damageable
         Destroy(gameObject);
         //Music.Stop();
     }
+
+    private void OnCollisionStay(Collision collision_enemy)
+    {
+        if (collision_enemy.collider.CompareTag("Player"))
+        {
+            health -= 5;
+        }
+    }
 }
