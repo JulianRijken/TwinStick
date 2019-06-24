@@ -23,10 +23,10 @@ public class MainMenu : MonoBehaviour
     /// <summary>
     /// Starts The Game
     /// </summary>
-    public void StartGame()
+    public void LoadScene(int _level)
     {
         GameManager.instance.statsController.AddTimesPlayed();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(_level);
     }
 
 
