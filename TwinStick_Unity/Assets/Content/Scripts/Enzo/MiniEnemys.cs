@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class MiniEnemys : Damageable
 {
     public GameObject Player;
+    //public float dealdamage;
 
     // Update is called once per frame
     private void Update()
@@ -13,6 +14,7 @@ public class MiniEnemys : Damageable
         GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
 
         //Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        //dealdamage = health - 5;
     }
 
     protected override void OnDeath()
@@ -22,11 +24,11 @@ public class MiniEnemys : Damageable
         //Music.Stop();
     }
 
-    private void OnCollisionStay(Collision collision_enemy)
-    {
-        if (collision_enemy.collider.CompareTag("Player"))
-        {
-            health -= 5;
-        }
-    }
+    //private void OnTriggerEnter(Collider collider_enemy)
+    //{
+    //    if (collider_enemy.gameObject.tag == "player")
+    //    {
+    //        maxHealth -= 5;
+    //    }
+    //}
 }
