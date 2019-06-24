@@ -43,23 +43,30 @@ public class PickUp : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         slider = GetComponentInChildren<Slider>();
 
-
-        if (pickupType == PickupType.item)
+        if (animator == null || slider == null)
         {
-            slider.maxValue = count;
-            slider.minValue = 0;
-            slider.value = slider.maxValue;
+            Destroy(gameObject);
         }
+        else
+        {
 
-        if (count == 1 || pickupType == PickupType.weapon)
-            slider.gameObject.SetActive(false);
+            if (pickupType == PickupType.item)
+            {
+                slider.maxValue = count;
+                slider.minValue = 0;
+                slider.value = slider.maxValue;
+            }
+
+            if (count == 1 || pickupType == PickupType.weapon)
+                slider.gameObject.SetActive(false);
 
 
-        Vector3 scaleTmp = animator.transform.localScale;
-        scaleTmp.x /= transform.localScale.x;
-        scaleTmp.y /= transform.localScale.y;
-        scaleTmp.z /= transform.localScale.z;
-        animator.transform.localScale = scaleTmp;
+            Vector3 scaleTmp = animator.transform.localScale;
+            scaleTmp.x /= transform.localScale.x;
+            scaleTmp.y /= transform.localScale.y;
+            scaleTmp.z /= transform.localScale.z;
+            animator.transform.localScale = scaleTmp;
+        }
 
     }
 

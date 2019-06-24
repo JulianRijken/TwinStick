@@ -1,18 +1,21 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
 
     [SerializeField] private GameObject exitWindow = null;
+    [SerializeField] private CanvasGroup loadingScreenGroup = null;
+    [SerializeField] private CanvasGroup loadingIconGroup = null;
 
     private GameObject[] menuScreens = null;
 
     private void Start()
     {
+        loadingScreenGroup.alpha = 0;
+
         exitWindow.SetActive(false);
 
         Cursor.visible = true;
@@ -25,8 +28,38 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void LoadScene(int _level)
     {
+        StartCoroutine(LoadSceneCoroutine(_level));
+    }
+
+    private IEnumerator LoadSceneCoroutine(int _level)
+    {
         GameManager.instance.statsController.AddTimesPlayed();
-        SceneManager.LoadScene(_level);
+        AsyncOperation _loadOperation = SceneManager.LoadSceneAsync(_level);
+        _loadOperation.allowSceneActivation = false;
+
+        float _timer = 0;
+
+        while (_timer < 1f && !_loadOperation.isDone)
+        {
+            _timer += Time.deltaTime * 10;
+
+            loadingScreenGroup.alpha = _timer;
+
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        _timer = 1;
+
+        while (_timer > 0)
+        {
+            _timer -= Time.deltaTime * 5;
+
+            loadingIconGroup.alpha = _timer;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        _loadOperation.allowSceneActivation = true;
+
     }
 
 
