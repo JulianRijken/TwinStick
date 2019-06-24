@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public GameMenuState menuState;
 
+
     private void Awake()
     {
         if (instance == null)       
@@ -56,12 +57,15 @@ public class GameManager : MonoBehaviour
     {
         //todo Dit Kan natuurlijk veranderd worden naar een mooien fade out
         SceneManager.LoadScene(0);
+        inventory.ClearInventoy();
     }
 
     private void OnPlayerEscape()
     {
         //todo Dit Kan natuurlijk veranderd worden naar een mooien fade out
         SceneManager.LoadScene(0);
+        inventory.ClearInventoy();
+
 
     }
 
@@ -69,6 +73,8 @@ public class GameManager : MonoBehaviour
     {
         //todo Dit Kan natuurlijk veranderd worden naar een mooien fade out
         SceneManager.LoadScene(0);
+        inventory.ClearInventoy();
+
     }
 
 

@@ -57,6 +57,15 @@ public class InventoryController
     }
 
     /// <summary>
+    /// Remove Items
+    /// </summary>
+    public void ClearInventoy()
+    {
+        itemSlots.Clear();
+        GameManager.instance.notificationCenter.FireInventoyItemChange();
+    }
+
+    /// <summary>
     /// Returns true if the item exits
     /// </summary>
     public ItemSlot GetItemSlot(ItemID item)
