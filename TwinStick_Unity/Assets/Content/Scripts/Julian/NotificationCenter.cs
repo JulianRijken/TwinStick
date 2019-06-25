@@ -48,17 +48,6 @@ public class NotificationCenter
     public event PlayerHealthUpdateAction OnPlayerHealthChange;
 
     /// <summary>
-    /// Unlocs the level
-    /// </summary>
-    public void FireSetLevelInteractable(int _level, bool _interactable)
-    {
-        OnSetLevelInteractable?.Invoke(_level, _interactable);
-    }
-    public delegate void SetLevelInteractableAction(int _level, bool _interactable);
-    public event SetLevelInteractableAction OnSetLevelInteractable;
-
-
-    /// <summary>
     /// Fires Ammo
     /// </summary>
     public void FireArmorHealthChange(float newArmorHealth, float newArmorMaxHealth)
@@ -67,7 +56,6 @@ public class NotificationCenter
     }
     public delegate void ArmorHealthUpdateAction(float newArmorHealth, float newArmorMaxHealth);
     public event ArmorHealthUpdateAction OnArmorHealthChange;
-
 
 
     /// <summary>

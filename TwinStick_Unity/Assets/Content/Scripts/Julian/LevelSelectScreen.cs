@@ -7,20 +7,13 @@ public class LevelSelectScreen : MonoBehaviour
     // zet alle level buttons in een array ofzo en zet ze disabled en enabled voor de levels
     [SerializeField] private Tab[] levelTabs = null;
 
-    private void Awake()
+
+    private void OnEnable()
     {
-        GameManager.instance.notificationCenter.OnSetLevelInteractable += SetLevelInteractible;
+        for (int i = 0; i < levelTabs.Length; i++)
+        {
+            levelTabs[i].SetInteractable(GameManager.instance.unlockedLevels[i]);
+        }
     }
 
-
-    public void SetLevelInteractible(int _level, bool _locked)
-    {
-        levelTabs[_level].SetInteractable(_locked);
-        Debug.Log("DONE");
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.instance.notificationCenter.OnSetLevelInteractable -= SetLevelInteractible; 
-    }
 }

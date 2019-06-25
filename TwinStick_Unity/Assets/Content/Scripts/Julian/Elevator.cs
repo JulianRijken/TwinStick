@@ -31,7 +31,7 @@ public class Elevator : MonoBehaviour
 
         if (_player != null && GotItem())
         {
-            GameManager.instance.notificationCenter.FireSetLevelInteractable(level, true);
+            GameManager.instance.SetLevelUnlocked(level, true);
             _player.SetPlayerMovementState(PlayerMovementState.locked);
             animator.SetTrigger("Close");
         }

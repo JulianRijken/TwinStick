@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public GameMenuState menuState;
 
+    public bool[] unlockedLevels = new bool[3];
 
 
     private void Awake()
@@ -33,7 +34,15 @@ public class GameManager : MonoBehaviour
 
         notificationCenter.OnExitToMenu += OnExitToMenu;
 
+        for (int i = 0; i < unlockedLevels.Length; i++)
+        {
+            unlockedLevels[i] = false;
+        }
+
+        unlockedLevels[0] = true;
     }
+
+
 
     /// <summary>
     /// Sets The Menu State
@@ -41,6 +50,11 @@ public class GameManager : MonoBehaviour
     public void SetMenuState(GameMenuState _state)
     {
         menuState = _state;
+    }
+
+    public void SetLevelUnlocked(int _level, bool _unlocked)
+    {
+        unlockedLevels[_level] = _unlocked;
     }
 
     /// <summary>
@@ -51,14 +65,14 @@ public class GameManager : MonoBehaviour
         return menuState;
     }
 
-
-
+    /// <summary>
+    /// Is Called Once exit to menu is called
+    /// </summary>
     private void OnExitToMenu()
     {
         SceneManager.LoadScene(0);
         inventory.ClearInventoy();
     }
-
 
 
 
