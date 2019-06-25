@@ -58,7 +58,7 @@ LightmapSettings:
     serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 40
-    m_AtlasSize: 1024
+    m_AtlasSize: 32
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -77,7 +77,7 @@ LightmapSettings:
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 512
-    m_PVRBounces: 2
+    m_PVRBounces: 1
     m_PVREnvironmentSampleCount: 256
     m_PVREnvironmentReferencePointCount: 2048
     m_PVRFilteringMode: 1
@@ -2914,6 +2914,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
+        type: 3}
+      propertyPath: viewMeshFilter
+      value: 
+      objectReference: {fileID: 1703761151}
     - target: {fileID: 1644949185926652830, guid: 23d33cb29bdfd0c43be75280046977c7,
         type: 3}
       propertyPath: patrolPoints.Array.size
@@ -2924,11 +2929,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 560658861}
-    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
-        type: 3}
-      propertyPath: viewMeshFilter
-      value: 
-      objectReference: {fileID: 1703761151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d33cb29bdfd0c43be75280046977c7, type: 3}
 --- !u!1001 &299833921
@@ -3173,6 +3173,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
+        type: 3}
+      propertyPath: viewMeshFilter
+      value: 
+      objectReference: {fileID: 1703761151}
     - target: {fileID: 1644949185926652830, guid: 23d33cb29bdfd0c43be75280046977c7,
         type: 3}
       propertyPath: patrolPoints.Array.data[0]
@@ -3183,11 +3188,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 256503471}
-    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
-        type: 3}
-      propertyPath: viewMeshFilter
-      value: 
-      objectReference: {fileID: 1703761151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d33cb29bdfd0c43be75280046977c7, type: 3}
 --- !u!1 &321041379
@@ -10890,16 +10890,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1265458502835945256, guid: 76604347af15cc444a61158336cfd0f6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1784288707917561481, guid: 76604347af15cc444a61158336cfd0f6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4695192427086240025, guid: 76604347af15cc444a61158336cfd0f6,
         type: 3}
       propertyPath: level
@@ -10914,6 +10904,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.x
       value: -0.023301303
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265458502835945256, guid: 76604347af15cc444a61158336cfd0f6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784288707917561481, guid: 76604347af15cc444a61158336cfd0f6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76604347af15cc444a61158336cfd0f6, type: 3}
@@ -11850,15 +11850,15 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1853517044453264718, guid: e03e3a0578386fb4788dbeb617bac791,
-        type: 3}
-      propertyPath: requiredItem
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4891347420280736000, guid: e03e3a0578386fb4788dbeb617bac791,
         type: 3}
       propertyPath: requireItem
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853517044453264718, guid: e03e3a0578386fb4788dbeb617bac791,
+        type: 3}
+      propertyPath: requiredItem
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e03e3a0578386fb4788dbeb617bac791, type: 3}
@@ -12020,6 +12020,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
+        type: 3}
+      propertyPath: viewMeshFilter
+      value: 
+      objectReference: {fileID: 1703761151}
     - target: {fileID: 1644949185926652830, guid: 23d33cb29bdfd0c43be75280046977c7,
         type: 3}
       propertyPath: patrolPoints.Array.data[0]
@@ -12030,11 +12035,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1424819796}
-    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
-        type: 3}
-      propertyPath: viewMeshFilter
-      value: 
-      objectReference: {fileID: 1703761151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d33cb29bdfd0c43be75280046977c7, type: 3}
 --- !u!1 &1053878220
@@ -13070,6 +13070,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
+        type: 3}
+      propertyPath: viewMeshFilter
+      value: 
+      objectReference: {fileID: 1703761151}
     - target: {fileID: 1644949185926652830, guid: 23d33cb29bdfd0c43be75280046977c7,
         type: 3}
       propertyPath: patrolPoints.Array.size
@@ -13080,11 +13085,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 725806388}
-    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
-        type: 3}
-      propertyPath: viewMeshFilter
-      value: 
-      objectReference: {fileID: 1703761151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d33cb29bdfd0c43be75280046977c7, type: 3}
 --- !u!1 &1130984768
@@ -13617,6 +13617,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
+        type: 3}
+      propertyPath: viewMeshFilter
+      value: 
+      objectReference: {fileID: 1703761151}
     - target: {fileID: 1644949185926652830, guid: 23d33cb29bdfd0c43be75280046977c7,
         type: 3}
       propertyPath: patrolPoints.Array.size
@@ -13627,11 +13632,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1053878221}
-    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
-        type: 3}
-      propertyPath: viewMeshFilter
-      value: 
-      objectReference: {fileID: 1703761151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d33cb29bdfd0c43be75280046977c7, type: 3}
 --- !u!1 &1172683380
@@ -17522,6 +17522,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
+        type: 3}
+      propertyPath: viewMeshFilter
+      value: 
+      objectReference: {fileID: 1703761151}
     - target: {fileID: 1644949185926652830, guid: 23d33cb29bdfd0c43be75280046977c7,
         type: 3}
       propertyPath: patrolPoints.Array.data[0]
@@ -17532,11 +17537,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 592770119}
-    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
-        type: 3}
-      propertyPath: viewMeshFilter
-      value: 
-      objectReference: {fileID: 1703761151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d33cb29bdfd0c43be75280046977c7, type: 3}
 --- !u!1001 &1488256082
@@ -17741,6 +17741,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
+        type: 3}
+      propertyPath: viewMeshFilter
+      value: 
+      objectReference: {fileID: 1703761151}
     - target: {fileID: 1644949185926652830, guid: 23d33cb29bdfd0c43be75280046977c7,
         type: 3}
       propertyPath: patrolPoints.Array.data[0]
@@ -17751,11 +17756,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1096304704}
-    - target: {fileID: 1644949185926652831, guid: 23d33cb29bdfd0c43be75280046977c7,
-        type: 3}
-      propertyPath: viewMeshFilter
-      value: 
-      objectReference: {fileID: 1703761151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d33cb29bdfd0c43be75280046977c7, type: 3}
 --- !u!1 &1503687245
