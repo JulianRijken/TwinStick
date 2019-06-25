@@ -836,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2170548125690143085
 RectTransform:
   m_ObjectHideFlags: 0
@@ -873,6 +873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81291557b93310b419588e36b6d516c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelTabs:
+  - {fileID: 2170548126852312605}
+  - {fileID: 2170548127005941216}
+  - {fileID: 2170548125717031066}
 --- !u!1 &2170548125717031064
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ae30753cfe8f345bb529514a8688fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactable: 1
+  _interactable: 0
   startSelected: 0
   graphic: {fileID: 2170548125717031067}
   normalColor: {r: 1, g: 1, b: 1, a: 0.11372549}
@@ -2327,7 +2331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ae30753cfe8f345bb529514a8688fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactable: 1
+  _interactable: 0
   startSelected: 0
   graphic: {fileID: 2170548127005941246}
   normalColor: {r: 1, g: 1, b: 1, a: 0.11372549}
