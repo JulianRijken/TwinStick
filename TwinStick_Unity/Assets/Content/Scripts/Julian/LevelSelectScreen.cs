@@ -16,6 +16,7 @@ public class LevelSelectScreen : MonoBehaviour
     public void SetLevelInteractible(int _level, bool _locked)
     {
         levelTabs[_level].SetInteractable(_locked);
+        Debug.Log("DONE");
     }
 
     private void OnDestroy()

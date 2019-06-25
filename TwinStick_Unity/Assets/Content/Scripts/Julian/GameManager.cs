@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
         statsController = new StatsController();
         inventory = new InventoryController(); ;
 
-        notificationCenter.OnPlayerDie += OnPlayerDie;
-        notificationCenter.OnPlayerEscaped += OnPlayerEscape;
         notificationCenter.OnExitToMenu += OnExitToMenu;
 
     }
@@ -54,28 +52,11 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void OnPlayerDie()
-    {
-        //todo Dit Kan natuurlijk veranderd worden naar een mooien fade out
-        SceneManager.LoadScene(0);
-        inventory.ClearInventoy();
-    }
-
-    private void OnPlayerEscape()
-    {
-        //todo Dit Kan natuurlijk veranderd worden naar een mooien fade out
-        SceneManager.LoadScene(0);
-        inventory.ClearInventoy();
-
-
-    }
 
     private void OnExitToMenu()
     {
-        //todo Dit Kan natuurlijk veranderd worden naar een mooien fade out
         SceneManager.LoadScene(0);
         inventory.ClearInventoy();
-
     }
 
 
@@ -83,8 +64,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        notificationCenter.OnPlayerDie -= OnPlayerDie;
-        notificationCenter.OnPlayerEscaped -= OnPlayerEscape;
         notificationCenter.OnExitToMenu -= OnExitToMenu;
     }
 

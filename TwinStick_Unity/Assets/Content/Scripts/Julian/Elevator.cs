@@ -31,14 +31,14 @@ public class Elevator : MonoBehaviour
 
         if (_player != null && GotItem())
         {
+            GameManager.instance.notificationCenter.FireSetLevelInteractable(level, true);
             _player.SetPlayerMovementState(PlayerMovementState.locked);
             animator.SetTrigger("Close");
-            GameManager.instance.notificationCenter.FireSetLevelInteractable(level, true);
         }
     }
 
     public void EscapePlayer()
     {
-        GameManager.instance.notificationCenter.FirePlayerEscaped();
+        GameManager.instance.notificationCenter.FireExitLevel(ExitState.playerEscaped);
     }
 }

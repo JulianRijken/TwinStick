@@ -468,7 +468,7 @@ public class Player : Damageable
 
     protected override void OnDeath(string diedBy)
     {
-        GameManager.instance.notificationCenter.FirePlayerDied();
+        GameManager.instance.notificationCenter.FireExitLevel(ExitState.playerDied);
         GameManager.instance.statsController.AddDiedBy(diedBy);
     }
 
