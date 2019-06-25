@@ -11,6 +11,7 @@ public class StatsScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI healthLostText;
     [SerializeField] private TextMeshProUGUI shotsFiredText;
+    [SerializeField] private TextMeshProUGUI diedBy;
 
     private void Awake()
     {
@@ -28,6 +29,11 @@ public class StatsScreen : MonoBehaviour
         scoreText.text = data.score.ToString();
         healthLostText.text = data.healthLost.ToString();
         shotsFiredText.text = data.shotsFired.ToString();
+
+        if (data.diedBy.Count > 0)
+            diedBy.text = data.diedBy[data.diedBy.Count - 1].ToString();
+        else
+            diedBy.text = "No One";
     }
 
     private void OnDestroy()
