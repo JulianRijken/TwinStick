@@ -12,6 +12,13 @@ public enum GameMenuState
     inventoy = 2,
 }
 
+public enum ExitState
+{
+    menuExit = 0,
+    playerDied = 1,
+    playerEscaped = 2,
+}
+
 /// <summary>
 /// This class is used to controll the menu's like the pause menu en for sorting all the diffrent ui
 /// </summary>
@@ -33,7 +40,7 @@ public class UIController : MonoBehaviour
     {
         notificationCenter = GameManager.instance.notificationCenter;
         menuScreens = new GameObject[] { pauseMenu, inventoryMenu , hud};
-
+        GameManager.instance.notificationCenter.OnExitLevel += FireExitLevel;
         SetScreenActive(hud,GameMenuState.clear);
 
         uiCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
@@ -66,6 +73,12 @@ public class UIController : MonoBehaviour
     }
 
 
+    public void FireExitLevel(ExitState _exitState)
+    {
+        Debug.Log("ShowScreen " + _exitState.ToString());
+        GameManager.instance.notificationCenter.FireExitToMenu();
+    }
+
 
     private void OpenPauseMenu()
     {
@@ -90,10 +103,9 @@ public class UIController : MonoBehaviour
         SetScreenActive(hud, GameMenuState.clear);
     }
 
-
     public void QuitToMainMenu()
     {
-        GameManager.instance.notificationCenter.FireExitToMenu();
+        GameManager.instance.notificationCenter.FireExitLevel(ExitState.menuExit);
     }
 
     /// <summary>
@@ -141,6 +153,11 @@ public class UIController : MonoBehaviour
         _activeScreen.SetActive(true);
     }
 
+
+    private void OnDestroy()
+    {
+        GameManager.instance.notificationCenter.OnExitLevel -= FireExitLevel;
+    }
 }
 
 

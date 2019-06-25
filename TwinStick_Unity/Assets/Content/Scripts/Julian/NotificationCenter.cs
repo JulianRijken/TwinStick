@@ -68,35 +68,17 @@ public class NotificationCenter
     public delegate void ArmorHealthUpdateAction(float newArmorHealth, float newArmorMaxHealth);
     public event ArmorHealthUpdateAction OnArmorHealthChange;
 
-    /// <summary>
-    /// Fires Player Died event
-    /// </summary>
-    public void FirePlayerDied()
-    {
-        OnPlayerDie?.Invoke();
-    }
-    public delegate void PlayerDiedAction();
-    public event PlayerDiedAction OnPlayerDie;
+
 
     /// <summary>
     /// Fires Player Died event
     /// </summary>
-    public void FirePlayerEscaped()
+    public void FireExitLevel(ExitState _exitState)
     {
-        OnPlayerEscaped?.Invoke();
+        OnExitLevel?.Invoke(_exitState);
     }
-    public delegate void PlayerPlayerEscaped();
-    public event PlayerPlayerEscaped OnPlayerEscaped;
-
-    /// <summary>
-    /// Fires Weapon attack
-    /// </summary>
-    public void FirePlayerAnimation(PlayerAnimation _animation)
-    {
-        OnPlayerAnimation?.Invoke(_animation);
-    }
-    public delegate void PlayerAnimationAction(PlayerAnimation _animation);
-    public event PlayerAnimationAction OnPlayerAnimation;
+    public delegate void ExitLevelAction(ExitState _exitState);
+    public event ExitLevelAction OnExitLevel;
 
     /// <summary>
     /// Fires Exit To Menu event
@@ -107,6 +89,17 @@ public class NotificationCenter
     }
     public delegate void ExitToMenuAction();
     public event ExitToMenuAction OnExitToMenu;
+
+    
+    /// <summary>
+    /// Fires Weapon attack
+    /// </summary>
+    public void FirePlayerAnimation(PlayerAnimation _animation)
+    {
+        OnPlayerAnimation?.Invoke(_animation);
+    }
+    public delegate void PlayerAnimationAction(PlayerAnimation _animation);
+    public event PlayerAnimationAction OnPlayerAnimation;
 
     /// <summary>
     /// Fires Item Added event
