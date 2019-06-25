@@ -84,6 +84,10 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPo
         }
     }
 
+    public void SetInteractable(bool _interactable)
+    {
+        Interactable = _interactable;
+    }
 
     /// <summary>
     /// Is Called When pressed

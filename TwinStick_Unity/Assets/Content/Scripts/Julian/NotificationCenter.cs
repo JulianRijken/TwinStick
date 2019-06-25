@@ -47,6 +47,16 @@ public class NotificationCenter
     public delegate void PlayerHealthUpdateAction(float newHealth, float newMaxHealth);
     public event PlayerHealthUpdateAction OnPlayerHealthChange;
 
+    /// <summary>
+    /// Unlocs the level
+    /// </summary>
+    public void FireSetLevelInteractable(int _level, bool _interactable)
+    {
+        OnSetLevelInteractable?.Invoke(_level, _interactable);
+    }
+    public delegate void SetLevelInteractableAction(int _level, bool _interactable);
+    public event SetLevelInteractableAction OnSetLevelInteractable;
+
 
     /// <summary>
     /// Fires Ammo
