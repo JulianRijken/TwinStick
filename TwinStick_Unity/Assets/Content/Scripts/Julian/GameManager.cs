@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public GameMenuState menuState;
 
 
+
     private void Awake()
     {
         if (instance == null)       
@@ -76,6 +77,8 @@ public class GameManager : MonoBehaviour
         inventory.ClearInventoy();
 
     }
+
+
 
 
     private void OnDestroy()

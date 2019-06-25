@@ -14,6 +14,8 @@ public class Elevator : MonoBehaviour
     [SerializeField] private int requiredItemCount = 1;
     [SerializeField] private bool requireItem = false;
 
+    [Header("Level Unlock")]
+    [SerializeField] private int level;
 
     /// <summary>
     /// Checks If you got the item
@@ -31,6 +33,7 @@ public class Elevator : MonoBehaviour
         {
             _player.SetPlayerMovementState(PlayerMovementState.locked);
             animator.SetTrigger("Close");
+            GameManager.instance.notificationCenter.FireSetLevelInteractable(level, true);
         }
     }
 
