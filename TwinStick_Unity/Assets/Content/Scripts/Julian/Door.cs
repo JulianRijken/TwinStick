@@ -6,10 +6,11 @@ public class Door : MonoBehaviour
 {
     [Header("Animation")]
     [SerializeField] private string parameterName = "progress";
-    [SerializeField] private Animator animator = null;
+    [SerializeField] private Animator doorAnimator = null;
     [SerializeField] private float animationSpeed = 1;
 
     [Header("Item Requirement")]
+    [SerializeField] private Animator lockAnimatior = null;
     [SerializeField] private ItemID requiredItem = ItemID.Ammo;
     [SerializeField] private int requiredItemCount = 1;
     [SerializeField] private bool requireItem = false;
@@ -31,7 +32,7 @@ public class Door : MonoBehaviour
         
 
         progress = Mathf.Clamp(progress, 0f, 1f);
-        animator.SetFloat(parameterName, progress);
+        doorAnimator.SetFloat(parameterName, progress);
 
         if (lamp.Length > 0)
         {
@@ -46,6 +47,9 @@ public class Door : MonoBehaviour
                     lamp[i].color = disabledColor;
             }
         }
+
+
+        lockAnimatior.SetBool("gotItem", GotItem());
 
     }
 
