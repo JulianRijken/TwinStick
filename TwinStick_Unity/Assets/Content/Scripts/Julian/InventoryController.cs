@@ -84,7 +84,11 @@ public class InventoryController
     /// </summary>
     public Item_SO GetItem(ItemID item)
     {
-        return (Item_SO)Resources.Load("Items/" + item.ToString());
+        var _recource = Resources.Load("Items/" + item.ToString());
+        if (_recource != null)
+            return (Item_SO)_recource;
+        else
+            return null;
     }
 
     /// <summary>

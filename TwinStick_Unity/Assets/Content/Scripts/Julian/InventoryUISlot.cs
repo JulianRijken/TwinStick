@@ -32,8 +32,15 @@ public class InventoryUISlot : MonoBehaviour, IPointerClickHandler
         slot = _slot;
 
         countText.text = slot.count.ToString();
-        iconImage.sprite = GameManager.instance.inventory.GetItem(slot.itemID).icon;
-        canUse = GameManager.instance.inventory.GetItem(slot.itemID).canUse;
+
+        Item_SO _slot_so = GameManager.instance.inventory.GetItem(slot.itemID);
+        if (_slot_so != null)
+        {
+            iconImage.sprite = _slot_so.icon;
+            canUse = _slot_so.canUse;
+        }
+
+
     }
 
     private IEnumerator UseItem()

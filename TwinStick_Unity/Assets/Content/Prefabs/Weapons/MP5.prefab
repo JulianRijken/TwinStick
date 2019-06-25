@@ -206,30 +206,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1942361173048902531}
     m_Modifications:
-    - target: {fileID: 3712508934753248576, guid: dd88810460516ec49b53936f10f64e1f,
-        type: 3}
-      propertyPath: m_Name
-      value: Lazer
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712508934753248576, guid: dd88810460516ec49b53936f10f64e1f,
-        type: 3}
-      propertyPath: m_Layer
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 3712508934753248575, guid: dd88810460516ec49b53936f10f64e1f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: -0.013
       objectReference: {fileID: 0}
     - target: {fileID: 3712508934753248575, guid: dd88810460516ec49b53936f10f64e1f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.003
+      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 3712508934753248575, guid: dd88810460516ec49b53936f10f64e1f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.399
+      value: 0.1011
       objectReference: {fileID: 0}
     - target: {fileID: 3712508934753248575, guid: dd88810460516ec49b53936f10f64e1f,
         type: 3}
@@ -270,6 +260,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712508934753248576, guid: dd88810460516ec49b53936f10f64e1f,
+        type: 3}
+      propertyPath: m_Name
+      value: Lazer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712508934753248576, guid: dd88810460516ec49b53936f10f64e1f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712508934753248574, guid: dd88810460516ec49b53936f10f64e1f,
+        type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd88810460516ec49b53936f10f64e1f, type: 3}
@@ -393,11 +398,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1942361173048902531}
     m_Modifications:
-    - target: {fileID: 2177637946895745762, guid: 17dd785422aa8674d825b9994b26105e,
-        type: 3}
-      propertyPath: m_Name
-      value: Weapon Flash Hudson
-      objectReference: {fileID: 0}
     - target: {fileID: 2175548606553548094, guid: 17dd785422aa8674d825b9994b26105e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -467,6 +467,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.51369566
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177637946895745762, guid: 17dd785422aa8674d825b9994b26105e,
+        type: 3}
+      propertyPath: m_Name
+      value: Weapon Flash Hudson
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17dd785422aa8674d825b9994b26105e, type: 3}
