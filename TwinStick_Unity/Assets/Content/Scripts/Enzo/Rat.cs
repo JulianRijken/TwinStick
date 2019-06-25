@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum RatState
 {
@@ -29,9 +30,11 @@ public class Rat : Damageable
     [SerializeField] private RatState Ratstate;
 
     private Player player;
+    public GameObject Player;
 
     [SerializeField] private float staartRange;
     [SerializeField] private float bijtRange;
+    [SerializeField] private LayerMask hitLayer;
 
     private void Start()
     {
@@ -67,6 +70,8 @@ public class Rat : Damageable
             }
         }
 
+        GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
+
         UpdateAnimatorValues();
     }
 
@@ -74,5 +79,22 @@ public class Rat : Damageable
     {
         Debug.LogFormat("Change: {0}", (int)Ratstate);
         animRat.SetInteger("State", (int)Ratstate);
+    }
+
+    private void OnCollisionEnter(Collision collider_enemy)
+    {
+        Damageable _damageble = collider_enemy.gameObject.GetComponent<Damageable>();
+        Debug.Log((1 << collider_enemy.gameObject.layer) + " " + hitLayer.value);
+        if (_damageble != null && 1 << collider_enemy.gameObject.layer == hitLayer.value)
+        {
+            Debug.Log("DAMAGE");
+            _damageble.DoDamage(20, "Rat");
+        }
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        Destroy(gameObject);
     }
 }
