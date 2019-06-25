@@ -10,7 +10,7 @@ public class InventoryUI : MonoBehaviour
 
 
     // JA IK KAN BETER ON ENABLE GEBRUIKEN MAAR DAT GEEFT EEN RAREN BUG WAAR IK NU OM 0:15 GEEN ZIN IN HEB DUS HIER HEB JE UPDATE
-    private void Update()
+    private void LateUpdate()
     {
         SetSlots();
     }
