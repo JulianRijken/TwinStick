@@ -1422,7 +1422,7 @@ GameObject:
   - component: {fileID: 8940823861097098049}
   - component: {fileID: 8940823861097098110}
   - component: {fileID: 8940823861097098048}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rat 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1501,15 +1501,19 @@ MonoBehaviour:
   invincible: 0
   health: 100
   maxHealth: 100
-  armorEnabled: 1
+  armorEnabled: 0
   armorHealth: 100
   armorProtectionProcent: 50
   armorStrength: 10
   maxArmorHealth: 100
   animRat: {fileID: 0}
   Ratstate: 0
+  Player: {fileID: 0}
   staartRange: 20
   bijtRange: 10
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!65 &8940823861097098048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1518,7 +1522,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8940823861097098111}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.62296855, y: 0.30867705, z: 0.65514106}
