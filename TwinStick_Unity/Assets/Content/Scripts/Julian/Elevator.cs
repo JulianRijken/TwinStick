@@ -31,7 +31,6 @@ public class Elevator : MonoBehaviour
         {
             _player.SetPlayerMovementState(PlayerMovementState.locked);
             animator.SetTrigger("Close");
-            GameManager.instance.notificationCenter.FireBlur(true);
         }
     }
 
