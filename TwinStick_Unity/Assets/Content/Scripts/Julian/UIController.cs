@@ -26,12 +26,14 @@ public class UIController : MonoBehaviour
 {
 
     [SerializeField] private GameObject hud = null;
-
+    [SerializeField] private AnimatorEventHelper animatorEventHelper;
     [SerializeField] private GameObject pauseMenu = null;
     [SerializeField] private GameObject inventoryMenu = null;
     [SerializeField] private GameObject exitWindow = null;
 
     private GameObject[] menuScreens = null;
+    [SerializeField] private Animator fadeImageAnimator = null;
+
 
     private NotificationCenter notificationCenter;
     private Camera uiCamera;
@@ -41,6 +43,7 @@ public class UIController : MonoBehaviour
         notificationCenter = GameManager.instance.notificationCenter;
         menuScreens = new GameObject[] { pauseMenu, inventoryMenu , hud};
         GameManager.instance.notificationCenter.OnExitLevel += FireExitLevel;
+        animatorEventHelper.OnLoadMenu += QuitToMainMenu;
         SetScreenActive(hud,GameMenuState.clear);
 
         uiCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
@@ -75,9 +78,25 @@ public class UIController : MonoBehaviour
 
     public void FireExitLevel(ExitState _exitState)
     {
-        Debug.Log("ShowScreen " + _exitState.ToString());
-        GameManager.instance.notificationCenter.FireExitToMenu();
+
+        switch(_exitState)
+        {
+
+            case ExitState.menuExit:
+                GameManager.instance.notificationCenter.FireExitToMenu();
+
+                break;
+            case ExitState.playerDied:
+                fadeImageAnimator.SetTrigger("GameOver");
+                break;
+            case ExitState.playerEscaped:
+                fadeImageAnimator.SetTrigger("LevelCleard");
+                break;
+        }
+
+
     }
+
 
 
     private void OpenPauseMenu()
@@ -157,6 +176,7 @@ public class UIController : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.instance.notificationCenter.OnExitLevel -= FireExitLevel;
+        animatorEventHelper.OnLoadMenu -= QuitToMainMenu;
     }
 }
 
