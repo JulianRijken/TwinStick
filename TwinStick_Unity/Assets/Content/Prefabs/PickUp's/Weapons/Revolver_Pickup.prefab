@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8861481725144818357}
   - component: {fileID: 4658652636293369882}
   m_Layer: 14
-  m_Name: secondaryTest_PickUp
+  m_Name: Revolver_Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupType: 2
+  activeDelay: 1
   item: 3
   count: 30
   pickUpDelay: 0.3
@@ -111,8 +112,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6238568495003434050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.173, z: -0.195}
-  m_LocalScale: {x: 8.975891, y: 8.975891, z: 8.975891}
+  m_LocalPosition: {x: -0.00000015895, y: -0.09, z: -0.122}
+  m_LocalScale: {x: 15.223111, y: 15.223111, z: 15.223111}
   m_Children: []
   m_Father: {fileID: 3857524971795252800}
   m_RootOrder: 0
@@ -124,7 +125,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6238568495003434050}
-  m_Mesh: {fileID: -4167287341304927201, guid: 5321b9ab9ae26524fa9176869c6af2f3, type: 3}
+  m_Mesh: {fileID: -4167287341304927201, guid: 141e28a9b943b6541ab7f5d4502fe129, type: 3}
 --- !u!23 &5669766891079288990
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -142,7 +143,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 5321b9ab9ae26524fa9176869c6af2f3, type: 3}
+  - {fileID: 2100000, guid: 9ecbd402cee35a0468ea2a7a4c1b413b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,8 +174,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0093007125, y: 0.027775034, z: 0.03918575}
-  m_Center: {x: 0.000000015133992, y: 0.012815225, z: 0.017058348}
+  m_Size: {x: 0.009300713, y: 0.02939659, z: 0.04206247}
+  m_Center: {x: 0.000000015009052, y: -0.0008431387, z: -0.0000030879494}
 --- !u!1001 &6896159818910741469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -182,6 +183,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3857524971795252800}
     m_Modifications:
+    - target: {fileID: 7607035432643072614, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Name
+      value: Pickup Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 6671520813197584891, guid: e6310968eef381040be8ed44eea318b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -286,11 +292,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7607035432643072614, guid: e6310968eef381040be8ed44eea318b0,
-        type: 3}
-      propertyPath: m_Name
-      value: Pickup Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 9091083465036915870, guid: e6310968eef381040be8ed44eea318b0,
         type: 3}

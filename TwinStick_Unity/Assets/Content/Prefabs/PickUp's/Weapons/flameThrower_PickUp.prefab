@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupType: 2
+  activeDelay: 1
   item: 3
   count: 30
   pickUpDelay: 0.3
@@ -111,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8689154303192210525}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.263, z: -0.278}
   m_LocalScale: {x: 6.5143, y: 6.5143, z: 6.5143}
   m_Children: []
   m_Father: {fileID: 4883230247440645490}
@@ -124,7 +125,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8689154303192210525}
-  m_Mesh: {fileID: 1225708136648297533, guid: ffe765042d05df544b6b1c7478f66ea8, type: 3}
+  m_Mesh: {fileID: -7620911229784272574, guid: 1c650b0e983deb049843848ff75178c9, type: 3}
 --- !u!23 &6965597208779827329
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -142,7 +143,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: ffe765042d05df544b6b1c7478f66ea8, type: 3}
+  - {fileID: 2100000, guid: 5802777c780721c468353fd3dd93b6d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,8 +174,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.020880613, y: 0.054654974, z: 0.12875183}
-  m_Center: {x: 0, y: 0.027000638, z: 0.06161232}
+  m_Size: {x: 0.020880615, y: 0.0806813, z: 0.19332507}
+  m_Center: {x: 0, y: 0.0400138, z: 0.050482463}
 --- !u!1001 &8755432173181890218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -182,6 +183,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4883230247440645490}
     m_Modifications:
+    - target: {fileID: 7607035432643072614, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Name
+      value: Pickup Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 6671520813197584891, guid: e6310968eef381040be8ed44eea318b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -286,11 +292,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7607035432643072614, guid: e6310968eef381040be8ed44eea318b0,
-        type: 3}
-      propertyPath: m_Name
-      value: Pickup Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 9091083465036915870, guid: e6310968eef381040be8ed44eea318b0,
         type: 3}
