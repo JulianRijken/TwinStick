@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 916016478576515463}
   - component: {fileID: 4025064125199420844}
   m_Layer: 14
-  m_Name: flameThrower_PickUp
+  m_Name: flameThrower_Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3717242838707983480}
   - component: {fileID: 6965597208779827329}
   - component: {fileID: 4439663178358743307}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: Flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,6 +187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pickup Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607035432643072614, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6671520813197584891, guid: e6310968eef381040be8ed44eea318b0,
         type: 3}
@@ -293,6 +298,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1447280395955041497, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038191580423331702, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 9091083465036915870, guid: e6310968eef381040be8ed44eea318b0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -302,6 +317,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198250947505630248, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734336789460528691, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730147674031051296, guid: e6310968eef381040be8ed44eea318b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6310968eef381040be8ed44eea318b0, type: 3}
