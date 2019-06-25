@@ -537,6 +537,7 @@ public class Player : Damageable
 
     #endregion
 
+
     private void OnDestroy()
     {
         GameManager.instance.notificationCenter.OnItemUsed += HandleItemUsage;
