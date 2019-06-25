@@ -16,13 +16,13 @@ public class InventoryUISlot : MonoBehaviour, IPointerClickHandler
     private bool inUse;
     private bool canUse;
 
-    void Awake()
+    private void Awake()
     {
         gameObject.SetActive(false);
         inUse = false;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         inUse = false;
     }
@@ -36,13 +36,12 @@ public class InventoryUISlot : MonoBehaviour, IPointerClickHandler
         canUse = GameManager.instance.inventory.GetItem(slot.itemID).canUse;
     }
 
-
-    IEnumerator UseItem()
+    private IEnumerator UseItem()
     {
         inUse = true;
         float timer = 0;
 
-        while(timer < 1f)
+        while (timer < 1f)
         {
             animator.SetFloat("time", timer);
 
@@ -63,7 +62,6 @@ public class InventoryUISlot : MonoBehaviour, IPointerClickHandler
             GameManager.instance.inventory.RemoveItemSlot(slot);
             gameObject.SetActive(false);
         }
-
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -75,7 +73,5 @@ public class InventoryUISlot : MonoBehaviour, IPointerClickHandler
                 StartCoroutine(UseItem());
             }
         }
-            
     }
-
 }
