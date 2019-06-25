@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class MiniEnemys : Damageable
 {
-    [SerializeField] public GameObject Itemdrop;
+    [SerializeField] public GameObject itemdrop;
     public GameObject Player;
     [SerializeField] private LayerMask hitLayer;
     //public float dealdamage;
@@ -24,7 +24,8 @@ public class MiniEnemys : Damageable
         base.OnDeath();
         Destroy(gameObject);
         //Music.Stop();
-        Instantiate(Itemdrop);
+        if(itemdrop != null)
+        Instantiate(itemdrop);
     }
 
     private void OnCollisionEnter(Collision collider_enemy)

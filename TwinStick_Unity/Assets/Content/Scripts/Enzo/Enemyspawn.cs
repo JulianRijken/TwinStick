@@ -20,9 +20,12 @@ public class Enemyspawn : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                Vector3 _randomPos = spawnpoint.position + Random.insideUnitSphere * 3;
-                _randomPos.y = 0;
-                SpawnEnemy(_randomPos);
+                if (spawnpoint != null)
+                {
+                    Vector3 _randomPos = spawnpoint.position + Random.insideUnitSphere * 3;
+                    _randomPos.y = 0;
+                    SpawnEnemy(_randomPos);
+                }
             }
             spawnTimer = spawnDelay - spawnTimer;
         }
