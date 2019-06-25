@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void SetLevelUnlocked(int _level, bool _unlocked)
     {
+        if(_level < unlockedLevels.Length)
         unlockedLevels[_level] = _unlocked;
     }
 
