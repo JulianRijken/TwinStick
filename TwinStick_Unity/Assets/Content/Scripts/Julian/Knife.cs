@@ -10,7 +10,7 @@ public class Knife : Weapon
     {
         base.OnActive();
         GameManager.instance.notificationCenter.FireGunMagAmmoChange(0, 0);
-        animatorEventHelper.OnAnimationEventTrigger += HandleOnAnimationEventTrigger;
+        animatorEventHelper.OnKnifeAnimationEvent += HandleOnAnimationEventTrigger;
     }
 
     private void HandleOnAnimationEventTrigger()
@@ -34,7 +34,7 @@ public class Knife : Weapon
     public override void OnInActive()
     {
         base.OnInActive();
-        animatorEventHelper.OnAnimationEventTrigger -= HandleOnAnimationEventTrigger;
+        animatorEventHelper.OnKnifeAnimationEvent -= HandleOnAnimationEventTrigger;
     }
 
 

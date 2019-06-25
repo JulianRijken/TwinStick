@@ -5,13 +5,20 @@ using UnityEngine;
 
 public class AnimatorEventHelper : MonoBehaviour
 {
-    public delegate void AnimationEventTrigger();
+    public delegate void KnifeAnimationEventTrigger();
+    public delegate void LoadMenuTrigger();
 
-    public event AnimationEventTrigger OnAnimationEventTrigger;
 
-    public void HandleAnimationEvent()
+    public event KnifeAnimationEventTrigger OnKnifeAnimationEvent;
+    public event LoadMenuTrigger OnLoadMenu;
+    public void HandleKnifeAnimationEvent()
     {
-        OnAnimationEventTrigger?.Invoke();
+        OnKnifeAnimationEvent?.Invoke();
+    }
+
+    public void HandleLoadMenuEvent()
+    {
+        OnLoadMenu?.Invoke();
     }
 
 }
