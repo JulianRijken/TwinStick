@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum PlayerAnimation { rifleAttack = 0, knifeAttack = 1 , rifleReload = 3}
-public enum PlayerMovementState { walking = 0, rolling = 1, locked = 2}
+public enum PlayerAnimation { rifleAttack = 0, knifeAttack = 1, rifleReload = 3 }
+public enum PlayerMovementState { walking = 0, rolling = 1, locked = 2 }
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Damageable
@@ -22,7 +22,7 @@ public class Player : Damageable
     [Header("Weapon")]
     [SerializeField] private Transform weaponPivit;
     [SerializeField] private float throwForce = 5f;
-    [SerializeField] private Vector2 torqueForce = new Vector2(-1,1);
+    [SerializeField] private Vector2 torqueForce = new Vector2(-1, 1);
     [SerializeField] private Weapon[] weapons = null;
     [SerializeField] private Weapon[] weaponsInInventory = null;
     [SerializeField] private PickUp[] weaponPickups = null;
@@ -30,14 +30,15 @@ public class Player : Damageable
     [Header("Animations")]
     [SerializeField] private Animator animator;
 
-    private WeaponSlotType selectedSlot = WeaponSlotType.primary;
     private int weaponSlotCount;
+    private WeaponSlotType selectedSlot = WeaponSlotType.primary;
 
+    private float moveSpeed = 5f;
     private Rigidbody rig = null;
     private Vector3 input = Vector3.zero;
     private Camera mainCamera;
-    private float moveSpeed = 5f;
     private PlayerMovementState playerMovementState;
+
 
     private void Awake()
     {
@@ -61,7 +62,7 @@ public class Player : Damageable
 
     }
 
-    void Start()
+    private void Start()
     {
         rig = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
@@ -77,20 +78,26 @@ public class Player : Damageable
         HandelWeaponInput();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
         Rotate();
     }
 
+    private void OnDestroy()
+    {
+        GameManager.instance.notificationCenter.OnItemUsed += HandleItemUsage;
+        GameManager.instance.notificationCenter.OnPlayerAnimation -= HandleAnimations;
+    }
+
+
 
     #region Weapon
-
 
     /// <summary>
     /// Picks up the weapon and if needed switches it in the invenety
     /// </summary>
-    public void PickUpWeapon(WeaponID _weaponID,int _ammo = 0)
+    public void PickUpWeapon(WeaponID _weaponID, int _ammo = 0)
     {
         Weapon newWeapon = GetWeapon(_weaponID);
         newWeapon.OnRefresh();
@@ -138,11 +145,11 @@ public class Player : Damageable
         {
 
 
-                // Switch the weapon
-                if (Input.GetAxis("Mouse ScrollWheel") > 0)
-                    SwitchUp();
-                else if (Input.GetAxis("Mouse ScrollWheel") < 0)
-                    SwitchDown();
+            // Switch the weapon
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+                SwitchUp();
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+                SwitchDown();
 
             if (playerMovementState != PlayerMovementState.rolling)
             {
@@ -230,15 +237,15 @@ public class Player : Damageable
 
         for (int i = 0; i < weaponPickups.Length; i++)
         {
-            if(weaponPickups[i].GetWeaponID() == _weaponID)
+            if (weaponPickups[i].GetWeaponID() == _weaponID)
             {
-                PickUp _spawntWeapon = Instantiate(weaponPickups[i],transform.position + transform.forward,transform.rotation);
+                PickUp _spawntWeapon = Instantiate(weaponPickups[i], transform.position + transform.forward, transform.rotation);
 
                 Rigidbody _rb = _spawntWeapon.GetComponent<Rigidbody>();
-                if(_rb != null)
+                if (_rb != null)
                 {
                     _rb.AddForce(transform.forward * throwForce, ForceMode.Impulse);
-                    _rb.AddTorque(new Vector3(Random.Range(torqueForce.x,torqueForce.y), Random.Range(torqueForce.x, torqueForce.y), Random.Range(torqueForce.x, torqueForce.y)),ForceMode.Impulse);
+                    _rb.AddTorque(new Vector3(Random.Range(torqueForce.x, torqueForce.y), Random.Range(torqueForce.x, torqueForce.y), Random.Range(torqueForce.x, torqueForce.y)), ForceMode.Impulse);
                 }
 
                 Gun _gun = GetWeapon(_weaponID).GetComponent<Gun>();
@@ -330,7 +337,7 @@ public class Player : Damageable
 
     private void HandelMoveInput()
     {
-        if (Input.GetKey(KeyCode.Space) && playerMovementState != PlayerMovementState.rolling )
+        if (Input.GetKey(KeyCode.Space) && playerMovementState != PlayerMovementState.rolling)
         {
             Roll();
         }
@@ -386,13 +393,13 @@ public class Player : Damageable
     /// </summary>
     private void Rotate()
     {
-       // if (playerMovementState == PlayerMovementState.walking)
-       //{
-            if (GameManager.instance.GetMenuState() == GameMenuState.clear)
-            {
-                float yRot = Quaternion.LookRotation(GetMousePos(mainCamera) - transform.position, Vector3.up).eulerAngles.y;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
-            }
+        // if (playerMovementState == PlayerMovementState.walking)
+        //{
+        if (GameManager.instance.GetMenuState() == GameMenuState.clear)
+        {
+            float yRot = Quaternion.LookRotation(GetMousePos(mainCamera) - transform.position, Vector3.up).eulerAngles.y;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yRot, 0), Time.deltaTime * rotationSpeed);
+        }
         //}
     }
 
@@ -477,11 +484,11 @@ public class Player : Damageable
     /// </summary>
     private void HandleItemUsage(ItemID _usedItem)
     {
-        switch(_usedItem)
+        switch (_usedItem)
         {
             case ItemID.HealthPack:
                 AddHealth(30f);
-                GameManager.instance.notificationCenter.FirePlayerHealthChange(health,maxHealth);
+                GameManager.instance.notificationCenter.FirePlayerHealthChange(health, maxHealth);
 
                 break;
             case ItemID.ArmorPack:
@@ -499,9 +506,9 @@ public class Player : Damageable
 
     #region Animations
 
-    void HandleAnimations(PlayerAnimation _animation)
+    private void HandleAnimations(PlayerAnimation _animation)
     {
-        switch(_animation)
+        switch (_animation)
         {
             case PlayerAnimation.knifeAttack:
                 animator.SetTrigger("knifeAttack");
@@ -521,7 +528,7 @@ public class Player : Damageable
     /// <summary>
     /// Sets the animatior input float
     /// </summary>
-    void SetAnimatorInput(Vector3 _input)
+    private void SetAnimatorInput(Vector3 _input)
     {
         animator.SetFloat("InputX", _input.x);
         animator.SetFloat("InputY", _input.z);
@@ -530,7 +537,7 @@ public class Player : Damageable
     /// <summary>
     /// Sets the animatior velocity
     /// </summary>
-    void SetAnimatorVeloctiy(float _velocity)
+    private void SetAnimatorVeloctiy(float _velocity)
     {
         animator.SetFloat("Velocity", _velocity);
     }
@@ -538,9 +545,5 @@ public class Player : Damageable
     #endregion
 
 
-    private void OnDestroy()
-    {
-        GameManager.instance.notificationCenter.OnItemUsed += HandleItemUsage;
-        GameManager.instance.notificationCenter.OnPlayerAnimation -= HandleAnimations;
-    }
+
 }
