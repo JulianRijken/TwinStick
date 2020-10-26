@@ -20,8 +20,6 @@ public class Enemy : Damageable
     private float timer;
     [SerializeField] private float shotTimer;
 
-    //public AudioSource Music;
-    //public AudioClip Musicclip;
 
     private enum EnemyStatus { Patrol, Attack }
 
@@ -32,7 +30,6 @@ public class Enemy : Damageable
         agent.autoBraking = false;
 
         GotoNextPoint();
-        //Music.clip = Musicclip;
 
         shotTimer = resetShotTimer;
     }
@@ -50,7 +47,6 @@ public class Enemy : Damageable
             {
                 target = targets[0];
                 status = EnemyStatus.Attack;
-                //Music.Play();
             }
         }
         else if (status == EnemyStatus.Attack)
@@ -121,6 +117,5 @@ public class Enemy : Damageable
         Instantiate(deadVersion, transform.position, transform.rotation);
         Destroy(gameObject);
         
-        //Music.Stop();
     }
 }
