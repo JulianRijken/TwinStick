@@ -8,22 +8,19 @@ public class MiniEnemys : Damageable
     [SerializeField] public GameObject itemdrop;
     public GameObject Player;
     [SerializeField] private LayerMask hitLayer;
-    //public float dealdamage;
 
     // Update is called once per frame
     private void Update()
     {
         GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
 
-        //Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-        //dealdamage = health - 5;
+       
     }
 
     protected override void OnDeath()
     {
         base.OnDeath();
         Destroy(gameObject);
-        //Music.Stop();
         if(itemdrop != null)
         Instantiate(itemdrop);
     }
