@@ -12,18 +12,9 @@ public enum RatState
 
 public class Rat : Damageable
 {
-    //public GameObject Player;
 
     //// Start is called before the first frame update
-    //private void Start()
-    //{
-    //    GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
-    //}
 
-    //// Update is called once per frame
-    //private void Update()
-    //{
-    //}
     [SerializeField]
     private Animator animRat;
 
@@ -54,19 +45,15 @@ public class Rat : Damageable
 
             if (dist <= staartRange && dist > bijtRange)
             {
-                //print("Hee, je komt de dicht bij....ratel...ratel!");
                 Ratstate = RatState.staart;
             }
             else if (dist <= bijtRange)
             {
-                //print("ik ben heel boos en ga nu aanvallen!");
                 Ratstate = RatState.bijt;
             }
             else if (dist > staartRange)
             {
-                //print("ik ben chill!");
                 Ratstate = RatState.spuug;
-                //GetComponent<NavMeshAgent>().SetDestination(Player.transform.position);
             }
         }
 
